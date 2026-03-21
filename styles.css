@@ -175,82 +175,129 @@ body {
     padding: var(--spacing-2);
 }
 
-/* Botão "Peça Agora" com máxima visibilidade */
-.btn-main {
-    display: flex;
+/* ===== BUTTON STYLES (MOBILE OPTIMIZED) ===== */
+.btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-    color: #fff !important; /* Garante que o texto fique branco */
-    padding: 16px 32px;
-    border-radius: var(--radius-xl); /* Mantém o padrão do seu site */
+    gap: var(--spacing-2);
+    padding: var(--spacing-3) var(--spacing-4);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: var(--font-size-sm);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px; /* Touch target size */
+}
+
+.btn-text {
+    display: none; /* Hidden on mobile */
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--whatsapp-green) 0%, var(--whatsapp-green-dark) 100%);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    background: linear-gradient(135deg, var(--whatsapp-green-dark) 0%, #0F5132 100%);
+}
+
+.btn-secondary {
+    background: var(--moura-blue);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover {
+    background: var(--moura-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-large {
+    padding: var(--spacing-4) var(--spacing-6);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-xl);
+    min-height: 56px;
+    width: 100%; /* Full width on mobile */
+}
+
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-1);
+}
+
+/* Estilização Premium para o botão principal */
+.btn-main {
+    display: inline-block;
+    background: linear-gradient(135deg, #25d366, #128c7e); /* Degradê WhatsApp */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 50px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    border: none;
     cursor: pointer;
-    font-size: var(--font-size-base);
-    width: 100%; /* Ocupa a largura disponível no mobile */
-    max-width: 400px; /* Limita no desktop */
-    margin: 10px auto;
     
-    /* Animações Unificadas */
-    animation: pulse-whatsapp 2s infinite, shake-attention 5s infinite;
+    /* Animação de pulso (Aura) */
+    animation: pulse-whatsapp 2s infinite;
 }
 
-/* Efeito Glint (Brilho de vidro) */
+/* Efeito de brilho que passa pelo texto */
 .btn-main::before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
-    width: 60%;
+    width: 50%;
     height: 100%;
     background: linear-gradient(
         to right,
         rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.6) 50%,
         rgba(255, 255, 255, 0) 100%
     );
-    transform: skewX(-30deg);
+    transform: skewX(-25deg);
+    transition: none;
     animation: shine-effect 3s infinite;
 }
 
-/* Hover aprimorado */
+/* Interação no Hover */
 .btn-main:hover {
-    transform: scale(1.05) translateY(-3px);
-    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.7);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
     filter: brightness(1.1);
 }
 
-/* Animação de Pulso (Aura Verde) */
+/* Definição das Animações */
 @keyframes pulse-whatsapp {
     0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
     70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* Animação de Brilho */
 @keyframes shine-effect {
     0% { left: -100%; }
     20% { left: 150%; }
     100% { left: 150%; }
 }
 
-/* Leve tremor a cada 5 segundos para re-chamar atenção */
-@keyframes shake-attention {
-    0%, 90%, 100% { transform: scale(1); }
-    92% { transform: scale(1.05) rotate(1deg); }
-    94% { transform: scale(1.05) rotate(-1deg); }
-    96% { transform: scale(1.05) rotate(1deg); }
-    98% { transform: scale(1.05) rotate(0deg); }
-}
 
 /* ===== HERO SECTION (MOBILE FIRST) ===== */
 .hero {
