@@ -201,6 +201,16 @@
             font-size: 0.95em;
             margin-top: 10px;
         }
+
+        .location-details {
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        .location-details div {
+            margin: 5px 0;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -216,7 +226,7 @@
                 <div class="location-value" id="locationDisplay">
                     <span class="location-loading"></span>Detectando...
                 </div>
-                <div id="locationDetails" style="font-size: 0.95em; color: #666; margin-top: 8px;"></div>
+                <div id="locationDetails" class="location-details"></div>
                 <div id="locationError" class="error-message"></div>
             </div>
 
@@ -259,74 +269,243 @@
     </div>
 
     <script>
-        // Função para obter localização por IP
-        async function getLocationByIP() {
+        // Função para reverter coordenadas em endereço (usando Nominatim - OpenStreetMap)
+        async function reverseGeocoding(latitude, longitude) {
             try {
-                // Usando a API ip-api.com (gratuita e sem autenticação)
-                const response = await fetch('https://ipapi.co/json/');
+                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
                 
                 if (!response.ok) {
-                    throw new Error('Erro ao obter localização');
+                    throw new Error('Erro no reverse geocoding');
                 }
 
                 const data = await response.json();
-
-                // Extrair informações
-                const city = data.city || 'Desconhecida';
-                const state = data.region_code || data.region || 'Desconhecido';
-                const country = data.country_name || 'Brasil';
-                const ip = data.ip || 'N/A';
-
-                // Atualizar a interface
-                document.getElementById('locationDisplay').innerHTML = `${city}, ${state}`;
-                document.getElementById('locationDetails').innerHTML = `
-                    <div style="margin-top: 10px; font-size: 0.85em;">
-                        <div>País: ${country}</div>
-                        <div>IP: ${ip}</div>
-                    </div>
-                `;
-                document.getElementById('locationError').innerHTML = '';
-
-            } catch (error) {
-                console.error('Erro:', error);
-                document.getElementById('locationDisplay').innerHTML = 'Localização não disponível';
-                document.getElementById('locationError').innerHTML = 'Não foi possível detectar sua localização. Mas você ainda pode fazer seu pedido!';
+                const address = data.address || {};
                 
-                // Tentar API alternativa
-                tryAlternativeAPI();
+                const city = address.city || address.town || address.village || 'Desconhecida';
+                const state = address.state || 'Desconhecido';
+                const country = address.country || 'Brasil';
+
+                return {
+                    city,
+                    state,
+                    country,
+                    latitude: latitude.toFixed(4),
+                    longitude: longitude.toFixed(4),
+                    source: 'GPS'
+                };
+            } catch (error) {
+                console.error('Erro no reverse geocoding:', error);
+                return null;
             }
         }
 
-        // Função alternativa usando outra API
-        async function tryAlternativeAPI() {
+        // Tentar usar Geolocation API do navegador
+        async function tryBrowserGeolocation() {
+            return new Promise((resolve) => {
+                if (!navigator.geolocation) {
+                    resolve(null);
+                    return;
+                }
+
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const result = await reverseGeocoding(latitude, longitude);
+                        resolve(result);
+                    },
+                    (error) => {
+                        console.warn('Erro na geolocalização do navegador:', error);
+                        resolve(null);
+                    },
+                    { timeout: 5000 }
+                );
+            });
+        }
+
+        // API 1: ip-api.com
+        async function getLocationFromIPAPI() {
             try {
-                const response = await fetch('https://ifconfig.co/json');
+                const response = await fetch('https://ip-api.com/json/?fields=status,city,regionName,country,countryCode,lat,lon,query');
                 
                 if (!response.ok) {
-                    throw new Error('Erro na API alternativa');
+                    throw new Error('Erro na API ip-api');
                 }
 
                 const data = await response.json();
-                const ip = data.ip || 'N/A';
 
-                document.getElementById('locationDetails').innerHTML = `
-                    <div style="margin-top: 10px; font-size: 0.85em;">
-                        <div>IP: ${ip}</div>
-                    </div>
-                `;
+                if (data.status === 'success') {
+                    return {
+                        city: data.city || 'Desconhecida',
+                        state: data.regionName || 'Desconhecido',
+                        country: data.country || 'Brasil',
+                        ip: data.query || 'N/A',
+                        latitude: data.lat,
+                        longitude: data.lon,
+                        source: 'IP (ip-api.com)'
+                    };
+                }
+                throw new Error('Status não success');
+            } catch (error) {
+                console.warn('Erro na ip-api.com:', error);
+                return null;
+            }
+        }
+
+        // API 2: ipapi.co
+        async function getLocationFromIPAPICo() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                
+                if (!response.ok) {
+                    throw new Error('Erro na API ipapi.co');
+                }
+
+                const data = await response.json();
+
+                return {
+                    city: data.city || 'Desconhecida',
+                    state: data.region_code || data.region || 'Desconhecido',
+                    country: data.country_name || 'Brasil',
+                    ip: data.ip || 'N/A',
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    source: 'IP (ipapi.co)'
+                };
+            } catch (error) {
+                console.warn('Erro na ipapi.co:', error);
+                return null;
+            }
+        }
+
+        // API 3: geoip-db.com
+        async function getLocationFromGeoIPDB() {
+            try {
+                const response = await fetch('https://geoip-db.com/json/');
+                
+                if (!response.ok) {
+                    throw new Error('Erro na API geoip-db');
+                }
+
+                const data = await response.json();
+
+                return {
+                    city: data.city || 'Desconhecida',
+                    state: data.state || 'Desconhecido',
+                    country: data.country_name || 'Brasil',
+                    ip: data.IPv4 || 'N/A',
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    source: 'IP (geoip-db.com)'
+                };
+            } catch (error) {
+                console.warn('Erro na geoip-db.com:', error);
+                return null;
+            }
+        }
+
+        // API 4: ipwhois.app
+        async function getLocationFromIPWhois() {
+            try {
+                const response = await fetch('https://ipwhois.app/json/');
+                
+                if (!response.ok) {
+                    throw new Error('Erro na API ipwhois');
+                }
+
+                const data = await response.json();
+
+                return {
+                    city: data.city || 'Desconhecida',
+                    state: data.region || 'Desconhecido',
+                    country: data.country || 'Brasil',
+                    ip: data.ip || 'N/A',
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    source: 'IP (ipwhois.app)'
+                };
+            } catch (error) {
+                console.warn('Erro na ipwhois.app:', error);
+                return null;
+            }
+        }
+
+        // Função principal para obter localização
+        async function getLocation() {
+            try {
+                // Primeiro, tentar geolocalização do navegador
+                console.log('Tentando geolocalização do navegador...');
+                let location = await tryBrowserGeolocation();
+                
+                if (location) {
+                    updateUI(location);
+                    return;
+                }
+
+                // Se não conseguir, tentar múltiplas APIs de IP
+                const apis = [
+                    getLocationFromIPAPI,
+                    getLocationFromIPAPICo,
+                    getLocationFromGeoIPDB,
+                    getLocationFromIPWhois
+                ];
+
+                for (const api of apis) {
+                    console.log(`Tentando ${api.name}...`);
+                    location = await api();
+                    
+                    if (location && location.city && location.city !== 'Desconhecida') {
+                        updateUI(location);
+                        return;
+                    }
+                }
+
+                // Se nenhuma API funcionou, mostrar mensagem
+                if (!location) {
+                    document.getElementById('locationDisplay').innerHTML = 'Localização não disponível';
+                    document.getElementById('locationError').innerHTML = 'Não foi possível detectar sua localização, mas você ainda pode fazer seu pedido!';
+                    document.getElementById('locationDetails').innerHTML = '';
+                }
 
             } catch (error) {
-                console.error('Erro na API alternativa:', error);
+                console.error('Erro geral:', error);
+                document.getElementById('locationDisplay').innerHTML = 'Erro ao detectar';
+                document.getElementById('locationError').innerHTML = 'Houve um erro ao detectar sua localização.';
             }
+        }
+
+        // Atualizar UI com localização
+        function updateUI(location) {
+            if (!location) return;
+
+            const displayName = location.city && location.city !== 'Desconhecida' 
+                ? `${location.city}, ${location.state}` 
+                : 'Localização detectada';
+
+            document.getElementById('locationDisplay').innerHTML = displayName;
+            
+            let detailsHTML = `<div>País: ${location.country}</div>`;
+            
+            if (location.ip && location.ip !== 'N/A') {
+                detailsHTML += `<div>IP: ${location.ip}</div>`;
+            }
+            
+            if (location.latitude && location.longitude) {
+                detailsHTML += `<div>Coordenadas: ${location.latitude}, ${location.longitude}</div>`;
+            }
+            
+            detailsHTML += `<div style="font-size: 0.8em; margin-top: 8px; color: #999;">Fonte: ${location.source}</div>`;
+            
+            document.getElementById('locationDetails').innerHTML = detailsHTML;
+            document.getElementById('locationError').innerHTML = '';
         }
 
         // Executar quando a página carregar
         window.addEventListener('load', function() {
-            getLocationByIP();
+            getLocation();
         });
 
-        // Também tentar imediatamente (caso o load demore)
-        getLocationByIP();
+        // Também tentar imediatamente
+        getLocation();
     </script>
 </body>
 </html>
