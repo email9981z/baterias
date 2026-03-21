@@ -237,65 +237,75 @@ body {
     gap: var(--spacing-1);
 }
 
-/* Estilização Premium para o botão principal */
+/* Botão "Peça Agora" - Design Máximo por Padrão */
 .btn-main {
-    display: inline-block;
-    background: linear-gradient(135deg, #25d366, #128c7e); /* Degradê WhatsApp */
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #fff !important;
+    padding: 18px 35px; /* Mais robusto */
+    border-radius: var(--radius-xl);
+    font-weight: 900; /* Texto mais grosso */
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    transition: all 0.3s ease;
-    border: none;
     cursor: pointer;
+    font-size: var(--font-size-base);
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Borda interna de destaque */
     
-    /* Animação de pulso (Aura) */
-    animation: pulse-whatsapp 2s infinite;
+    /* ESTADO "SELECIONADO" POR PADRÃO */
+    transform: scale(1.05); /* Já nasce levemente maior */
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6); /* Sombra de profundidade fixa */
+    filter: brightness(1.1); /* Mais iluminado que os outros botões */
+    
+    /* Animações Ativas */
+    animation: pulse-whatsapp 2s infinite, shake-attention 6s infinite;
 }
 
-/* Efeito de brilho que passa pelo texto */
+/* Brilho de Vidro (Glint) sempre ativo */
 .btn-main::before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
-    width: 50%;
+    width: 60%;
     height: 100%;
     background: linear-gradient(
         to right,
         rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.7) 50%,
         rgba(255, 255, 255, 0) 100%
     );
-    transform: skewX(-25deg);
-    transition: none;
-    animation: shine-effect 3s infinite;
+    transform: skewX(-30deg);
+    animation: shine-effect 3.5s infinite;
 }
 
-/* Interação no Hover */
-.btn-main:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-    filter: brightness(1.1);
-}
-
-/* Definição das Animações */
+/* Animação de Pulso (Aura) */
 @keyframes pulse-whatsapp {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.8); }
+    70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
+/* Brilho constante */
 @keyframes shine-effect {
-    0% { left: -100%; }
-    20% { left: 150%; }
+    0% { left: -120%; }
+    15% { left: 150%; }
     100% { left: 150%; }
+}
+
+/* Tremo sutil para não deixar o olho acostumar */
+@keyframes shake-attention {
+    0%, 95%, 100% { transform: scale(1.05) rotate(0deg); }
+    96% { transform: scale(1.08) rotate(1deg); }
+    98% { transform: scale(1.08) rotate(-1deg); }
 }
 
 
