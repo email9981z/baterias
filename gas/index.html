@@ -348,6 +348,7 @@
             gap: 10px;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(0, 85, 255, 0.3);
+            margin-bottom: 30px;
         }
 
         .continue-btn:hover {
@@ -361,6 +362,252 @@
 
         .continue-btn i {
             font-size: 1.2rem;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .benefit-item {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            background-color: #e8f4ff;
+            transform: translateY(-2px);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+
+        .benefit-text {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .review-item {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 0.95rem;
+        }
+
+        .review-rating {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        .review-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 20px 10px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 10px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .newsletter-subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--text-gray);
+        }
+
+        .newsletter-input::placeholder {
+            color: #999;
+        }
+
+        .newsletter-btn {
+            padding: 12px;
+            background-color: var(--success-green);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .newsletter-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .newsletter-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            margin-bottom: 15px;
+        }
+
+        .footer-section {
+            margin-bottom: 12px;
+        }
+
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 12px 0;
+        }
+
+        .footer-bottom {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .social-icon:hover {
+            color: var(--secondary-blue);
         }
 
         /* Cart Sidebar */
@@ -396,10 +643,10 @@
             width: 400px;
             height: 100vh;
             background-color: var(--white);
-            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            z-index: 1000;
             transition: right 0.3s ease;
         }
 
@@ -412,14 +659,16 @@
             color: var(--white);
             padding: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .cart-header h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .cart-close-btn {
@@ -451,55 +700,61 @@
 
         .cart-item-name {
             font-weight: 600;
-            color: #333;
+            color: var(--dark-blue);
             margin-bottom: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .cart-item-details {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-gray);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .cart-item-price {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: var(--primary-blue);
+            margin-top: 8px;
         }
 
         .cart-summary {
+            border-top: 2px solid var(--light-gray);
             padding: 20px;
-            border-top: 1px solid #eee;
             background-color: var(--light-gray);
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 0.95rem;
+            color: var(--text-gray);
         }
 
         .summary-row.total {
-            font-size: 1.2rem;
             font-weight: bold;
-            color: var(--primary-blue);
+            font-size: 1.1rem;
+            color: var(--dark-blue);
             border-top: 1px solid #ddd;
-            padding-top: 10px;
-            margin-top: 10px;
+            padding-top: 12px;
+            margin-top: 12px;
         }
 
         .proceed-btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--success-green) 0%, #20c997 100%);
+            background: linear-gradient(135deg, var(--success-green) 0%, #218838 100%);
             color: var(--white);
             border: none;
-            padding: 16px;
+            padding: 14px;
             border-radius: 8px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
             margin-top: 15px;
@@ -529,6 +784,10 @@
                 width: 100%;
                 right: -100%;
             }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -546,6 +805,18 @@
 
             .quantity-selector {
                 padding: 12px 15px;
+            }
+
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .newsletter-section {
+                padding: 15px 10px;
+            }
+
+            .footer {
+                padding: 15px;
             }
         }
     </style>
@@ -617,6 +888,113 @@
             <button id="order-btn" class="continue-btn">
                 <i class="fas fa-shopping-cart"></i> PEDIR AGORA
             </button>
+
+            <!-- Benefits Section -->
+            <div class="benefits-section">
+                <h2 class="section-title">Benefícios</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="benefit-text">100% Seguro</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="benefit-text">Eco-Friendly</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-star"></i></div>
+                        <div class="benefit-text">Qualidade Premium</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                        <div class="benefit-text">Suporte 24/7</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="reviews-section">
+                <h2 class="section-title">Avaliações</h2>
+                <div class="reviews-container">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">Maria Silva</span>
+                            <span class="review-rating">★★★★★</span>
+                        </div>
+                        <div class="review-text">"Excelente produto! Chegou rápido e bem embalado. Recomendo!"</div>
+                        <div class="review-stats">
+                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">234</span> útil</div>
+                            <div class="stat-item"><i class="fas fa-calendar"></i> há 2 dias</div>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">João Santos</span>
+                            <span class="review-rating">★★★★☆</span>
+                        </div>
+                        <div class="review-text">"Muito bom! Entrega rápida conforme prometido. Voltaria a comprar."</div>
+                        <div class="review-stats">
+                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">156</span> útil</div>
+                            <div class="stat-item"><i class="fas fa-calendar"></i> há 5 dias</div>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">Ana Costa</span>
+                            <span class="review-rating">★★★★★</span>
+                        </div>
+                        <div class="review-text">"Perfeito! Qualidade garantida e atendimento excelente. Muito satisfeita!"</div>
+                        <div class="review-stats">
+                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">312</span> útil</div>
+                            <div class="stat-item"><i class="fas fa-calendar"></i> há 1 semana</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <div class="newsletter-title">📬 Receba Ofertas Exclusivas</div>
+                <div class="newsletter-subtitle">Inscreva-se e ganhe 10% de desconto na próxima compra</div>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Seu e-mail" required>
+                    <button type="submit" class="newsletter-btn">Inscrever-se</button>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-title">Ultragaz</div>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">Sobre Nós</a>
+                            <a href="#" class="footer-link">Contato</a>
+                            <a href="#" class="footer-link">Blog</a>
+                        </div>
+                    </div>
+                    <div class="footer-divider"></div>
+                    <div class="footer-section">
+                        <div class="footer-title">Políticas</div>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">Privacidade</a>
+                            <a href="#" class="footer-link">Termos</a>
+                            <a href="#" class="footer-link">Cookies</a>
+                        </div>
+                    </div>
+                    <div class="footer-divider"></div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="footer-divider"></div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 Ultragaz. Todos os direitos reservados.</p>
+                        <p>CNPJ: 00.000.000/0000-00</p>
+                    </div>
+                </div>
+            </footer>
         </main>
     </div>
 
@@ -674,6 +1052,7 @@
             const cartItemsContainer = document.getElementById('cart-items-container');
             const subtotalEl = document.getElementById('subtotal');
             const cartTotalEl = document.getElementById('cart-total');
+            const newsletterForm = document.getElementById('newsletter-form');
 
             // Constants
             const UNIT_REFILL_PRICE = 90.00;
@@ -765,6 +1144,28 @@
             proceedBtn.addEventListener('click', () => {
                 // Redireciona para o link de checkout
                 window.location.href = CHECKOUT_URL;
+            });
+
+            // Newsletter Form Handler
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+                const email = emailInput.value;
+                
+                // Aqui você pode enviar o email para seu servidor
+                console.log('Email inscrito:', email);
+                
+                // Feedback visual
+                const btn = newsletterForm.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Inscrito com sucesso!';
+                btn.style.backgroundColor = '#28a745';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = '';
+                    emailInput.value = '';
+                }, 3000);
             });
 
             // Countdown Timer Logic
