@@ -345,24 +345,24 @@
         }
 
         .price-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-light);
             text-transform: uppercase;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 10px;
         }
 
         .price-values {
             display: flex;
-            align-items: baseline;
-            gap: 6px;
+            align-items: center;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
         .old-price {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--text-light);
             text-decoration: line-through;
             font-weight: 500;
@@ -370,20 +370,22 @@
         }
 
         .current-price {
-            font-size: 1.8rem;
+            font-size: 2.4rem;
             font-weight: 700;
             color: var(--primary);
             white-space: nowrap;
+            line-height: 1;
         }
 
         .discount-badge {
             background-color: var(--danger);
             color: var(--bg-white);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
             font-weight: 700;
             white-space: nowrap;
+            letter-spacing: 0.3px;
         }
 
         .quantity-selector {
@@ -400,15 +402,16 @@
 
         .unit-price-info {
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: var(--text-gray);
             text-align: center;
-            padding: 8px;
+            padding: 10px 14px;
             background-color: var(--primary-light);
-            border-radius: 6px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            font-weight: 500;
         }
 
         /* ==================== CTA BUTTON ==================== */
@@ -1069,7 +1072,7 @@
             }
 
             .current-price {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
 
             .pricing-section {
@@ -1118,20 +1121,25 @@
             }
 
             .price-values {
-                gap: 4px;
+                gap: 10px;
             }
 
             .old-price {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
 
             .current-price {
-                font-size: 1.5rem;
+                font-size: 2rem;
+            }
+
+            .discount-badge {
+                font-size: 0.75rem;
+                padding: 5px 10px;
             }
 
             .unit-price-info {
-                font-size: 0.8rem;
-                padding: 6px;
+                font-size: 0.85rem;
+                padding: 10px 14px;
             }
 
             .pricing-container {
@@ -1241,7 +1249,7 @@
             <section class="pricing-section">
                 <div class="pricing-container">
                     <div class="price-display">
-                        <span class="price-label">Preço Total</span>
+                        <span class="price-label">Preço</span>
                         <div class="price-values">
                             <span class="old-price">R$&nbsp;105,00</span>
                             <span class="current-price">R$&nbsp;90,00</span>
@@ -1251,7 +1259,7 @@
                 </div>
 
                 <div class="unit-price-info">
-                    <i class="fas fa-info-circle"></i> Valor unitário: <strong>R$&nbsp;90,00</strong>
+                    <strong>R$&nbsp;90,00</strong> por unidade
                 </div>
 
                 <!-- DELIVERY OPTIONS -->
