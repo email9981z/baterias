@@ -333,8 +333,8 @@
 
         .pricing-container {
             display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: flex-start;
             gap: 16px;
             margin-bottom: 20px;
         }
@@ -387,40 +387,15 @@
         }
 
         .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background-color: var(--bg-light);
-            padding: 10px 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            flex-shrink: 0;
+            display: none;
         }
 
         .qty-btn {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 1.4rem;
-            cursor: pointer;
-            padding: 4px;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .qty-btn:hover {
-            color: var(--primary-dark);
-            transform: scale(1.1);
+            display: none;
         }
 
         .qty-number {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            min-width: 30px;
-            text-align: center;
+            display: none;
         }
 
         .unit-price-info {
@@ -862,6 +837,42 @@
             transform: scale(1.05);
         }
 
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--bg-white);
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cart-qty-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 2px 4px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-qty-btn:hover {
+            color: var(--primary-dark);
+            transform: scale(1.15);
+        }
+
+        .cart-qty-display {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            min-width: 24px;
+            text-align: center;
+        }
+
         .empty-cart {
             text-align: center;
             padding: 40px 20px;
@@ -1237,15 +1248,6 @@
                             <span class="discount-badge">-14%</span>
                         </div>
                     </div>
-                    <div class="quantity-selector">
-                        <button class="qty-btn" id="decrease-qty" title="Diminuir quantidade">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <span class="qty-number" id="quantity">1</span>
-                        <button class="qty-btn" id="increase-qty" title="Aumentar quantidade">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
                 </div>
 
                 <div class="unit-price-info">
@@ -1436,10 +1438,7 @@
         const PRODUCT_PRICE = 90;
         const PRODUCT_NAME = 'Botijão Cheio P13 (13Kg)';
 
-        // DOM Elements
-        const quantityEl = document.getElementById('quantity');
-        const decreaseBtn = document.getElementById('decrease-qty');
-        const increaseBtn = document.getElementById('increase-qty');
+        // Cart elements
         const cartBtn = document.getElementById('cart-btn');
         const cartBadge = document.getElementById('cart-badge');
         const orderBtn = document.getElementById('order-btn');
@@ -1449,25 +1448,6 @@
         const cartContent = document.getElementById('cart-content');
         const subtotalEl = document.getElementById('subtotal');
         const totalEl = document.getElementById('total');
-
-        let quantity = 1;
-
-        // Quantity controls
-        decreaseBtn.addEventListener('click', () => {
-            if (quantity > 1) {
-                quantity--;
-                updateQuantity();
-            }
-        });
-
-        increaseBtn.addEventListener('click', () => {
-            quantity++;
-            updateQuantity();
-        });
-
-        function updateQuantity() {
-            quantityEl.textContent = quantity;
-        }
 
         // Open/Close cart
         function openCart() {
@@ -1488,11 +1468,11 @@
 
         // Add to cart
         orderBtn.addEventListener('click', () => {
-            // Add item to cart
+            // Add item to cart with quantity 1
             cart.push({
                 name: PRODUCT_NAME,
                 price: PRODUCT_PRICE,
-                quantity: quantity
+                quantity: 1
             });
 
             // Update cart display
@@ -1511,10 +1491,6 @@
 
             // Open cart
             openCart();
-
-            // Reset quantity
-            quantity = 1;
-            updateQuantity();
         });
 
         function updateCartBadge() {
@@ -1553,6 +1529,15 @@
                             <div class="cart-item-qty">Quantidade: ${item.quantity}</div>
                         </div>
                         <div class="cart-item-right">
+                            <div class="cart-item-controls">
+                                <button class="cart-qty-btn" data-index="${index}" data-action="decrease" title="Diminuir quantidade">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="cart-qty-display">${item.quantity}</span>
+                                <button class="cart-qty-btn" data-index="${index}" data-action="increase" title="Aumentar quantidade">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
                             <div class="cart-item-price">R$&nbsp;${formattedPrice}</div>
                             <button class="cart-item-remove" data-index="${index}" title="Remover produto">
                                 <i class="fas fa-trash-alt"></i>
@@ -1572,6 +1557,19 @@
                 });
             });
 
+            // Add quantity control listeners
+            document.querySelectorAll('.cart-qty-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = parseInt(e.currentTarget.dataset.index);
+                    const action = e.currentTarget.dataset.action;
+                    if (action === 'increase') {
+                        addQuantityToCart(index);
+                    } else if (action === 'decrease') {
+                        removeQuantityFromCart(index);
+                    }
+                });
+            });
+
             const formattedSubtotal = subtotal.toFixed(2).replace('.', ',');
             subtotalEl.textContent = `R$&nbsp;${formattedSubtotal}`;
             totalEl.textContent = `R$&nbsp;${formattedSubtotal}`;
@@ -1581,6 +1579,23 @@
             cart.splice(index, 1);
             updateCartDisplay();
             updateCartBadge();
+        }
+
+        // Add/Remove quantity in cart
+        function addQuantityToCart(index) {
+            if (cart[index]) {
+                cart[index].quantity++;
+                updateCartDisplay();
+                updateCartBadge();
+            }
+        }
+
+        function removeQuantityFromCart(index) {
+            if (cart[index] && cart[index].quantity > 1) {
+                cart[index].quantity--;
+                updateCartDisplay();
+                updateCartBadge();
+            }
         }
 
         // Newsletter form
