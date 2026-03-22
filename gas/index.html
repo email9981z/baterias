@@ -1476,12 +1476,20 @@
 
         // Add to cart
         orderBtn.addEventListener('click', () => {
-            // Add item to cart with quantity 1
-            cart.push({
-                name: PRODUCT_NAME,
-                price: PRODUCT_PRICE,
-                quantity: 1
-            });
+            // Check if product already exists in cart
+            const existingItem = cart.find(item => item.name === PRODUCT_NAME && item.price === PRODUCT_PRICE);
+            
+            if (existingItem) {
+                // If product exists, increment quantity
+                existingItem.quantity++;
+            } else {
+                // If product doesn't exist, add new item
+                cart.push({
+                    name: PRODUCT_NAME,
+                    price: PRODUCT_PRICE,
+                    quantity: 1
+                });
+            }
 
             // Update cart display
             updateCartDisplay();
@@ -1522,7 +1530,7 @@
                 return;
             }
 
-            // Build cart items HTML
+            // Build cart items HTML - now cart already has merged items
             let itemsHTML = '';
             let subtotal = 0;
 
@@ -1534,7 +1542,6 @@
                     <div class="cart-item">
                         <div class="cart-item-info">
                             <h3>${item.name}</h3>
-                            <div class="cart-item-qty">Quantidade: ${item.quantity}</div>
                         </div>
                         <div class="cart-item-right">
                             <div class="cart-item-controls">
