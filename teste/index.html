@@ -306,7 +306,9 @@
       @media (min-width: 1280px) {
         #banner .display {
           font-size: 3rem !important;
-          line-height: 1.2 !important;
+          line-height: 1.3 !important; /* Aumentado para evitar corte superior */
+          padding-top: 0.5rem !important; /* Espaço extra no topo */
+          display: block !important;
         }
       }
     </style>
@@ -315,9 +317,9 @@
       #banner {
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        padding-top: 2rem !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        padding-top: 4rem !important; /* Aumentado para evitar corte */
       }
       @media (min-width: 1280px) {
         #banner {
@@ -327,6 +329,7 @@
         }
         #banner .flex-col {
           align-items: flex-start !important;
+          text-align: left !important;
         }
       }
       /* Fix manufacturers grid alignment */
