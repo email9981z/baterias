@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recarga de Gás 13kg - Ultragaz</title>
+    <title>Botijão cheio - P13 (13Kg) - Ultragaz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-blue: #0055ff;
             --secondary-blue: #00bfff;
             --dark-blue: #0033cc;
-            --text-gray: #666;
-            --light-gray: #f5f5f5;
+            --text-gray: #555;
+            --text-light: #888;
+            --light-gray: #f8f9fa;
             --white: #ffffff;
             --success-green: #28a745;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -25,7 +28,7 @@
         }
 
         body {
-            background-color: #f9f9f9;
+            background-color: #fafbfc;
             min-height: 100vh;
             overflow-x: hidden;
             display: flex;
@@ -37,7 +40,7 @@
             width: 100%;
             max-width: 450px;
             background-color: var(--white);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -49,50 +52,54 @@
         .header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: var(--white);
-            padding: 15px;
+            padding: 14px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-sm);
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .back-btn {
             background: none;
             border: none;
             color: var(--white);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: transform 0.2s;
+            padding: 6px;
         }
 
         .back-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .header-title h1 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
+            letter-spacing: -0.3px;
         }
 
         .header-title span {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 0.85rem;
+            opacity: 0.92;
+            display: block;
+            margin-top: 2px;
         }
 
         .header-cart-btn {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: var(--white);
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,19 +115,19 @@
 
         .cart-badge {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: -8px;
+            right: -8px;
             background-color: #ff3b30;
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: bold;
-            min-width: 18px;
-            height: 18px;
+            min-width: 20px;
+            height: 20px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid var(--primary-blue);
+            border: 2px solid var(--white);
             opacity: 0;
             transform: scale(0);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -135,34 +142,36 @@
         .promo-banner {
             background: linear-gradient(135deg, #00e5ff 0%, #00bfff 100%);
             color: #003366;
-            padding: 12px;
+            padding: 11px 16px;
             text-align: center;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
         }
 
         .promo-content {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .delivery-banner {
             background-color: var(--success-green);
             color: var(--white);
-            padding: 12px;
+            padding: 11px 16px;
             text-align: center;
             font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            font-size: 0.95rem;
+            gap: 8px;
+            font-size: 0.92rem;
+            box-shadow: var(--shadow-sm);
         }
 
         .delivery-icon {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             animation: pulse 2s infinite;
         }
 
@@ -173,7 +182,7 @@
 
         /* ==================== MAIN CONTENT ==================== */
         .product-main {
-            padding: 20px;
+            padding: 24px 20px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -181,28 +190,56 @@
             overflow-y: auto;
         }
 
+        /* ==================== PRODUCT NAME SECTION ==================== */
+        .product-name-section {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .product-sku {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
         /* ==================== IMAGE GALLERY ==================== */
         .product-image-gallery {
             width: 100%;
-            max-width: 250px;
-            margin: 20px 0;
+            margin: 0 0 24px 0;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .product-image-container {
             width: 100%;
-            height: 250px;
+            height: 280px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: var(--light-gray);
-            border-radius: 12px;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #f0f2f5 100%);
+            border-radius: 14px;
+            padding: 24px;
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            border: 1px solid #e8eaed;
+            transition: all 0.3s ease;
+        }
+
+        .product-image-container:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--secondary-blue);
         }
 
         .product-image {
@@ -214,7 +251,7 @@
         }
 
         .product-image:hover {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         .carousel-controls {
@@ -222,21 +259,20 @@
             justify-content: center;
             align-items: center;
             gap: 12px;
-            margin-top: 5px;
         }
 
         .carousel-indicators {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .indicator {
-            width: 10px;
-            height: 10px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
-            background: #ddd;
+            background: #d4d7dc;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
@@ -244,8 +280,8 @@
 
         .indicator.active {
             background: var(--primary-blue);
-            width: 30px;
-            border-radius: 5px;
+            width: 28px;
+            border-radius: 4px;
         }
 
         .indicator:hover {
@@ -258,14 +294,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-            padding: 0 10px;
+            margin-bottom: 22px;
+            font-size: 0.9rem;
+            padding: 14px 16px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            border-left: 3px solid var(--primary-blue);
         }
 
         .option-label {
             color: var(--text-gray);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .rules-link {
@@ -273,43 +312,49 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 5px;
-            transition: color 0.2s;
+            gap: 4px;
+            transition: all 0.2s;
+            font-weight: 500;
         }
 
         .rules-link:hover {
             color: var(--dark-blue);
+            gap: 6px;
         }
 
         /* ==================== QUANTITY SELECTOR ==================== */
         .quantity-selector {
             display: flex;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 28px;
             background-color: var(--light-gray);
-            padding: 15px 20px;
+            padding: 16px 20px;
             border-radius: 10px;
+            border: 1px solid #e8eaed;
         }
 
         .qty-btn {
             background: none;
             border: none;
             color: var(--primary-blue);
-            font-size: 2.2rem;
+            font-size: 2rem;
             cursor: pointer;
             transition: transform 0.1s;
+            padding: 4px;
         }
 
         .qty-btn:active {
-            transform: scale(0.9);
+            transform: scale(0.85);
         }
 
         .qty-number {
             font-size: 1.8rem;
-            font-weight: 600;
-            min-width: 30px;
+            font-weight: 700;
+            min-width: 40px;
             text-align: center;
+            color: var(--dark-blue);
         }
 
         /* ==================== CHECKBOX ==================== */
@@ -317,12 +362,13 @@
             display: flex;
             align-items: center;
             position: relative;
-            padding-left: 35px;
+            padding-left: 36px;
             cursor: pointer;
             font-size: 0.95rem;
             user-select: none;
             color: var(--text-gray);
-            margin-bottom: 30px;
+            margin-bottom: 28px;
+            font-weight: 500;
         }
 
         .checkbox-container input {
@@ -335,21 +381,24 @@
 
         .checkmark {
             position: absolute;
-            top: 0;
+            top: 2px;
             left: 0;
             height: 22px;
             width: 22px;
-            background-color: #eee;
-            border-radius: 4px;
+            background-color: #f0f2f5;
+            border: 2px solid #d4d7dc;
+            border-radius: 6px;
             transition: all 0.2s;
         }
 
         .checkbox-container:hover input ~ .checkmark {
-            background-color: #ccc;
+            border-color: var(--primary-blue);
+            background-color: #f8f9fa;
         }
 
         .checkbox-container input:checked ~ .checkmark {
             background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
         }
 
         .checkmark:after {
@@ -363,81 +412,95 @@
         }
 
         .checkbox-container .checkmark:after {
-            left: 8px;
-            top: 4px;
-            width: 5px;
+            left: 7px;
+            top: 3px;
+            width: 6px;
             height: 10px;
             border: solid white;
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
         }
 
-        /* ==================== PRICING ==================== */
+        /* ==================== PRICING SECTION ==================== */
         .pricing-section {
             width: 100%;
-            background-color: #fff;
-            border: 1px solid #eee;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
+            padding: 22px 20px;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+            text-align: center;
+            margin-bottom: 24px;
+            border: 1px solid #e8eaed;
+            box-shadow: var(--shadow-sm);
         }
 
         .total-label {
+            display: block;
             font-size: 0.9rem;
-            color: var(--text-gray);
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .price-container {
             display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .current-price {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary-blue);
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
         .old-price {
-            font-size: 1.1rem;
-            color: #999;
+            font-size: 1rem;
+            color: var(--text-light);
             text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .current-price {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            letter-spacing: -1px;
         }
 
         .unit-price {
+            display: block;
             font-size: 0.85rem;
-            color: var(--text-gray);
+            color: var(--text-light);
+            margin-top: 10px;
+            font-weight: 500;
         }
 
         /* ==================== ACTION BUTTON ==================== */
         .continue-btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0044cc 100%);
             color: var(--white);
             border: none;
-            padding: 18px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            padding: 16px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(0, 85, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 40px;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 85, 255, 0.3);
+            letter-spacing: 0.3px;
+            margin-bottom: 32px;
         }
 
         .continue-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 85, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 85, 255, 0.4);
+        }
+
+        .continue-btn:active {
+            transform: translateY(-1px);
         }
 
         /* ==================== BENEFITS SECTION ==================== */
@@ -447,60 +510,88 @@
         }
 
         .section-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 20px;
             color: var(--dark-blue);
+            margin-bottom: 18px;
+            letter-spacing: -0.3px;
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
         }
 
         .benefit-item {
             background-color: var(--light-gray);
-            padding: 15px;
+            padding: 18px;
             border-radius: 10px;
             text-align: center;
-            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e8eaed;
+            transition: all 0.3s ease;
         }
 
         .benefit-item:hover {
-            background-color: #e8f0ff;
+            box-shadow: var(--shadow-md);
+            border-color: var(--secondary-blue);
             transform: translateY(-4px);
         }
 
         .benefit-icon {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--primary-blue);
-            margin-bottom: 10px;
         }
 
         .benefit-text {
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--dark-blue);
+            color: var(--text-gray);
+            letter-spacing: -0.2px;
         }
 
         /* ==================== REVIEWS SECTION ==================== */
         .reviews-section {
             width: 100%;
             margin-bottom: 40px;
-            padding: 0;
         }
 
-        .reviews-container {
+        .reviews-header {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .reviews-rating {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .reviews-stars {
+            color: #ffc107;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .reviews-count {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
         .review-item {
             background-color: var(--light-gray);
-            padding: 15px;
+            padding: 16px;
             border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary-blue);
+            border: 1px solid #e8eaed;
             border-left: 4px solid var(--primary-blue);
         }
 
@@ -526,20 +617,20 @@
             color: var(--text-gray);
             font-size: 0.9rem;
             margin-bottom: 10px;
-            font-style: italic;
+            line-height: 1.5;
         }
 
         .review-stats {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             font-size: 0.8rem;
-            color: var(--text-gray);
+            color: var(--text-light);
         }
 
         .stat-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
 
         .stat-number {
@@ -741,8 +832,9 @@
         .footer-bottom {
             text-align: center;
             margin-top: 40px;
-            padding-top: 20px;
+            padding-top: 40px;
             border-top: 1px solid rgba(0, 191, 255, 0.2);
+            grid-column: 1 / -1;
         }
 
         .footer-bottom p {
@@ -949,27 +1041,31 @@
 
         @media (max-width: 480px) {
             .product-main {
-                padding: 15px;
+                padding: 18px 16px;
+            }
+
+            .product-name {
+                font-size: 1.2rem;
             }
 
             .pricing-section {
-                padding: 15px;
+                padding: 18px 16px;
             }
 
             .current-price {
-                font-size: 2rem;
+                font-size: 2.1rem;
             }
 
             .quantity-selector {
-                padding: 12px 15px;
+                padding: 14px 16px;
             }
 
             .section-title {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
 
             .newsletter-section {
-                padding: 15px 10px;
+                padding: 20px 16px;
             }
 
             .footer {
@@ -988,6 +1084,10 @@
             .indicator.active {
                 width: 24px;
             }
+
+            .product-image-container {
+                height: 240px;
+            }
         }
     </style>
 </head>
@@ -998,8 +1098,8 @@
             <div class="header-left">
                 <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
                 <div class="header-title">
-                    <h1>Gás de Cozinha</h1>
-                    <span>Recarga 13kg</span>
+                    <h1>Ultragaz</h1>
+                    <span>Gás de Cozinha</span>
                 </div>
             </div>
             <div id="header-cart-btn" class="header-cart-btn">
@@ -1013,7 +1113,7 @@
             <div class="promo-content">
                 <i class="fas fa-percent"></i>
                 <span>PROMOÇÃO TERMINA EM:</span>
-                <span id="countdown" style="margin-left: 10px;">0d 0h 0m</span>
+                <span id="countdown" style="margin-left: 8px;">0d 0h 0m</span>
             </div>
         </div>
 
@@ -1025,10 +1125,16 @@
 
         <!-- MAIN CONTENT -->
         <main class="product-main">
+            <!-- PRODUCT NAME -->
+            <div class="product-name-section">
+                <h2 class="product-name">Botijão cheio - P13 (13Kg)</h2>
+                <span class="product-sku">SKU: P13-ULTRAGAZ</span>
+            </div>
+
             <!-- IMAGE GALLERY -->
             <div class="product-image-gallery">
                 <div class="product-image-container" id="image-tap-area">
-                    <img id="main-product-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão de Gás Ultragaz" class="product-image">
+                    <img id="main-product-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão cheio - P13 (13Kg)" class="product-image">
                 </div>
                 <div class="carousel-controls">
                     <div class="carousel-indicators" id="carousel-indicators"></div>
@@ -1057,7 +1163,7 @@
 
             <!-- PRICING -->
             <div class="pricing-section">
-                <span class="total-label">Total</span>
+                <span class="total-label">Preço Total</span>
                 <div class="price-container">
                     <span id="old-price" class="old-price">R$ 105,00</span>
                     <span id="current-price" class="current-price">R$ 90,00</span>
@@ -1087,115 +1193,106 @@
                         <div class="benefit-text">Qualidade Premium</div>
                     </div>
                     <div class="benefit-item">
-                        <div class="benefit-icon"><i class="fas fa-headset"></i></div>
-                        <div class="benefit-text">Suporte 24/7</div>
+                        <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="benefit-text">Entrega Rápida</div>
                     </div>
                 </div>
             </div>
 
             <!-- REVIEWS SECTION -->
             <div class="reviews-section">
-                <h2 class="section-title">Avaliações</h2>
-                <div class="reviews-container">
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="review-author">Maria Silva</span>
-                            <span class="review-rating">★★★★★</span>
-                        </div>
-                        <div class="review-text">"Excelente produto! Chegou rápido e bem embalado. Recomendo!"</div>
-                        <div class="review-stats">
-                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">234</span> útil</div>
-                            <div class="stat-item"><i class="fas fa-calendar"></i> há 2 dias</div>
-                        </div>
+                <div class="reviews-header">
+                    <span class="reviews-rating">4.8</span>
+                    <span class="reviews-stars">★★★★★</span>
+                    <span class="reviews-count">(324 avaliações)</span>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-author">João Silva</span>
+                        <span class="review-rating">★★★★★</span>
                     </div>
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="review-author">João Santos</span>
-                            <span class="review-rating">★★★★☆</span>
-                        </div>
-                        <div class="review-text">"Muito bom! Entrega rápida conforme prometido. Voltaria a comprar."</div>
-                        <div class="review-stats">
-                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">156</span> útil</div>
-                            <div class="stat-item"><i class="fas fa-calendar"></i> há 5 dias</div>
-                        </div>
+                    <p class="review-text">"Excelente qualidade e entrega muito rápida! Recomendo!"</p>
+                    <div class="review-stats">
+                        <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">45</span></div>
+                        <div class="stat-item"><i class="fas fa-calendar"></i> <span>2 dias atrás</span></div>
                     </div>
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="review-author">Ana Costa</span>
-                            <span class="review-rating">★★★★★</span>
-                        </div>
-                        <div class="review-text">"Perfeito! Produto de qualidade e entrega dentro do prazo. Muito satisfeita!"</div>
-                        <div class="review-stats">
-                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">312</span> útil</div>
-                            <div class="stat-item"><i class="fas fa-calendar"></i> há 1 semana</div>
-                        </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-author">Maria Santos</span>
+                        <span class="review-rating">★★★★★</span>
+                    </div>
+                    <p class="review-text">"Produto chegou em perfeito estado. Muito satisfeita com a compra!"</p>
+                    <div class="review-stats">
+                        <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">32</span></div>
+                        <div class="stat-item"><i class="fas fa-calendar"></i> <span>1 semana atrás</span></div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-author">Carlos Oliveira</span>
+                        <span class="review-rating">★★★★☆</span>
+                    </div>
+                    <p class="review-text">"Bom produto, preço justo. Entrega dentro do prazo."</p>
+                    <div class="review-stats">
+                        <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">28</span></div>
+                        <div class="stat-item"><i class="fas fa-calendar"></i> <span>10 dias atrás</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- NEWSLETTER SECTION -->
             <div class="newsletter-section">
-                <div class="newsletter-title">📬 Receba Ofertas Exclusivas</div>
-                <div class="newsletter-subtitle">Inscreva-se e ganhe 10% de desconto na próxima compra</div>
+                <h3 class="newsletter-title">Fique por dentro das promoções!</h3>
+                <p class="newsletter-subtitle">Receba ofertas exclusivas direto no seu e-mail</p>
                 <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Seu e-mail" required>
-                    <button type="submit" class="newsletter-btn">Inscrever-se</button>
+                    <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-bell"></i> Inscrever-se</button>
                 </form>
             </div>
         </main>
-    </div>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-title">Ultragaz</div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Sobre Nós</a>
-                    <a href="#" class="footer-link">Nossa História</a>
-                    <a href="#" class="footer-link">Trabalhe Conosco</a>
-                    <a href="#" class="footer-link">Blog e Notícias</a>
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Sobre</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link"><i class="fas fa-info-circle"></i> Sobre a Ultragaz</a>
+                        <a href="#" class="footer-link"><i class="fas fa-briefcase"></i> Carreiras</a>
+                        <a href="#" class="footer-link"><i class="fas fa-newspaper"></i> Blog</a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="footer-section">
-                <div class="footer-title">Atendimento</div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Central de Ajuda</a>
-                    <a href="#" class="footer-link">Fale Conosco</a>
-                    <a href="#" class="footer-link">Ouvidoria</a>
-                    <a href="#" class="footer-link">Dúvidas Frequentes</a>
-                </div>
-            </div>
 
-            <div class="footer-section">
-                <div class="footer-title">Políticas</div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Privacidade</a>
-                    <a href="#" class="footer-link">Termos de Uso</a>
-                    <a href="#" class="footer-link">Política de Cookies</a>
-                    <a href="#" class="footer-link">Segurança</a>
+                <div class="footer-section">
+                    <h3 class="footer-title">Suporte</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link"><i class="fas fa-question-circle"></i> FAQ</a>
+                        <a href="#" class="footer-link"><i class="fas fa-headset"></i> Contato</a>
+                        <a href="#" class="footer-link"><i class="fas fa-file-alt"></i> Termos de Uso</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="footer-section">
-                <div class="footer-title">Siga-nos</div>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <div class="footer-section">
+                    <h3 class="footer-title">Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="footer-section">
                 <div class="footer-bottom">
-                    <p>&copy; 2024 Ultragaz. Todos os direitos reservados.</p>
-                    <p>CNPJ: 00.000.000/0000-00 | Av. Paulista, 1000 - São Paulo, SP</p>
+                    <p>&copy; 2026 Ultragaz. Todos os direitos reservados.</p>
+                    <p>Entrega rápida e segura em toda a região.</p>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <!-- CART OVERLAY -->
     <div id="cart-overlay" class="cart-overlay"></div>
@@ -1236,15 +1333,15 @@
             const productImages = [
                 {
                     main: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png',
-                    alt: 'Botijão de Gás - Vista Principal'
+                    alt: 'Botijão cheio - P13 (13Kg) - Vista Principal'
                 },
                 {
                     main: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/jiqzMKMHZGGzyaSt.jpg',
-                    alt: 'Botijão de Gás - Vista Lateral'
+                    alt: 'Botijão cheio - P13 (13Kg) - Vista Lateral'
                 },
                 {
                     main: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/QVEgkquQNyzWbgJZ.png',
-                    alt: 'Botijão de Gás - Detalhes'
+                    alt: 'Botijão cheio - P13 (13Kg) - Detalhes'
                 }
             ];
 
@@ -1373,7 +1470,7 @@
                                 <img src="${currentImage.main}" alt="${currentImage.alt}">
                             </div>
                             <div class="cart-item-info">
-                                <div class="cart-item-name">Recarga de Gás 13kg</div>
+                                <div class="cart-item-name">Botijão cheio - P13 (13Kg)</div>
                                 <div class="cart-item-details">Quantidade: <strong>${quantity}x</strong></div>
                                 ${cylinderInfo}
                                 <div class="cart-item-price">${formatCurrency(totalPrice)}</div>
