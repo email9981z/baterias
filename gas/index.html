@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recarga de Gás 13kg - Ultragaz</title>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -46,7 +45,6 @@
             z-index: 1;
         }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: var(--white);
@@ -71,10 +69,6 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: transform 0.2s;
-        }
-
-        .back-btn:hover {
-            transform: scale(1.1);
         }
 
         .header-title h1 {
@@ -102,11 +96,6 @@
             transition: all 0.2s;
         }
 
-        .header-cart-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
         .cart-badge {
             position: absolute;
             top: -5px;
@@ -121,7 +110,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2px;
             border: 2px solid var(--primary-blue);
             opacity: 0;
             transform: scale(0);
@@ -133,29 +121,14 @@
             transform: scale(1);
         }
 
-        /* Promo Banner */
         .promo-banner {
             background: linear-gradient(135deg, #00e5ff 0%, #00bfff 100%);
             color: #003366;
             padding: 12px;
             text-align: center;
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
         }
 
-        .promo-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .promo-timer {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        /* Delivery Promise Banner */
         .delivery-banner {
             background-color: var(--success-green);
             color: var(--white);
@@ -166,20 +139,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            font-size: 0.95rem;
         }
 
-        .delivery-icon {
-            font-size: 1.3rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* Product Main */
         .product-main {
             padding: 20px;
             flex: 1;
@@ -189,7 +150,6 @@
             overflow-y: auto;
         }
 
-        /* Image Gallery Container */
         .product-image-gallery {
             width: 100%;
             max-width: 250px;
@@ -252,7 +212,39 @@
             border-radius: 5px;
         }
 
-        /* Pricing Section */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            background-color: var(--light-gray);
+            padding: 15px 20px;
+            border-radius: 10px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            cursor: pointer;
+        }
+
+        .qty-number {
+            font-size: 1.8rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
         .pricing-section {
             width: 100%;
             background-color: #fff;
@@ -277,7 +269,6 @@
             text-decoration: line-through;
         }
 
-        /* Continue Button */
         .continue-btn {
             width: 100%;
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
@@ -297,7 +288,6 @@
             margin-bottom: 40px;
         }
 
-        /* Cart Sidebar */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -345,25 +335,46 @@
             margin-bottom: 15px;
             display: flex;
             gap: 12px;
+            align-items: flex-start;
         }
 
-        .cart-item-image { width: 70px; height: 70px; background-color: var(--white); border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .cart-item-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .cart-item-image { 
+            width: 70px; 
+            height: 70px; 
+            background-color: var(--white); 
+            border-radius: 6px; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0;
+        }
+        
+        .cart-item-image img { 
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
+        }
 
         .cart-summary { padding: 20px; background-color: var(--light-gray); }
         .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; }
         .summary-row.total { font-weight: bold; font-size: 1.1rem; border-top: 1px solid #ddd; padding-top: 12px; }
 
-        .proceed-btn { width: 100%; background: var(--success-green); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .proceed-btn { 
+            width: 100%; 
+            background: var(--success-green); 
+            color: white; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            cursor: pointer;
+            margin-top: 15px;
+        }
 
-        /* Quantity Selector */
-        .quantity-selector { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; background-color: var(--light-gray); padding: 15px 20px; border-radius: 10px; }
-        .qty-btn { background: none; border: none; color: var(--primary-blue); font-size: 2.2rem; cursor: pointer; }
-        .qty-number { font-size: 1.8rem; font-weight: 600; }
-
-        .checkbox-container { display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 30px; }
-
-        @media (max-width: 768px) { .cart-sidebar { width: 100%; right: -100%; } }
+        @media (max-width: 768px) { 
+            .cart-sidebar { width: 100%; right: -100%; } 
+        }
     </style>
 </head>
 <body>
@@ -383,22 +394,22 @@
         </header>
 
         <div class="promo-banner">
-            <div class="promo-content">
+            <div>
                 <i class="fas fa-percent"></i>
                 <span>PROMOÇÃO TERMINA EM:</span>
-                <span id="countdown" class="promo-timer">0d 0h 0m</span>
+                <span id="countdown" style="margin-left: 10px;">0d 0h 0m</span>
             </div>
         </div>
 
         <div class="delivery-banner">
-            <i class="fas fa-truck delivery-icon"></i>
+            <i class="fas fa-truck"></i>
             <span>Entrega rápida em até 30 minutos!</span>
         </div>
 
         <main class="product-main">
             <div class="product-image-gallery">
                 <div class="product-image-container" id="image-tap-area">
-                    <img id="main-product-image" src="https://www.ultragaz.com.br/wp-content/uploads/2021/08/botijao-de-gas-13kg.png" alt="Botijão de Gás Ultragaz" class="product-image">
+                    <img id="main-product-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão de Gás Ultragaz" class="product-image">
                 </div>
                 <div class="carousel-controls">
                     <div class="carousel-indicators" id="carousel-indicators"></div>
@@ -443,19 +454,18 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // ==================== IMAGE GALLERY CONFIGURATION ====================
-            // Usando links diretos de imagens diferentes da Ultragaz para demonstrar o carrossel
+            // URLs diretas de imagens que funcionam via CDN
             const productImages = [
                 {
-                    main: 'https://www.ultragaz.com.br/wp-content/uploads/2021/08/botijao-de-gas-13kg.png',
+                    main: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png',
                     alt: 'Botijão de Gás - Vista Principal'
                 },
                 {
-                    main: 'https://www.ultragaz.com.br/wp-content/uploads/2021/08/botijao-P20.png',
+                    main: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/jiqzMKMHZGGzyaSt.jpg',
                     alt: 'Botijão de Gás - Vista Lateral'
                 },
                 {
-                    main: 'https://www.ultragaz.com.br/wp-content/uploads/2021/08/botijao-P45.png',
+                    main: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/QVEgkquQNyzWbgJZ.png',
                     alt: 'Botijão de Gás - Detalhes'
                 }
             ];
@@ -472,6 +482,7 @@
             const cartItemsContainer = document.getElementById('cart-items-container');
             const subtotalEl = document.getElementById('subtotal');
             const cartTotalEl = document.getElementById('cart-total');
+            const countdownEl = document.getElementById('countdown');
 
             let quantity = 1;
             let currentImageIndex = 0;
@@ -489,10 +500,14 @@
 
             const updateGallery = () => {
                 mainImage.src = productImages[currentImageIndex].main;
+                mainImage.alt = productImages[currentImageIndex].alt;
                 document.querySelectorAll('.indicator').forEach((ind, i) => ind.classList.toggle('active', i === currentImageIndex));
             };
 
-            imageTapArea.onclick = () => { currentImageIndex = (currentImageIndex + 1) % productImages.length; updateGallery(); };
+            imageTapArea.onclick = () => { 
+                currentImageIndex = (currentImageIndex + 1) % productImages.length; 
+                updateGallery(); 
+            };
 
             const updatePricing = () => {
                 let price = (90 * quantity) + (includeCylinderCheckbox.checked ? 190 * quantity : 0);
@@ -509,18 +524,18 @@
                     let price = (90 * quantity) + (includeCylinderCheckbox.checked ? 190 * quantity : 0);
                     cartItemsContainer.innerHTML = `
                         <div class="cart-item">
-                            <div class="cart-item-image"><img src="${productImages[0].main}"></div>
+                            <div class="cart-item-image"><img src="${productImages[0].main}" alt="Produto"></div>
                             <div style="flex:1">
                                 <strong>Recarga 13kg</strong><br>
                                 <small>${quantity}x | ${includeCylinderCheckbox.checked ? 'Com vasilhame' : 'Apenas recarga'}</small><br>
                                 <strong>${price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
                             </div>
-                            <button onclick="removeItem()" style="background:none; border:none; color:red; cursor:pointer"><i class="fas fa-trash"></i></button>
+                            <button onclick="removeItem()" style="background:none; border:none; color:red; cursor:pointer; padding:5px;"><i class="fas fa-trash"></i></button>
                         </div>`;
                     subtotalEl.innerText = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                     cartTotalEl.innerText = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 } else {
-                    cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999">Carrinho vazio</p>';
+                    cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999; padding:40px 20px;"><i class="fas fa-shopping-basket" style="font-size:3rem; opacity:0.3; display:block; margin-bottom:15px;"></i>Carrinho vazio</p>';
                     subtotalEl.innerText = 'R$ 0,00';
                     cartTotalEl.innerText = 'R$ 0,00';
                 }
@@ -528,15 +543,67 @@
 
             window.removeItem = () => { cartItemsCount = 0; updateCart(); };
 
-            document.getElementById('increase-qty').onclick = () => { quantity++; quantityEl.innerText = quantity; updatePricing(); if(cartItemsCount>0) updateCart(); };
-            document.getElementById('decrease-qty').onclick = () => { if(quantity>1) { quantity--; quantityEl.innerText = quantity; updatePricing(); if(cartItemsCount>0) updateCart(); } };
-            includeCylinderCheckbox.onchange = () => { updatePricing(); if(cartItemsCount>0) updateCart(); };
-            document.getElementById('order-btn').onclick = () => { cartItemsCount = 1; updateCart(); document.getElementById('cart-sidebar').classList.add('active'); document.getElementById('cart-overlay').classList.add('active'); };
-            document.getElementById('header-cart-btn').onclick = () => { document.getElementById('cart-sidebar').classList.add('active'); document.getElementById('cart-overlay').classList.add('active'); };
-            document.getElementById('cart-close-btn').onclick = () => { document.getElementById('cart-sidebar').classList.remove('active'); document.getElementById('cart-overlay').classList.remove('active'); };
-            document.getElementById('cart-overlay').onclick = () => { document.getElementById('cart-sidebar').classList.remove('active'); document.getElementById('cart-overlay').classList.remove('active'); };
+            document.getElementById('increase-qty').onclick = () => { 
+                quantity++; 
+                quantityEl.innerText = quantity; 
+                updatePricing(); 
+                if(cartItemsCount > 0) updateCart(); 
+            };
+
+            document.getElementById('decrease-qty').onclick = () => { 
+                if(quantity > 1) { 
+                    quantity--; 
+                    quantityEl.innerText = quantity; 
+                    updatePricing(); 
+                    if(cartItemsCount > 0) updateCart(); 
+                } 
+            };
+
+            includeCylinderCheckbox.onchange = () => { 
+                updatePricing(); 
+                if(cartItemsCount > 0) updateCart(); 
+            };
+
+            document.getElementById('order-btn').onclick = () => { 
+                cartItemsCount = 1; 
+                updateCart(); 
+                document.getElementById('cart-sidebar').classList.add('active'); 
+                document.getElementById('cart-overlay').classList.add('active'); 
+            };
+
+            document.getElementById('header-cart-btn').onclick = () => { 
+                document.getElementById('cart-sidebar').classList.add('active'); 
+                document.getElementById('cart-overlay').classList.add('active'); 
+            };
+
+            document.getElementById('cart-close-btn').onclick = () => { 
+                document.getElementById('cart-sidebar').classList.remove('active'); 
+                document.getElementById('cart-overlay').classList.remove('active'); 
+            };
+
+            document.getElementById('cart-overlay').onclick = () => { 
+                document.getElementById('cart-sidebar').classList.remove('active'); 
+                document.getElementById('cart-overlay').classList.remove('active'); 
+            };
+
+            // Countdown timer
+            const startCountdown = () => {
+                const targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + 4);
+                const updateTimer = () => {
+                    const now = new Date().getTime();
+                    const distance = targetDate.getTime() - now;
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    countdownEl.innerText = `${days}d ${hours}h ${minutes}m`;
+                };
+                setInterval(updateTimer, 60000);
+                updateTimer();
+            };
 
             initializeGallery();
+            startCountdown();
             updatePricing();
         });
     </script>
