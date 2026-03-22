@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moura Fácil - Delivery Oficial de Baterias Moura</title>
+    <title>Moura Fácil - Delivery de Baterias em até 50 Minutos | Entrega Grátis</title>
+    <meta name="description" content="Bateria para seu carro entregue e instalada em até 50 minutos. Pagamento na entrega, entrega grátis. Peça agora pelo WhatsApp!">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -13,6 +14,8 @@
             --moura-orange: #f9a01b;
             --moura-light-blue: #326eb3;
             --moura-text: #242933;
+            --moura-light-gray: #f8f9fa;
+            --moura-success: #10b981;
         }
 
         * {
@@ -21,24 +24,26 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             color: var(--moura-text);
-            background-color: #f8f9fa;
+            background-color: var(--moura-light-gray);
             min-height: 100vh;
-            /* Fundo sutil para desktop */
-            background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://mourafacil.moura.com.br/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbg-hero.d3c6e9e6.png&w=1920&q=75');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
         }
 
-        .hero-container {
+        /* HERO SECTION */
+        .hero-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
             min-height: 100vh;
             gap: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, rgba(22, 49, 80, 0.02) 0%, rgba(249, 160, 27, 0.02) 100%);
         }
 
         .hero-content {
@@ -66,61 +71,6 @@
             50% { transform: translateY(-20px); }
         }
 
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 4.5rem;
-            line-height: 1.1;
-            color: var(--moura-blue);
-            margin-top: 20px;
-        }
-
-        h1 span {
-            color: var(--moura-orange);
-            text-decoration: none;
-            display: block;
-        }
-
-        h3 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--moura-blue);
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .margemlateral {
-            margin-left: 0;
-        }
-
-        .span-destaque {
-            color: var(--moura-light-blue);
-            font-weight: 700;
-        }
-
-        a.btn-moura {
-            background-color: var(--moura-orange);
-            color: var(--moura-blue) !important;
-            width: 320px;
-            transition: all 0.3s ease;
-            border: none;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            box-shadow: 0 8px 20px rgba(249, 160, 27, 0.3);
-        }
-
-        a.btn-moura:hover {
-            background-color: #e59218;
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        p {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.4;
-            font-size: 1.5rem;
-            color: var(--moura-text);
-        }
-
         .logo-container {
             margin-bottom: 30px;
         }
@@ -128,6 +78,7 @@
         .logo-moura {
             max-width: 280px;
             height: auto;
+            display: block;
         }
 
         .badge-moura {
@@ -140,6 +91,99 @@
             font-size: 0.9rem;
             margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(249, 160, 27, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(249, 160, 27, 0); }
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            color: var(--moura-blue);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: var(--moura-orange);
+            text-decoration: none;
+            display: block;
+        }
+
+        .value-proposition {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            font-size: 1.5rem;
+            color: var(--moura-text);
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .value-proposition strong {
+            color: var(--moura-light-blue);
+            font-weight: 700;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin: 30px 0;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--moura-text);
+        }
+
+        .benefits-list li i {
+            color: var(--moura-success);
+            font-size: 1.5rem;
+            margin-right: 12px;
+            font-weight: 700;
+        }
+
+        .cta-primary {
+            background-color: var(--moura-orange);
+            color: var(--moura-blue) !important;
+            width: 320px;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(249, 160, 27, 0.3);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            background-color: #e59218;
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            text-decoration: none;
         }
 
         .contact-info {
@@ -151,20 +195,175 @@
         }
 
         .contact-info h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--moura-blue);
+            font-size: 2rem;
             margin-bottom: 5px;
         }
 
         .contact-info p {
             margin: 0;
             font-size: 0.95rem;
+            color: var(--moura-text);
         }
 
-        @media (max-width: 991.98px) {
-            body {
-                background-position: center;
-            }
+        /* SOCIAL PROOF SECTION */
+        .social-proof-section {
+            background-color: white;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
 
-            .hero-container {
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--moura-light-gray);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--moura-orange);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--moura-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 12px;
+        }
+
+        .testimonial-info h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--moura-blue);
+            margin-bottom: 2px;
+        }
+
+        .testimonial-info p {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--moura-text);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* URGENCY SECTION */
+        .urgency-section {
+            background: linear-gradient(135deg, var(--moura-blue) 0%, var(--moura-light-blue) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .urgency-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .urgency-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--moura-orange);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* FLOATING WHATSAPP BUTTON */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991.98px) {
+            .hero-section {
                 flex-direction: column;
                 min-height: auto;
                 gap: 30px;
@@ -194,16 +393,25 @@
                 display: inline;
             }
 
-            p {
+            .value-proposition {
                 font-size: 1.2rem;
             }
 
-            .margemlateral {
-                margin-left: 0;
-                padding: 0 20px;
+            .logo-container {
+                text-align: center;
             }
 
-            a.btn-moura {
+            .logo-moura {
+                max-width: 220px;
+            }
+
+            .contact-info {
+                text-align: center;
+                border-left: none;
+                border-top: 4px solid var(--moura-orange);
+            }
+
+            .cta-primary {
                 width: 260px;
                 font-size: 1.2rem !important;
                 margin: 0 auto;
@@ -212,19 +420,16 @@
                 justify-content: center;
             }
 
-            h3 {
+            .urgency-section h2 {
                 font-size: 2rem;
-                margin-top: 30px;
             }
 
-            .logo-container {
-                text-align: center;
-            }
-
-            .contact-info {
-                text-align: center;
-                border-left: none;
-                border-top: 4px solid var(--moura-orange);
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
             }
         }
 
@@ -233,70 +438,216 @@
                 font-size: 2.2rem;
             }
             
-            p {
+            .value-proposition {
                 font-size: 1.1rem;
             }
 
             .logo-moura {
-                max-width: 200px;
+                max-width: 180px;
             }
 
-            a.btn-moura {
+            .cta-primary {
                 width: 100%;
                 max-width: 280px;
+            }
+
+            .hero-section {
+                padding: 20px 0;
+            }
+
+            .benefits-list li {
+                font-size: 1rem;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .urgency-section {
+                padding: 40px 0;
+            }
+
+            .stat-number {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- HERO SECTION -->
     <div class="container">
-        <div class="hero-container">
+        <div class="hero-section">
             <!-- Conteúdo de texto -->
-            <div class="hero-content margemlateral">
+            <div class="hero-content">
                 <div class="logo-container">
-                    <!-- Logo oficial da Moura Fácil -->
-                    <img src="https://mourafacil.moura.com.br/_next/static/media/logo-moura-facil.5e6c7c1b.svg" alt="Moura Fácil" class="logo-moura">
+                    <svg class="logo-moura" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="45" font-family="Poppins, sans-serif" font-size="32" font-weight="700" fill="#163150">
+                            moura
+                        </text>
+                        <text x="10" y="58" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="#f9a01b">
+                            fácil
+                        </text>
+                    </svg>
                 </div>
 
                 <div class="badge-moura">
-                    <i class="bi bi-lightning-fill"></i> Entrega Rápida
+                    <i class="bi bi-lightning-fill"></i> Entrega em até 50 minutos
                 </div>
 
                 <h1>
-                    Bateria em até <br>
-                    <span>50 minutos.</span> 
+                    Bateria do seu carro <br>
+                    <span>entregue e instalada.</span> 
                 </h1>
 
-                <p class="mt-4 mb-5">
-                    A bateria do seu carro entregue e <br>
-                    instalada com <span class="span-destaque">entrega e instalação grátis.</span><br>
-                    Peça agora pelo WhatsApp e pague <br>
-                    somente na entrega!
+                <p class="value-proposition">
+                    Sem sair de casa, <strong>pagamento na entrega</strong> e <strong>instalação grátis</strong>. 
+                    A solução mais rápida e confiável para sua bateria.
                 </p>
 
-                <a class="btn btn-moura text-uppercase p-3 mb-4 rounded-5 fs-3 d-inline-flex align-items-center justify-content-center" href="https://api.whatsapp.com/send/?phone=55080030030789&text=Olá,%20preciso%20de%20uma%20bateria%20Moura.&type=phone_number&app_absent=0" target="_blank" role="button">
-                    <i class="bi bi-whatsapp me-2"></i> PEÇA AGORA
+                <ul class="benefits-list">
+                    <li><i class="bi bi-check-circle-fill"></i> Entrega e instalação grátis</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Pagamento na entrega</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Parcelamento em até 10x</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Garantia em todo Brasil</li>
+                </ul>
+
+                <a class="btn cta-primary text-uppercase p-3 mb-4 rounded-5 fs-3 d-inline-flex align-items-center justify-content-center" href="https://api.whatsapp.com/send/?phone=55080030030789&text=Olá!%20Preciso%20de%20uma%20bateria%20Moura.%20Qual%20é%20o%20próximo%20passo?&type=phone_number&app_absent=0" target="_blank" role="button">
+                    <i class="bi bi-whatsapp me-2"></i> PEDIR AGORA
                 </a>
                 
                 <div class="contact-info">
                     <h3 class="fw-bold">3003.0789</h3>
-                    <p>Atendimento das 9h às 18h (dias úteis)</p>
+                    <p><i class="bi bi-telephone-fill"></i> Atendimento: 9h às 18h (seg-sex)</p>
                 </div>
             </div>
 
             <!-- Imagem de destaque -->
             <div class="hero-image">
-                <img src="https://mourafacil.moura.com.br/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero-image.c1d2e3f4.png&w=600&q=75" alt="Técnico Moura instalando bateria no carro" title="Serviço de instalação de bateria Moura">
+                <img src="https://mourafacil.moura.com.br/assets/images/banner/banner.webp" alt="Técnico Moura instalando bateria no carro com profissionalismo" title="Serviço de instalação de bateria Moura - Entrega e instalação grátis">
             </div>
         </div>
     </div>
 
+    <!-- SOCIAL PROOF SECTION -->
+    <div class="social-proof-section">
+        <div class="container">
+            <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.2rem; color: var(--moura-blue); margin-bottom: 10px; font-weight: 700;">
+                O que nossos clientes dizem
+            </h2>
+            <p style="color: #666; font-size: 1.1rem; margin-bottom: 40px;">
+                Confira as experiências reais de quem já usou o Moura Fácil
+            </p>
+
+            <div class="testimonials-container">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">RM</div>
+                        <div class="testimonial-info">
+                            <h4>Raul Munchen</h4>
+                            <p>Rio Grande do Sul</p>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Rapidez, praticidade, bom atendimento e confiança. Voltaria a usar com certeza!"
+                    </p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">VZ</div>
+                        <div class="testimonial-info">
+                            <h4>Viviane Zhu</h4>
+                            <p>Paraná</p>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Fiz o pedido e em 30 minutos já estava com a bateria nova instalada. Sensacional!"
+                    </p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">MF</div>
+                        <div class="testimonial-info">
+                            <h4>Marcia Figueira</h4>
+                            <p>São Paulo</p>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Comprar online e ter o serviço em 50 minutos, sem sair do lugar, foi sensacional!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- URGENCY & STATS SECTION -->
+    <div class="urgency-section">
+        <div class="container">
+            <h2>Junte-se a milhares de clientes satisfeitos</h2>
+            <p>Não fique sem bateria. Peça agora pelo WhatsApp!</p>
+
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-number">50<span style="font-size: 1.5rem;">min</span></div>
+                    <div class="stat-label">Tempo de entrega</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Entrega e instalação grátis</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10x</div>
+                    <div class="stat-label">Parcelamento sem juros</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Atendimento via WhatsApp</div>
+                </div>
+            </div>
+
+            <a class="btn cta-primary text-uppercase p-3 mt-5 rounded-5 fs-3 d-inline-flex align-items-center justify-content-center" style="background-color: var(--moura-orange); color: var(--moura-blue);" href="https://api.whatsapp.com/send/?phone=55080030030789&text=Olá!%20Preciso%20de%20uma%20bateria%20Moura.%20Qual%20é%20o%20próximo%20passo?&type=phone_number&app_absent=0" target="_blank" role="button">
+                <i class="bi bi-whatsapp me-2"></i> PEDIR AGORA
+            </a>
+        </div>
+    </div>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://api.whatsapp.com/send/?phone=55080030030789&text=Olá!%20Preciso%20de%20uma%20bateria%20Moura.%20Qual%20é%20o%20próximo%20passo?&type=phone_number&app_absent=0" class="whatsapp-float" target="_blank" title="Clique para falar conosco no WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const botao = document.querySelector('a.btn-moura');
+            // Animação nos botões CTA
+            const ctaButtons = document.querySelectorAll('.cta-primary');
             
-            if (botao) {
+            ctaButtons.forEach(botao => {
                 botao.addEventListener('mousedown', function() {
                     this.style.transform = 'scale(0.95)';
                 });
@@ -308,6 +659,44 @@
                 botao.addEventListener('mouseleave', function() {
                     this.style.transform = 'scale(1)';
                 });
+            });
+
+            // Rastrear cliques nos botões para analytics
+            ctaButtons.forEach(botao => {
+                botao.addEventListener('click', function(e) {
+                    console.log('Lead gerado via CTA Button');
+                    // Aqui você pode adicionar rastreamento de eventos (Google Analytics, Facebook Pixel, etc)
+                });
+            });
+
+            // Rastrear cliques no botão flutuante
+            const whatsappFloat = document.querySelector('.whatsapp-float');
+            if (whatsappFloat) {
+                whatsappFloat.addEventListener('click', function(e) {
+                    console.log('Lead gerado via Floating Button');
+                });
+            }
+
+            // Scroll suave para elementos internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Detectar dispositivo móvel e ajustar comportamento
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                console.log('Acesso via dispositivo móvel');
+                // Aumentar tamanho do botão flutuante em mobile
+                whatsappFloat.style.width = '65px';
+                whatsappFloat.style.height = '65px';
             }
         });
     </script>
