@@ -343,49 +343,6 @@
         padding: 10px !important;
       }
     </style>
-    
-    <style>
-      /* Force Banner to be left-aligned and fully visible */
-      #banner {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important; /* Align to the left */
-        text-align: left !important;       /* Align text to the left */
-        padding: 4rem 2rem !important;     /* More padding */
-        min-height: auto !important;       /* No fixed height */
-        overflow: visible !important;      /* Don't cut content */
-      }
-      
-      #banner .display {
-        font-size: 2.5rem !important;      /* Adjust size */
-        line-height: 1.1 !important;
-        margin-bottom: 1.5rem !important;
-        max-width: 600px !important;       /* Limit width for readability */
-        white-space: normal !important;    /* Allow wrapping */
-      }
-      
-      #banner .flex-col {
-        align-items: flex-start !important;
-      }
-      
-      /* Desktop specific adjustments */
-      @media (min-width: 1024px) {
-        #banner {
-          flex-direction: row !important;
-          justify-content: flex-start !important;
-          gap: 4rem !important;
-        }
-        #banner .display {
-          font-size: 3.5rem !important;
-        }
-      }
-      
-      /* Ensure no container cuts the banner */
-      section, div {
-        height: auto !important;
-        overflow: visible !important;
-      }
-    </style>
     </head>
 
   <body id="body" class>
