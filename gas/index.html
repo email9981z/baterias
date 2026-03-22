@@ -45,6 +45,7 @@
             z-index: 1;
         }
 
+        /* ==================== HEADER ==================== */
         .header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: var(--white);
@@ -69,6 +70,10 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: transform 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
         }
 
         .header-title h1 {
@@ -96,6 +101,11 @@
             transition: all 0.2s;
         }
 
+        .header-cart-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
         .cart-badge {
             position: absolute;
             top: -5px;
@@ -121,12 +131,21 @@
             transform: scale(1);
         }
 
+        /* ==================== BANNERS ==================== */
         .promo-banner {
             background: linear-gradient(135deg, #00e5ff 0%, #00bfff 100%);
             color: #003366;
             padding: 12px;
             text-align: center;
             font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+
+        .promo-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .delivery-banner {
@@ -139,8 +158,20 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            font-size: 0.95rem;
         }
 
+        .delivery-icon {
+            font-size: 1.3rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* ==================== MAIN CONTENT ==================== */
         .product-main {
             padding: 20px;
             flex: 1;
@@ -150,6 +181,7 @@
             overflow-y: auto;
         }
 
+        /* ==================== IMAGE GALLERY ==================== */
         .product-image-gallery {
             width: 100%;
             max-width: 250px;
@@ -179,6 +211,10 @@
             height: auto;
             object-fit: contain;
             transition: transform 0.3s ease;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
         }
 
         .carousel-controls {
@@ -212,6 +248,40 @@
             border-radius: 5px;
         }
 
+        .indicator:hover {
+            background: var(--secondary-blue);
+        }
+
+        /* ==================== PRODUCT OPTIONS ==================== */
+        .product-options {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            padding: 0 10px;
+        }
+
+        .option-label {
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .rules-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+
+        .rules-link:hover {
+            color: var(--dark-blue);
+        }
+
+        /* ==================== QUANTITY SELECTOR ==================== */
         .quantity-selector {
             display: flex;
             align-items: center;
@@ -228,6 +298,11 @@
             color: var(--primary-blue);
             font-size: 2.2rem;
             cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .qty-btn:active {
+            transform: scale(0.9);
         }
 
         .qty-number {
@@ -237,14 +312,67 @@
             text-align: center;
         }
 
+        /* ==================== CHECKBOX ==================== */
         .checkbox-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            position: relative;
+            padding-left: 35px;
             cursor: pointer;
+            font-size: 0.95rem;
+            user-select: none;
+            color: var(--text-gray);
             margin-bottom: 30px;
         }
 
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #eee;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--primary-blue);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-container .checkmark:after {
+            left: 8px;
+            top: 4px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* ==================== PRICING ==================== */
         .pricing-section {
             width: 100%;
             background-color: #fff;
@@ -255,6 +383,19 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
+        }
+
+        .total-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
         }
 
         .current-price {
@@ -269,6 +410,12 @@
             text-decoration: line-through;
         }
 
+        .unit-price {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* ==================== ACTION BUTTON ==================== */
         .continue-btn {
             width: 100%;
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
@@ -288,6 +435,322 @@
             margin-bottom: 40px;
         }
 
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 85, 255, 0.4);
+        }
+
+        /* ==================== BENEFITS SECTION ==================== */
+        .benefits-section {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .benefit-item {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            background-color: #e8f0ff;
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .benefit-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        /* ==================== REVIEWS SECTION ==================== */
+        .reviews-section {
+            width: 100%;
+            margin-bottom: 40px;
+            padding: 0;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .review-item {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 0.95rem;
+        }
+
+        .review-rating {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .review-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-number {
+            font-weight: 600;
+        }
+
+        /* ==================== NEWSLETTER SECTION ==================== */
+        .newsletter-section {
+            width: 100%;
+            margin-bottom: 40px;
+            padding: 28px 20px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 14px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 85, 255, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .newsletter-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.95;
+            margin-bottom: 18px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-input {
+            padding: 13px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--text-gray);
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .newsletter-input::placeholder {
+            color: #aaa;
+        }
+
+        .newsletter-btn {
+            padding: 13px 16px;
+            background-color: var(--success-green);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        .newsletter-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: linear-gradient(180deg, var(--dark-blue) 0%, #001f66 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            font-size: 0.85rem;
+            border-top: 3px solid rgba(0, 191, 255, 0.3);
+            margin-top: 60px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .footer-content {
+            margin-bottom: 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer-section {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--secondary-blue);
+            position: relative;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-blue);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link:hover {
+            color: var(--secondary-blue);
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 0;
+        }
+
+        .social-icon {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(0, 191, 255, 0.15);
+            border: 2px solid rgba(0, 191, 255, 0.3);
+        }
+
+        .social-icon:hover {
+            color: var(--secondary-blue);
+            background-color: rgba(0, 191, 255, 0.35);
+            border-color: rgba(0, 191, 255, 0.6);
+            transform: translateY(-6px);
+            box-shadow: 0 8px 16px rgba(0, 191, 255, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .footer-bottom p {
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        /* ==================== CART SIDEBAR ==================== */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -297,9 +760,17 @@
             background-color: rgba(0, 0, 0, 0.5);
             display: none;
             z-index: 999;
+            animation: fadeIn 0.3s ease;
         }
 
-        .cart-overlay.active { display: block; }
+        .cart-overlay.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
         .cart-sidebar {
             position: fixed;
@@ -315,7 +786,9 @@
             transition: right 0.3s ease;
         }
 
-        .cart-sidebar.active { right: 0; }
+        .cart-sidebar.active {
+            right: 0;
+        }
 
         .cart-header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
@@ -324,61 +797,203 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .cart-content { flex: 1; overflow-y: auto; padding: 20px; }
+        .cart-header h2 {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-close-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .cart-close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
 
         .cart-item {
             background-color: var(--light-gray);
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
+            border-left: 4px solid var(--primary-blue);
             display: flex;
             gap: 12px;
             align-items: flex-start;
         }
 
-        .cart-item-image { 
-            width: 70px; 
-            height: 70px; 
-            background-color: var(--white); 
-            border-radius: 6px; 
-            overflow: hidden; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            background-color: var(--white);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
-        }
-        
-        .cart-item-image img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; 
+            overflow: hidden;
         }
 
-        .cart-summary { padding: 20px; background-color: var(--light-gray); }
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; }
-        .summary-row.total { font-weight: bold; font-size: 1.1rem; border-top: 1px solid #ddd; padding-top: 12px; }
+        .cart-item-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
 
-        .proceed-btn { 
-            width: 100%; 
-            background: var(--success-green); 
-            color: white; 
-            border: none; 
-            padding: 14px; 
-            border-radius: 8px; 
-            font-weight: bold; 
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-details {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 6px;
+        }
+
+        .cart-item-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-top: 8px;
+        }
+
+        .cart-summary {
+            border-top: 2px solid var(--light-gray);
+            padding: 20px;
+            background-color: var(--light-gray);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+        }
+
+        .summary-row.total {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--dark-blue);
+            border-top: 1px solid #ddd;
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .proceed-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--success-green) 0%, #218838 100%);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
             margin-top: 15px;
         }
 
-        @media (max-width: 768px) { 
-            .cart-sidebar { width: 100%; right: -100%; } 
+        .proceed-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .app-container {
+                max-width: 100%;
+                box-shadow: none;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-main {
+                padding: 15px;
+            }
+
+            .pricing-section {
+                padding: 15px;
+            }
+
+            .current-price {
+                font-size: 2rem;
+            }
+
+            .quantity-selector {
+                padding: 12px 15px;
+            }
+
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .newsletter-section {
+                padding: 15px 10px;
+            }
+
+            .footer {
+                padding: 15px;
+            }
+
+            .carousel-indicators {
+                gap: 4px;
+            }
+
+            .indicator {
+                width: 8px;
+                height: 8px;
+            }
+
+            .indicator.active {
+                width: 24px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="app-container">
+        <!-- HEADER -->
         <header class="header">
             <div class="header-left">
                 <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
@@ -393,20 +1008,24 @@
             </div>
         </header>
 
+        <!-- PROMO BANNER -->
         <div class="promo-banner">
-            <div>
+            <div class="promo-content">
                 <i class="fas fa-percent"></i>
                 <span>PROMOÇÃO TERMINA EM:</span>
                 <span id="countdown" style="margin-left: 10px;">0d 0h 0m</span>
             </div>
         </div>
 
+        <!-- DELIVERY BANNER -->
         <div class="delivery-banner">
-            <i class="fas fa-truck"></i>
+            <i class="fas fa-truck delivery-icon"></i>
             <span>Entrega rápida em até 30 minutos!</span>
         </div>
 
+        <!-- MAIN CONTENT -->
         <main class="product-main">
+            <!-- IMAGE GALLERY -->
             <div class="product-image-gallery">
                 <div class="product-image-container" id="image-tap-area">
                     <img id="main-product-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão de Gás Ultragaz" class="product-image">
@@ -416,45 +1035,204 @@
                 </div>
             </div>
 
+            <!-- PRODUCT OPTIONS -->
+            <div class="product-options">
+                <span class="option-label">Padrão</span>
+                <a href="#" class="rules-link">Verificar regras <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <!-- QUANTITY SELECTOR -->
             <div class="quantity-selector">
                 <button id="decrease-qty" class="qty-btn"><i class="fas fa-minus-circle"></i></button>
                 <span id="quantity" class="qty-number">1</span>
                 <button id="increase-qty" class="qty-btn"><i class="fas fa-plus-circle"></i></button>
             </div>
 
+            <!-- CHECKBOX -->
             <label class="checkbox-container">
-                <input type="checkbox" id="include-cylinder"> Incluir vasilhame (+ R$ 190,00)
+                <input type="checkbox" id="include-cylinder">
+                <span class="checkmark"></span>
+                Incluir vasilhame (+ R$ 190,00)
             </label>
 
+            <!-- PRICING -->
             <div class="pricing-section">
-                <span class="old-price" id="old-price">R$ 105,00</span>
-                <span class="current-price" id="current-price">R$ 90,00</span>
-                <span id="unit-price-label" style="font-size:0.8rem; color:#666;">Valor de uma recarga: R$ 90,00</span>
+                <span class="total-label">Total</span>
+                <div class="price-container">
+                    <span id="old-price" class="old-price">R$ 105,00</span>
+                    <span id="current-price" class="current-price">R$ 90,00</span>
+                </div>
+                <span id="unit-price-label" class="unit-price">Valor de uma recarga: R$ 90,00</span>
             </div>
 
+            <!-- ACTION BUTTON -->
             <button id="order-btn" class="continue-btn">
                 <i class="fas fa-shopping-cart"></i> PEDIR AGORA
             </button>
+
+            <!-- BENEFITS SECTION -->
+            <div class="benefits-section">
+                <h2 class="section-title">Benefícios</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="benefit-text">100% Seguro</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="benefit-text">Eco-Friendly</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-star"></i></div>
+                        <div class="benefit-text">Qualidade Premium</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                        <div class="benefit-text">Suporte 24/7</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REVIEWS SECTION -->
+            <div class="reviews-section">
+                <h2 class="section-title">Avaliações</h2>
+                <div class="reviews-container">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">Maria Silva</span>
+                            <span class="review-rating">★★★★★</span>
+                        </div>
+                        <div class="review-text">"Excelente produto! Chegou rápido e bem embalado. Recomendo!"</div>
+                        <div class="review-stats">
+                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">234</span> útil</div>
+                            <div class="stat-item"><i class="fas fa-calendar"></i> há 2 dias</div>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">João Santos</span>
+                            <span class="review-rating">★★★★☆</span>
+                        </div>
+                        <div class="review-text">"Muito bom! Entrega rápida conforme prometido. Voltaria a comprar."</div>
+                        <div class="review-stats">
+                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">156</span> útil</div>
+                            <div class="stat-item"><i class="fas fa-calendar"></i> há 5 dias</div>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">Ana Costa</span>
+                            <span class="review-rating">★★★★★</span>
+                        </div>
+                        <div class="review-text">"Perfeito! Produto de qualidade e entrega dentro do prazo. Muito satisfeita!"</div>
+                        <div class="review-stats">
+                            <div class="stat-item"><i class="fas fa-thumbs-up"></i> <span class="stat-number">312</span> útil</div>
+                            <div class="stat-item"><i class="fas fa-calendar"></i> há 1 semana</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEWSLETTER SECTION -->
+            <div class="newsletter-section">
+                <div class="newsletter-title">📬 Receba Ofertas Exclusivas</div>
+                <div class="newsletter-subtitle">Inscreva-se e ganhe 10% de desconto na próxima compra</div>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Seu e-mail" required>
+                    <button type="submit" class="newsletter-btn">Inscrever-se</button>
+                </form>
+            </div>
         </main>
     </div>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-title">Ultragaz</div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Sobre Nós</a>
+                    <a href="#" class="footer-link">Nossa História</a>
+                    <a href="#" class="footer-link">Trabalhe Conosco</a>
+                    <a href="#" class="footer-link">Blog e Notícias</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <div class="footer-title">Atendimento</div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Central de Ajuda</a>
+                    <a href="#" class="footer-link">Fale Conosco</a>
+                    <a href="#" class="footer-link">Ouvidoria</a>
+                    <a href="#" class="footer-link">Dúvidas Frequentes</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-title">Políticas</div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacidade</a>
+                    <a href="#" class="footer-link">Termos de Uso</a>
+                    <a href="#" class="footer-link">Política de Cookies</a>
+                    <a href="#" class="footer-link">Segurança</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-title">Siga-nos</div>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Ultragaz. Todos os direitos reservados.</p>
+                    <p>CNPJ: 00.000.000/0000-00 | Av. Paulista, 1000 - São Paulo, SP</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART OVERLAY -->
     <div id="cart-overlay" class="cart-overlay"></div>
+
+    <!-- CART SIDEBAR -->
     <div id="cart-sidebar" class="cart-sidebar">
         <div class="cart-header">
             <h2><i class="fas fa-shopping-bag"></i> Carrinho</h2>
-            <button id="cart-close-btn" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;"><i class="fas fa-times"></i></button>
+            <button id="cart-close-btn" class="cart-close-btn"><i class="fas fa-times"></i></button>
         </div>
-        <div class="cart-content" id="cart-items-container"></div>
+
+        <div class="cart-content">
+            <div id="cart-items-container"></div>
+        </div>
+
         <div class="cart-summary">
-            <div class="summary-row"><span>Subtotal:</span><span id="subtotal">R$ 0,00</span></div>
-            <div class="summary-row total"><span>Total:</span><span id="cart-total">R$ 0,00</span></div>
-            <button id="proceed-btn" class="proceed-btn">FINALIZAR PEDIDO</button>
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Taxa de entrega:</span>
+                <span id="delivery-fee">Grátis</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button id="proceed-btn" class="proceed-btn">
+                <i class="fas fa-check-circle"></i> FINALIZAR PEDIDO
+            </button>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // URLs diretas de imagens que funcionam via CDN
+            // ==================== IMAGE GALLERY CONFIGURATION ====================
             const productImages = [
                 {
                     main: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png',
@@ -470,141 +1248,260 @@
                 }
             ];
 
+            // ==================== SELECTORS ====================
             const mainImage = document.getElementById('main-product-image');
             const indicatorsContainer = document.getElementById('carousel-indicators');
             const imageTapArea = document.getElementById('image-tap-area');
+
+            const decreaseBtn = document.getElementById('decrease-qty');
+            const increaseBtn = document.getElementById('increase-qty');
             const quantityEl = document.getElementById('quantity');
             const includeCylinderCheckbox = document.getElementById('include-cylinder');
             const oldPriceEl = document.getElementById('old-price');
             const currentPriceEl = document.getElementById('current-price');
             const unitPriceLabelEl = document.getElementById('unit-price-label');
+            const countdownEl = document.getElementById('countdown');
+            const orderBtn = document.getElementById('order-btn');
+            const headerCartBtn = document.getElementById('header-cart-btn');
             const cartBadge = document.getElementById('cart-badge');
+            
+            const cartOverlay = document.getElementById('cart-overlay');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const cartCloseBtn = document.getElementById('cart-close-btn');
+            const proceedBtn = document.getElementById('proceed-btn');
             const cartItemsContainer = document.getElementById('cart-items-container');
             const subtotalEl = document.getElementById('subtotal');
             const cartTotalEl = document.getElementById('cart-total');
-            const countdownEl = document.getElementById('countdown');
+            const newsletterForm = document.getElementById('newsletter-form');
 
+            // ==================== CONSTANTS ====================
+            const UNIT_REFILL_PRICE = 90.00;
+            const UNIT_OLD_PRICE = 105.00;
+            const CYLINDER_PRICE = 190.00;
+            const CHECKOUT_URL = 'https://example.com/checkout';
+
+            // ==================== STATE ====================
             let quantity = 1;
             let currentImageIndex = 0;
             let cartItemsCount = 0;
 
+            // ==================== GALLERY FUNCTIONS ====================
             const initializeGallery = () => {
+                renderIndicators();
+                updateGalleryDisplay();
+            };
+
+            const renderIndicators = () => {
                 indicatorsContainer.innerHTML = '';
                 productImages.forEach((_, index) => {
                     const indicator = document.createElement('div');
                     indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
-                    indicator.onclick = () => { currentImageIndex = index; updateGallery(); };
+                    indicator.addEventListener('click', () => goToImage(index));
                     indicatorsContainer.appendChild(indicator);
                 });
             };
 
-            const updateGallery = () => {
-                mainImage.src = productImages[currentImageIndex].main;
-                mainImage.alt = productImages[currentImageIndex].alt;
-                document.querySelectorAll('.indicator').forEach((ind, i) => ind.classList.toggle('active', i === currentImageIndex));
+            const updateGalleryDisplay = () => {
+                const currentImage = productImages[currentImageIndex];
+                mainImage.src = currentImage.main;
+                mainImage.alt = currentImage.alt;
+                
+                document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentImageIndex);
+                });
             };
 
-            imageTapArea.onclick = () => { 
-                currentImageIndex = (currentImageIndex + 1) % productImages.length; 
-                updateGallery(); 
-            };
-
-            const updatePricing = () => {
-                let price = (90 * quantity) + (includeCylinderCheckbox.checked ? 190 * quantity : 0);
-                let old = (105 * quantity) + (includeCylinderCheckbox.checked ? 190 * quantity : 0);
-                currentPriceEl.innerText = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                oldPriceEl.innerText = old.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                unitPriceLabelEl.innerText = `Valor unitário: ${(price/quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
-            };
-
-            const updateCart = () => {
-                cartBadge.innerText = cartItemsCount;
-                cartBadge.classList.toggle('active', cartItemsCount > 0);
-                if (cartItemsCount > 0) {
-                    let price = (90 * quantity) + (includeCylinderCheckbox.checked ? 190 * quantity : 0);
-                    cartItemsContainer.innerHTML = `
-                        <div class="cart-item">
-                            <div class="cart-item-image"><img src="${productImages[0].main}" alt="Produto"></div>
-                            <div style="flex:1">
-                                <strong>Recarga 13kg</strong><br>
-                                <small>${quantity}x | ${includeCylinderCheckbox.checked ? 'Com vasilhame' : 'Apenas recarga'}</small><br>
-                                <strong>${price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
-                            </div>
-                            <button onclick="removeItem()" style="background:none; border:none; color:red; cursor:pointer; padding:5px;"><i class="fas fa-trash"></i></button>
-                        </div>`;
-                    subtotalEl.innerText = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                    cartTotalEl.innerText = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                } else {
-                    cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999; padding:40px 20px;"><i class="fas fa-shopping-basket" style="font-size:3rem; opacity:0.3; display:block; margin-bottom:15px;"></i>Carrinho vazio</p>';
-                    subtotalEl.innerText = 'R$ 0,00';
-                    cartTotalEl.innerText = 'R$ 0,00';
+            const goToImage = (index) => {
+                if (index >= 0 && index < productImages.length) {
+                    currentImageIndex = index;
+                    updateGalleryDisplay();
                 }
             };
 
-            window.removeItem = () => { cartItemsCount = 0; updateCart(); };
-
-            document.getElementById('increase-qty').onclick = () => { 
-                quantity++; 
-                quantityEl.innerText = quantity; 
-                updatePricing(); 
-                if(cartItemsCount > 0) updateCart(); 
+            const nextImage = () => {
+                currentImageIndex = (currentImageIndex + 1) % productImages.length;
+                updateGalleryDisplay();
             };
 
-            document.getElementById('decrease-qty').onclick = () => { 
-                if(quantity > 1) { 
-                    quantity--; 
-                    quantityEl.innerText = quantity; 
-                    updatePricing(); 
-                    if(cartItemsCount > 0) updateCart(); 
-                } 
+            imageTapArea.addEventListener('click', nextImage);
+
+            // ==================== PRICING FUNCTIONS ====================
+            const formatCurrency = (value) => {
+                return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             };
 
-            includeCylinderCheckbox.onchange = () => { 
-                updatePricing(); 
-                if(cartItemsCount > 0) updateCart(); 
+            const updatePricing = () => {
+                let basePrice = UNIT_REFILL_PRICE * quantity;
+                let oldBasePrice = UNIT_OLD_PRICE * quantity;
+                
+                if (includeCylinderCheckbox.checked) {
+                    basePrice += CYLINDER_PRICE * quantity;
+                    oldBasePrice += CYLINDER_PRICE * quantity;
+                }
+
+                currentPriceEl.textContent = formatCurrency(basePrice);
+                oldPriceEl.textContent = formatCurrency(oldBasePrice);
+                
+                const unitPrice = UNIT_REFILL_PRICE + (includeCylinderCheckbox.checked ? CYLINDER_PRICE : 0);
+                unitPriceLabelEl.textContent = `Valor de uma recarga: ${formatCurrency(unitPrice)}`;
             };
 
-            document.getElementById('order-btn').onclick = () => { 
-                cartItemsCount = 1; 
-                updateCart(); 
-                document.getElementById('cart-sidebar').classList.add('active'); 
-                document.getElementById('cart-overlay').classList.add('active'); 
+            // ==================== CART FUNCTIONS ====================
+            const updateCartBadge = () => {
+                cartBadge.textContent = cartItemsCount;
+                if (cartItemsCount > 0) {
+                    cartBadge.classList.add('active');
+                } else {
+                    cartBadge.classList.remove('active');
+                }
             };
 
-            document.getElementById('header-cart-btn').onclick = () => { 
-                document.getElementById('cart-sidebar').classList.add('active'); 
-                document.getElementById('cart-overlay').classList.add('active'); 
+            const updateCart = () => {
+                let totalPrice = UNIT_REFILL_PRICE * quantity;
+                let cylinderInfo = '';
+
+                if (includeCylinderCheckbox.checked) {
+                    totalPrice += CYLINDER_PRICE * quantity;
+                    cylinderInfo = '<div class="cart-item-details">✓ Com vasilhame</div>';
+                }
+
+                if (cartItemsCount > 0) {
+                    const currentImage = productImages[0];
+                    cartItemsContainer.innerHTML = `
+                        <div class="cart-item">
+                            <div class="cart-item-image">
+                                <img src="${currentImage.main}" alt="${currentImage.alt}">
+                            </div>
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">Recarga de Gás 13kg</div>
+                                <div class="cart-item-details">Quantidade: <strong>${quantity}x</strong></div>
+                                ${cylinderInfo}
+                                <div class="cart-item-price">${formatCurrency(totalPrice)}</div>
+                            </div>
+                            <button id="remove-item-btn" style="background:none; border:none; color:#ff3b30; cursor:pointer; padding:5px;"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    
+                    document.getElementById('remove-item-btn').addEventListener('click', () => {
+                        cartItemsCount = 0;
+                        updateCartBadge();
+                        updateCart();
+                    });
+
+                    subtotalEl.textContent = formatCurrency(totalPrice);
+                    cartTotalEl.textContent = formatCurrency(totalPrice);
+                } else {
+                    cartItemsContainer.innerHTML = '<div style="text-align:center; padding:40px 20px; color:#999;"><i class="fas fa-shopping-basket" style="font-size:3rem; margin-bottom:15px; opacity:0.3;"></i><p>Seu carrinho está vazio</p></div>';
+                    subtotalEl.textContent = 'R$ 0,00';
+                    cartTotalEl.textContent = 'R$ 0,00';
+                }
             };
 
-            document.getElementById('cart-close-btn').onclick = () => { 
-                document.getElementById('cart-sidebar').classList.remove('active'); 
-                document.getElementById('cart-overlay').classList.remove('active'); 
+            const openCart = () => {
+                cartOverlay.classList.add('active');
+                cartSidebar.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                updateCart();
             };
 
-            document.getElementById('cart-overlay').onclick = () => { 
-                document.getElementById('cart-sidebar').classList.remove('active'); 
-                document.getElementById('cart-overlay').classList.remove('active'); 
+            const closeCart = () => {
+                cartOverlay.classList.remove('active');
+                cartSidebar.classList.remove('active');
+                document.body.style.overflow = 'auto';
             };
 
-            // Countdown timer
+            // ==================== EVENT LISTENERS ====================
+            decreaseBtn.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityEl.textContent = quantity;
+                    updatePricing();
+                    if (cartItemsCount > 0) updateCart();
+                }
+            });
+
+            increaseBtn.addEventListener('click', () => {
+                quantity++;
+                quantityEl.textContent = quantity;
+                updatePricing();
+                if (cartItemsCount > 0) updateCart();
+            });
+
+            includeCylinderCheckbox.addEventListener('change', () => {
+                updatePricing();
+                if (cartItemsCount > 0) updateCart();
+            });
+
+            orderBtn.addEventListener('click', () => {
+                cartItemsCount = 1;
+                updateCartBadge();
+                openCart();
+            });
+
+            headerCartBtn.addEventListener('click', openCart);
+            cartCloseBtn.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', closeCart);
+
+            proceedBtn.addEventListener('click', () => {
+                if (cartItemsCount > 0) {
+                    window.location.href = CHECKOUT_URL;
+                } else {
+                    alert('Seu carrinho está vazio!');
+                }
+            });
+
+            // Newsletter Form Handler
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+                const email = emailInput.value;
+                
+                console.log('Email inscrito:', email);
+                
+                const btn = newsletterForm.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Inscrito com sucesso!';
+                btn.style.backgroundColor = '#28a745';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = '';
+                    emailInput.value = '';
+                }, 3000);
+            });
+
+            // ==================== COUNTDOWN TIMER ====================
             const startCountdown = () => {
                 const targetDate = new Date();
                 targetDate.setDate(targetDate.getDate() + 4);
+                targetDate.setHours(targetDate.getHours() + 8);
+                targetDate.setMinutes(targetDate.getMinutes() + 11);
+
                 const updateTimer = () => {
                     const now = new Date().getTime();
                     const distance = targetDate.getTime() - now;
+
                     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    countdownEl.innerText = `${days}d ${hours}h ${minutes}m`;
+
+                    countdownEl.textContent = `${days}d ${hours}h ${minutes}m`;
+
+                    if (distance < 0) {
+                        clearInterval(timerInterval);
+                        countdownEl.textContent = "EXPIRADO";
+                    }
                 };
-                setInterval(updateTimer, 60000);
+
+                const timerInterval = setInterval(updateTimer, 60000);
                 updateTimer();
             };
 
+            // ==================== INITIALIZATION ====================
             initializeGallery();
             startCountdown();
             updatePricing();
+            updateCartBadge();
         });
     </script>
 </body>
