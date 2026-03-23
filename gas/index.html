@@ -1985,8 +1985,7 @@
                         <div class="delivery-option-main">⚡ GRÁTIS - Entrega em 20 Minutos</div>
                         <div class="delivery-option-sub">Entrega rápida e segura</div>
                     </div>
-                </div>
-                <div class="delivery-option-card" data-delivery="scheduled">
+                </div>        <div class="delivery-option-card" data-delivery="scheduled">
                     <div class="delivery-option-radio"></div>
                     <div class="delivery-option-text">
                         <div class="delivery-option-main">📅 GRÁTIS - Agendada</div>
@@ -2021,7 +2020,7 @@
             state: '',
             number: '',
             complement: '',
-            deliveryType: 'express'
+            deliveryType: ''
         };
 
         // Cart elements
@@ -2036,6 +2035,7 @@
         const extraFieldsRow = document.getElementById('extra-fields-row');
         const subtotalEl = document.getElementById('subtotal');
         const totalEl = document.getElementById('total');
+        const cartSummary = document.querySelector('.cart-summary');
 
         // Verify all elements exist
         if (!cartBtn || !cartOverlay || !cartSidebar || !cartCloseBtn) {
@@ -2130,12 +2130,19 @@
                     </div>
                 `;
                 shippingSection.style.display = 'none';
+                if (cartSummary) cartSummary.style.display = 'none';
                 subtotalEl.textContent = 'R$ 0,00';
                 totalEl.textContent = 'R$ 0,00';
                 return;
             }
             
             shippingSection.style.display = 'block';
+            // Initially hide summary until shipping is selected
+            if (!shippingData.deliveryType && cartSummary) {
+                cartSummary.style.display = 'none';
+            } else if (shippingData.deliveryType && cartSummary) {
+                cartSummary.style.display = 'block';
+            }
 
             let itemsHTML = '';
             let subtotal = 0;
@@ -2226,6 +2233,8 @@
 
                 // Trigger API call when CEP is complete (8 digits)
                 if (value.replace(/\D/g, '').length === 8) {
+                    // Hide summary bar when searching for CEP
+                    if (cartSummary) cartSummary.style.display = 'none';
                     fetchAddressFromViaCEP(value.replace(/\D/g, ''));
                     // Blur the input to hide the keyboard
                     setTimeout(() => {
@@ -2234,6 +2243,8 @@
                 } else {
                     if (addressBlock) addressBlock.classList.remove('active');
                     hideAddressElements();
+                    // Keep summary hidden if CEP is incomplete
+                    if (cartSummary) cartSummary.style.display = 'none';
                 }
             });
         }
@@ -2313,6 +2324,9 @@
                 deliveryOptions.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
                 shippingData.deliveryType = option.dataset.delivery;
+                
+                // Show summary bar only after selecting a delivery option
+                if (cartSummary) cartSummary.style.display = 'block';
             });
         });
 
