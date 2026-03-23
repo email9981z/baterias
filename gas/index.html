@@ -56,15 +56,15 @@
             flex-direction: column;
         }
 
-        /* ==================== HEADER ==================== */
+        /* ==================== HEADER PROFISSIONAL ==================== */
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--bg-white);
-            padding: 16px 20px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-md);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -74,6 +74,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            flex: 1;
         }
 
         .back-btn {
@@ -92,39 +93,62 @@
             transform: translateX(-2px);
         }
 
-        .header-title h1 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
+        .brand-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
-        .header-title span {
-            font-size: 0.8rem;
+        .brand-logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .brand-tagline {
+            font-size: 0.7rem;
             opacity: 0.9;
-            display: block;
-            margin-top: 2px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--bg-white);
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
         }
 
         .cart-btn {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: var(--bg-white);
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             position: relative;
             transition: all 0.2s ease;
-            font-size: 1.1rem;
-        }
-
-        .cart-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
+            font-size: 1rem;
         }
 
         .cart-badge {
@@ -152,24 +176,47 @@
             transform: scale(1);
         }
 
+        /* ==================== TRUST BANNER ==================== */
+        .trust-banner {
+            background: linear-gradient(90deg, rgba(40, 167, 69, 0.1) 0%, rgba(0, 191, 255, 0.1) 100%);
+            border-bottom: 1px solid rgba(40, 167, 69, 0.2);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .trust-item i {
+            color: var(--success);
+            font-size: 1rem;
+        }
+
         /* ==================== PROMOTIONAL BANNERS ==================== */
         .promo-banner {
-            background: linear-gradient(135deg, var(--accent) 0%, #00a8d8 100%);
-            color: #003d5c;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
             padding: 12px 20px;
             text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             box-shadow: var(--shadow-sm);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
-
-        .promo-banner i {
-            font-size: 1rem;
-            animation: pulse 2s infinite;
         }
 
         .delivery-banner {
@@ -177,30 +224,13 @@
             color: var(--bg-white);
             padding: 12px 20px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             box-shadow: var(--shadow-sm);
-        }
-
-        .delivery-banner i {
-            font-size: 1.1rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* ==================== MAIN CONTENT ==================== */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0;
         }
 
         /* ==================== PRODUCT HERO SECTION ==================== */
@@ -210,35 +240,42 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .product-header {
-            margin-bottom: 20px;
-        }
-
         .product-name {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: var(--text-dark);
-            line-height: 1.3;
-            margin-bottom: 6px;
+            line-height: 1.2;
+            margin-bottom: 8px;
         }
 
         .product-sku {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-light);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* ==================== IMAGE GALLERY ==================== */
-        .image-gallery {
-            width: 100%;
-            margin-bottom: 20px;
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        .rating-stars {
+            color: #ffc107;
+        }
+
+        .rating-count {
+            color: var(--text-light);
+            font-weight: 500;
         }
 
         .image-container {
             width: 100%;
-            height: 300px;
+            height: 320px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -247,34 +284,20 @@
             padding: 20px;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            margin-bottom: 12px;
-        }
-
-        .image-container:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            border: 2px solid var(--border-color);
+            margin: 20px 0 12px 0;
         }
 
         .image-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .image-container:hover img {
-            transform: scale(1.05);
         }
 
         .carousel-indicators {
             display: flex;
             justify-content: center;
             gap: 6px;
-            flex-wrap: wrap;
         }
 
         .indicator {
@@ -283,45 +306,13 @@
             border-radius: 50%;
             background: var(--border-color);
             cursor: pointer;
-            transition: all 0.3s ease;
             border: none;
-            padding: 0;
         }
 
         .indicator.active {
             background: var(--primary);
             width: 24px;
             border-radius: 4px;
-        }
-
-        .indicator:hover {
-            background: var(--accent);
-        }
-
-        /* ==================== TRUST BADGES ==================== */
-        .trust-badges {
-            display: flex;
-            justify-content: space-around;
-            gap: 12px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .badge {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            font-weight: 500;
-        }
-
-        .badge i {
-            display: block;
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 4px;
         }
 
         /* ==================== PRICING & QUANTITY SECTION ==================== */
@@ -333,124 +324,48 @@
 
         .pricing-container {
             display: flex;
-            align-items: center;
-            justify-content: flex-start;
+            align-items: flex-end;
             gap: 16px;
             margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(0, 85, 255, 0.05) 0%, rgba(0, 191, 255, 0.05) 100%);
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 85, 255, 0.1);
         }
 
-        .price-display {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .price-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .price-values {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 6px;
+        .current-price {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--danger);
+            line-height: 1;
         }
 
         .old-price {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-light);
             text-decoration: line-through;
         }
 
-        .current-price {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
         .discount-badge {
-            background-color: var(--danger);
-            color: var(--bg-white);
-            padding: 6px 12px;
+            background: var(--danger);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 800;
+        }
+
+        .urgency-badge {
+            background: var(--warning);
+            color: white;
+            padding: 8px 12px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .unit-price-info {
-            background-color: var(--primary-light);
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .delivery-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding: 16px;
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .delivery-option {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        .delivery-option i {
-            color: var(--primary);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background-color: var(--bg-light);
-            padding: 10px 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            width: fit-content;
-            margin-bottom: 20px;
-        }
-
-        .qty-btn {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0 4px;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .qty-btn:hover {
-            color: var(--primary-dark);
-            transform: scale(1.2);
-        }
-
-        .qty-number {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            min-width: 24px;
-            text-align: center;
+            gap: 6px;
+            margin-bottom: 10px;
         }
 
         .cta-button {
@@ -460,245 +375,15 @@
             border: none;
             padding: 16px;
             border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 85, 255, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 85, 255, 0.4);
-        }
-
-        /* ==================== BENEFITS SECTION ==================== */
-        .section {
-            padding: 24px 20px;
-            background-color: var(--bg-white);
-            border-bottom: 1px solid var(--border-color);
-            animation: slideUp 0.5s ease-out;
-        }
-
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .benefit-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 18px;
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .benefit-card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            background-color: var(--primary-light);
-        }
-
-        .benefit-icon {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-
-        .benefit-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-gray);
-        }
-
-        /* ==================== REVIEWS SECTION ==================== */
-        .reviews-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding: 16px;
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .rating-number {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .rating-stars {
-            color: #ffc107;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
-
-        .rating-count {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
-            margin-left: auto;
-        }
-
-        .review-card {
-            background-color: var(--bg-light);
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border-left: 4px solid var(--primary);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        .review-card:hover {
-            box-shadow: var(--shadow-sm);
-            background-color: var(--bg-white);
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .review-author {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-        }
-
-        .review-rating {
-            color: #ffc107;
-            font-size: 0.9rem;
-        }
-
-        .review-text {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        .review-meta {
-            display: flex;
-            gap: 12px;
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* ==================== NEWSLETTER SECTION ==================== */
-        .newsletter {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--bg-white);
-            padding: 28px 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(0, 85, 255, 0.25);
-            position: relative;
-            overflow: hidden;
-            margin: 24px 20px;
-        }
-
-        .newsletter::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .newsletter-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.95;
-            margin-bottom: 16px;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-input {
-            padding: 12px 16px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            background-color: rgba(255, 255, 255, 0.95);
-            color: var(--text-gray);
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            background-color: var(--bg-white);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .newsletter-btn {
-            padding: 12px 16px;
-            background-color: var(--success);
-            color: var(--bg-white);
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-        }
-
-        .newsletter-btn:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 85, 255, 0.35);
+            text-transform: uppercase;
         }
 
         /* ==================== CART OVERLAY & SIDEBAR ==================== */
@@ -713,7 +398,6 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 200;
-            touch-action: none;
         }
 
         .cart-overlay.active {
@@ -728,8 +412,6 @@
             bottom: 0;
             width: 100%;
             max-width: 400px;
-            height: 100vh;
-            height: 100dvh;
             background-color: var(--bg-white);
             box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15);
             display: flex;
@@ -737,7 +419,6 @@
             transform: translateX(100%);
             transition: transform 0.3s ease;
             z-index: 201;
-            overflow: hidden;
         }
 
         .cart-sidebar.active {
@@ -751,326 +432,33 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(0, 85, 255, 0.15);
-        }
-
-        .cart-header h2 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: -0.2px;
         }
 
         .cart-close-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            color: var(--bg-white);
+            color: white;
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 6px 10px;
+            padding: 5px 10px;
             border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .cart-close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
         }
 
         .cart-content {
             flex: 1;
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
             padding: 20px;
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            overscroll-behavior: contain;
         }
 
-        .cart-items-wrapper {
-            flex: 1;
-        }
-
-        .product-sticky-header {
-            position: sticky;
-            top: 0;
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border-color);
-            padding: 12px 0;
-            z-index: 10;
-            display: flex;
-            animation: slideDown 0.3s ease-out;
-            margin-bottom: 15px;
-        }
-
-        .product-sticky-header.active {
-            display: flex;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .product-sticky-item {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex: 1;
-            width: 100%;
-            padding: 5px 0;
-        }
-
-        .product-sticky-img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            background: var(--bg-light);
-            border-radius: 6px;
-            padding: 4px;
-        }
-
-        .product-sticky-info {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .product-sticky-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-dark);
-            white-space: normal;
-            line-height: 1.2;
-            text-align: left;
-        }
-
-        .product-sticky-qty {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-top: 2px;
-        }
-
-        .product-sticky-selector {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            background: var(--bg-light);
-            padding: 2px 8px;
-            border-radius: 20px;
-            width: fit-content;
-            border: 1px solid var(--border-color);
-        }
-
-        .sticky-qty-btn {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: 800;
-            color: var(--primary);
-            font-size: 10px;
-            transition: all 0.2s ease;
-        }
-
-        .sticky-qty-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .product-sticky-price {
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--primary);
-            white-space: nowrap;
-        }
-
-        .product-sticky-selector .qty-value {
-            font-size: 12px;
-            min-width: 15px;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            animation: slideIn 0.3s ease-out;
-            align-items: center;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .cart-item-img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            background: var(--bg-light);
-            border-radius: 8px;
-            flex-shrink: 0;
-            border: 1px solid var(--border-color);
-            padding: 5px;
-        }
-
-        .cart-item-info {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .cart-item-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-dark);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 1.2;
-            max-width: 250px;
-        }
-
-        .cart-item-price {
-            color: var(--primary);
-            font-weight: 800;
-            font-size: 16px;
-            margin-bottom: 0;
-        }
-
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 5px;
-        }
-
-        .qty-btn {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: 800;
-            transition: all 0.2s;
-            color: var(--primary);
-            font-size: 12px;
-        }
-
-        .qty-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .qty-value {
-            font-weight: 700;
-            font-size: 14px;
-            min-width: 20px;
-            text-align: center;
-            color: var(--text-dark);
-        }
-
-        .cart-item-remove-btn {
-            color: #ff4d4d;
-            font-size: 12px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            margin-top: 2px;
-            font-weight: 600;
-            padding: 0;
-            text-align: left;
-            width: fit-content;
-            transition: all 0.2s;
-        }
-
-        .cart-item-remove-btn:hover {
-            color: #cc0000;
-            text-decoration: underline;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--text-light);
-        }
-
-        .empty-cart i {
-            font-size: 3.5rem;
-            color: var(--border-color);
-            margin-bottom: 16px;
-            display: block;
-            opacity: 0.6;
-        }
-
-        .empty-cart p {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
-        /* ==================== SHIPPING ADDRESS SECTION ==================== */
+        /* ==================== SHIPPING & ADDRESS ==================== */
         .shipping-section {
-            padding: 20px 0;
-            background: transparent;
-            border-top: 1px solid var(--border-color);
             margin-top: 20px;
-        }
-
-        .shipping-section-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .shipping-section-title i {
-            color: var(--primary);
-            font-size: 1.2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
         }
 
         .form-group {
             margin-bottom: 16px;
-            max-height: 500px;
-            opacity: 1;
-            overflow: hidden;
-            transition: all 0.3s ease-out;
-        }
-
-        .form-group.hidden {
-            max-height: 0;
-            opacity: 0;
-            margin-bottom: 0;
         }
 
         .form-label {
@@ -1078,1327 +466,510 @@
             font-weight: 700;
             color: var(--text-gray);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 8px;
             display: block;
+            margin-bottom: 8px;
         }
 
         .form-input {
             width: 100%;
-            padding: 12px 14px;
+            padding: 12px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            background-color: var(--bg-white);
-            transition: all 0.3s ease;
-            font-family: inherit;
-            font-weight: 500;
-        }
-
-        .form-input::placeholder {
-            color: var(--text-light);
-            font-weight: 400;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.1);
-            background-color: var(--bg-white);
-        }
-
-        .form-input.loading {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230055ff' stroke-width='2'%3E%3Cpath d='M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 2.2'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 18px;
-            padding-right: 40px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            max-height: 500px;
-            opacity: 1;
-            overflow: hidden;
-            transition: all 0.3s ease-out;
-        }
-
-        .form-row.hidden {
-            max-height: 0;
-            opacity: 0;
-            gap: 0;
-        }
-
-        .form-row.full {
-            grid-template-columns: 1fr;
+            font-size: 1rem;
         }
 
         .address-block {
-            background-color: transparent;
-            padding: 0;
+            background-color: var(--bg-light);
+            padding: 16px;
             border-radius: 8px;
-            border: 1px solid transparent;
-            margin-bottom: 0;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: all 0.3s ease-out;
+            margin-bottom: 16px;
+            display: none;
         }
 
         .address-block.active {
-            padding: 16px;
-            background-color: var(--bg-white);
-            border: 1px solid var(--border-color);
-            margin-bottom: 16px;
-            max-height: 500px;
-            opacity: 1;
-            animation: slideUp 0.3s ease-out;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .address-block-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 12px;
             display: block;
         }
 
         .address-info {
+            font-size: 0.9rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            font-size: 0.9rem;
+            gap: 10px;
         }
 
-        .address-info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+        .address-info-item.full {
+            grid-column: span 2;
         }
 
         .address-info-label {
             font-size: 0.7rem;
-            font-weight: 700;
             color: var(--text-light);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .address-info-value {
             font-weight: 700;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        .address-info-item.full {
-            grid-column: 1 / -1;
-        }
-
-        .address-info-item.full .address-info-value {
-            padding-bottom: 4px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 8px;
-        }
-
-        .delivery-options-group {
-            margin-top: 0;
-            margin-bottom: 0;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.3s ease-out;
-        }
-
-        .delivery-options-group.visible {
-            margin-top: 16px;
-            max-height: 500px;
-            opacity: 1;
-        }
-
-        .delivery-options-title {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 12px;
-            display: block;
         }
 
         .delivery-option-card {
             display: flex;
             align-items: center;
-            padding: 14px 16px;
-            background-color: var(--bg-white);
+            padding: 14px;
             border: 2px solid var(--border-color);
             border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
             margin-bottom: 10px;
-        }
-
-        .delivery-option-card:last-child {
-            margin-bottom: 0;
-        }
-
-        .delivery-option-card:hover {
-            border-color: var(--primary);
-            background-color: var(--primary-light);
-            box-shadow: 0 2px 8px rgba(0, 85, 255, 0.08);
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
         .delivery-option-card.selected {
             border-color: var(--primary);
             background-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.1);
         }
 
         .delivery-option-radio {
-            width: 22px;
-            height: 22px;
-            border: 2.5px solid var(--border-color);
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 14px;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
+            margin-right: 12px;
+            position: relative;
         }
 
         .delivery-option-card.selected .delivery-option-radio {
             border-color: var(--primary);
             background-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.1);
-        }
-
-        .delivery-option-radio::after {
-            content: '';
-            width: 7px;
-            height: 7px;
-            background-color: var(--bg-white);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .delivery-option-card.selected .delivery-option-radio::after {
-            opacity: 1;
-        }
-
-        .delivery-option-text {
-            flex: 1;
         }
 
         .delivery-option-main {
             font-weight: 700;
-            color: var(--text-dark);
             font-size: 0.95rem;
         }
 
         .delivery-option-sub {
             font-size: 0.8rem;
             color: var(--text-light);
-            margin-top: 3px;
-            font-weight: 400;
-        }
-
-        .error-message {
-            color: var(--danger);
-            font-size: 0.8rem;
-            margin-top: 4px;
-            display: none;
-        }
-
-        .error-message.active {
-            display: block;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border: 2px solid var(--primary-light);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-right: 8px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
 
         .cart-summary {
             padding: 20px;
-            padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
             border-top: 2px solid var(--border-color);
-            background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
-            flex-shrink: 0;
-            width: 100%;
-            margin: 0;
-            z-index: 10;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            gap: 12px;
-            font-weight: 500;
-        }
-
-        .summary-row span:last-child {
-            white-space: nowrap;
-            text-align: right;
-            font-weight: 600;
-            color: var(--text-dark);
+            background: var(--bg-light);
+            display: none;
         }
 
         .summary-row.total {
-            font-weight: 700;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
             color: var(--primary);
-            border-top: 1px solid var(--border-color);
-            padding-top: 14px;
-            margin-top: 14px;
-            margin-bottom: 0;
-        }
-
-        .summary-row.total span:first-child {
-            color: var(--text-dark);
         }
 
         .proceed-btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--success) 0%, #218838 100%);
-            color: var(--bg-white);
+            background: var(--success);
+            color: white;
             border: none;
             padding: 16px;
             border-radius: 10px;
-            font-size: 1.05rem;
             font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 15px;
             cursor: pointer;
+        }
+
+        .cart-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(40, 167, 69, 0.3);
-            margin-top: 18px;
-            letter-spacing: 0.3px;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .proceed-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: var(--bg-light);
+            border-radius: 6px;
         }
 
-        .proceed-btn:active {
-            transform: translateY(0);
+        .cart-item-info {
+            flex: 1;
         }
 
-        /* ==================== FOOTER ==================== */
-        .footer {
-            background: linear-gradient(180deg, var(--primary-dark) 0%, #001f66 100%);
-            color: var(--bg-white);
-            padding: 40px 20px;
-            font-size: 0.85rem;
-            border-top: 3px solid rgba(0, 191, 255, 0.3);
-            margin-top: 0;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3 {
-            font-size: 1rem;
+        .cart-item-title {
             font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--accent);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 30px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-link {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-size: 0.9rem;
         }
 
-        .footer-link:hover {
-            color: var(--accent);
-            transform: translateX(4px);
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 800;
         }
 
-        .social-icons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
+        .qty-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
         }
 
-        .social-icon {
-            color: var(--bg-white);
-            text-decoration: none;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            width: 42px;
-            height: 42px;
+        .qty-value {
+            margin: 0 8px;
+            font-weight: 700;
+        }
+
+        .cart-item-remove-btn {
+            background: none;
+            border: none;
+            color: var(--danger);
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        /* Product sticky header in cart */
+        .product-sticky-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: rgba(0, 191, 255, 0.15);
-            border: 2px solid rgba(0, 191, 255, 0.3);
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
 
-        .social-icon:hover {
-            color: var(--accent);
-            background-color: rgba(0, 191, 255, 0.35);
-            border-color: rgba(0, 191, 255, 0.6);
-            transform: translateY(-4px);
+        .product-sticky-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 24px;
-            border-top: 1px solid rgba(0, 191, 255, 0.2);
-            opacity: 0.8;
+        .product-sticky-info {
+            flex: 1;
         }
 
-        .footer-bottom p {
-            margin-bottom: 6px;
-            font-size: 0.85rem;
+        .product-sticky-title {
+            font-size: 0.8rem;
+            font-weight: 700;
         }
 
-        /* ==================== RESPONSIVE DESIGN ==================== */
-        @media (max-width: 768px) {
-            .container {
-                max-width: 100%;
-                box-shadow: none;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .cart-sidebar {
-                max-width: 100%;
-            }
+        .product-sticky-price {
+            font-weight: 800;
+            color: var(--primary);
         }
 
-        @media (max-width: 480px) {
-            .product-hero {
-                padding: 18px 16px;
-            }
+        .hidden { display: none; }
+        .error-message { color: var(--danger); font-size: 0.8rem; margin-top: 4px; display: none; }
+        .error-message.active { display: block; }
 
-            .product-name {
-                font-size: 1.3rem;
-            }
+        /* Benefits & Reviews */
+        .section { padding: 24px 20px; border-bottom: 1px solid var(--border-color); }
+        .section-title { font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .benefit-card { text-align: center; padding: 15px; background: var(--bg-light); border-radius: 8px; }
+        .benefit-icon { font-size: 1.5rem; color: var(--primary); margin-bottom: 5px; }
+        .benefit-text { font-size: 0.8rem; font-weight: 700; }
 
-            .current-price {
-                font-size: 2rem;
-            }
+        .review-card { padding: 15px; background: var(--bg-light); border-radius: 8px; margin-bottom: 10px; }
+        .review-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; }
+        .review-text { font-size: 0.85rem; color: var(--text-gray); }
 
-            .pricing-section {
-                padding: 18px 16px;
-            }
+        /* Newsletter & Footer */
+        .newsletter { margin: 20px; padding: 20px; background: var(--primary); color: white; border-radius: 12px; }
+        .newsletter-form { display: flex; gap: 8px; margin-top: 10px; }
+        .newsletter-input { flex: 1; padding: 10px; border-radius: 6px; border: none; }
+        .newsletter-btn { padding: 10px 15px; background: var(--success); color: white; border: none; border-radius: 6px; font-weight: 700; }
 
-            .section {
-                padding: 18px 16px;
-            }
-
-            .image-container {
-                height: 240px;
-                padding: 16px;
-            }
-
-            .cta-button {
-                padding: 14px 16px;
-                font-size: 1rem;
-                margin-bottom: 16px;
-            }
-
-            .section-title {
-                font-size: 1.1rem;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .benefit-card {
-                padding: 14px;
-            }
-
-            .newsletter {
-                margin: 18px 16px;
-                padding: 20px 16px;
-            }
-
-            .footer {
-                padding: 30px 16px;
-            }
-
-            .footer-content {
-                gap: 24px;
-            }
-
-            .price-values {
-                gap: 10px;
-            }
-
-            .old-price {
-                font-size: 0.9rem;
-            }
-
-            .current-price {
-                font-size: 2rem;
-            }
-
-            .discount-badge {
-                font-size: 0.75rem;
-                padding: 5px 10px;
-            }
-
-            .unit-price-info {
-                font-size: 0.85rem;
-                padding: 10px 14px;
-            }
-
-            .pricing-container {
-                gap: 12px;
-            }
-
-            .quantity-selector {
-                padding: 8px 12px;
-                gap: 10px;
-            }
-
-            .qty-btn {
-                font-size: 1.2rem;
-            }
-
-            .qty-number {
-                font-size: 1rem;
-            }
-
-            .address-info {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ==================== ANIMATIONS ==================== */
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .footer { background: var(--primary-dark); color: white; padding: 40px 20px; text-align: center; }
+        .footer-content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; margin-bottom: 20px; }
+        .footer-section h3 { color: var(--accent); margin-bottom: 10px; font-size: 1rem; }
+        .footer-link { color: white; text-decoration: none; display: block; margin-bottom: 5px; font-size: 0.85rem; }
+        .social-icons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        .social-icon { color: white; font-size: 1.2rem; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- HEADER -->
+        <!-- HEADER PROFISSIONAL -->
         <header class="header">
             <div class="header-left">
                 <button class="back-btn" title="Voltar">
                     <i class="fas fa-arrow-left"></i>
                 </button>
-                <div class="header-title">
-                    <h1>Ultragaz</h1>
-                    <span>Gás de Cozinha</span>
+                <div class="brand-section">
+                    <div class="brand-logo">ULTRAGAZ</div>
+                    <div class="brand-tagline">Gás Premium</div>
                 </div>
             </div>
-            <button class="cart-btn" id="cart-btn" title="Carrinho">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge" id="cart-badge">0</span>
-            </button>
+            <div class="header-right">
+                <button class="search-btn" title="Buscar"><i class="fas fa-search"></i></button>
+                <button class="cart-btn" id="cart-btn" title="Carrinho">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+            </div>
         </header>
 
-        <!-- PROMOTIONAL BANNERS -->
-        <div class="promo-banner">
-            <i class="fas fa-fire"></i>
-            <span>PROMOÇÃO ESPECIAL: 14% OFF!</span>
+        <!-- TRUST BANNER -->
+        <div class="trust-banner">
+            <div class="trust-item"><i class="fas fa-lock"></i><span>100% Seguro</span></div>
+            <div class="trust-item"><i class="fas fa-check-circle"></i><span>Garantido</span></div>
+            <div class="trust-item"><i class="fas fa-star"></i><span>4.8★ (324)</span></div>
         </div>
 
-        <div class="delivery-banner">
-            <i class="fas fa-truck"></i>
-            <span>Entrega em até 30 minutos!</span>
-        </div>
-
-        <!-- MAIN CONTENT -->
         <main class="main-content">
-            <!-- PRODUCT HERO SECTION -->
             <section class="product-hero">
-                <div class="product-header">
-                    <h2 class="product-name">Botijão de Gás 13 Kilos - Cheio (P13)</h2>
-                    <p class="product-sku">SKU: P13-ULTRAGAZ-2026</p>
+                <h2 class="product-name">Botijão de Gás 13 Kilos - Cheio (P13)</h2>
+                <p class="product-sku">SKU: P13-ULTRAGAZ-2026</p>
+                <div class="product-rating"><span class="rating-stars">★★★★★</span><span class="rating-count">(324 avaliações)</span></div>
+                
+                <div class="image-container">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão Ultragaz">
                 </div>
-
-                <!-- IMAGE GALLERY -->
-                <div class="image-gallery">
-                    <div class="image-container" id="image-container">
-                        <img id="main-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão P13 (13Kg) - Ultragaz">
-                    </div>
-                    <div class="carousel-indicators" id="carousel-indicators">
-                        <button class="indicator active" data-index="0"></button>
-                        <button class="indicator" data-index="1"></button>
-                        <button class="indicator" data-index="2"></button>
-                    </div>
-                </div>
-
-                <!-- TRUST BADGES -->
-                <div class="trust-badges">
-                    <div class="badge">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>100% Seguro</span>
-                    </div>
-                    <div class="badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Garantia</span>
-                    </div>
-                    <div class="badge">
-                        <i class="fas fa-star"></i>
-                        <span>Premium</span>
-                    </div>
+                <div class="carousel-indicators">
+                    <button class="indicator active"></button><button class="indicator"></button><button class="indicator"></button>
                 </div>
             </section>
 
-            <!-- PRICING & QUANTITY SECTION -->
             <section class="pricing-section">
                 <div class="pricing-container">
-                    <div class="price-display">
-                        <span class="price-label">Preço</span>
-                        <div class="price-values">
-                            <span class="old-price">R$&nbsp;105,00</span>
-                            <span class="current-price">R$&nbsp;90,00</span>
-                            <span class="discount-badge">-14%</span>
-                        </div>
-                    </div>
+                    <div class="current-price">R$ 90,00</div>
+                    <div class="old-price">R$ 105,00</div>
+                    <div class="discount-badge">-14%</div>
                 </div>
-
-                <div class="unit-price-info">
-                    <strong>R$&nbsp;90,00</strong> por unidade
-                </div>
-
-                <!-- DELIVERY OPTIONS -->
-                <div class="delivery-options">
-                    <div class="delivery-option">
-                        <i class="fas fa-clock"></i>
-                        <span><strong>Entrega Rápida:</strong> 30 minutos</span>
-                    </div>
-                    <div class="delivery-option">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span><strong>Área de Cobertura:</strong> Região Metropolitana</span>
-                    </div>
-                </div>
-
-                <!-- CTA BUTTON -->
-                <button class="cta-button" id="order-btn">
-                    <i class="fas fa-shopping-cart"></i> Pedir Agora
-                </button>
+                <div class="urgency-badge"><i class="fas fa-clock"></i>Apenas 5 em estoque!</div>
+                <button class="cta-button" id="order-btn"><i class="fas fa-shopping-cart"></i> Pedir Agora</button>
             </section>
 
-            <!-- BENEFITS SECTION -->
+            <!-- BENEFITS & REVIEWS -->
             <section class="section">
-                <h3 class="section-title">Por Que Escolher a Ultragaz?</h3>
+                <h3 class="section-title"><i class="fas fa-check-circle"></i>Por Que Ultragaz?</h3>
                 <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <i class="benefit-icon fas fa-check-circle"></i>
-                        <span class="benefit-text">100% Seguro</span>
-                    </div>
-                    <div class="benefit-card">
-                        <i class="benefit-icon fas fa-leaf"></i>
-                        <span class="benefit-text">Eco-Friendly</span>
-                    </div>
-                    <div class="benefit-card">
-                        <i class="benefit-icon fas fa-star"></i>
-                        <span class="benefit-text">Qualidade Premium</span>
-                    </div>
-                    <div class="benefit-card">
-                        <i class="benefit-icon fas fa-bolt"></i>
-                        <span class="benefit-text">Entrega Rápida</span>
-                    </div>
+                    <div class="benefit-card"><i class="benefit-icon fas fa-shield-alt"></i><div class="benefit-text">Seguro</div></div>
+                    <div class="benefit-card"><i class="benefit-icon fas fa-leaf"></i><div class="benefit-text">Eco</div></div>
+                    <div class="benefit-card"><i class="benefit-icon fas fa-star"></i><div class="benefit-text">Premium</div></div>
+                    <div class="benefit-card"><i class="benefit-icon fas fa-bolt"></i><div class="benefit-text">Rápido</div></div>
                 </div>
             </section>
 
-            <!-- REVIEWS SECTION -->
             <section class="section">
-                <h3 class="section-title">Avaliações de Clientes</h3>
-                
-                <div class="reviews-header">
-                    <span class="rating-number">4.8</span>
-                    <span class="rating-stars">★★★★★</span>
-                    <span class="rating-count">(324 avaliações)</span>
-                </div>
-
+                <h3 class="section-title"><i class="fas fa-star"></i>Avaliações</h3>
                 <div class="review-card">
-                    <div class="review-header">
-                        <span class="review-author">João Silva</span>
-                        <span class="review-rating">★★★★★</span>
-                    </div>
-                    <p class="review-text">"Excelente qualidade e entrega muito rápida! Recomendo para todos os meus amigos."</p>
-                    <div class="review-meta">
-                        <div class="meta-item"><i class="fas fa-thumbs-up"></i> <span>45</span></div>
-                        <div class="meta-item"><i class="fas fa-calendar"></i> <span>2 dias atrás</span></div>
-                    </div>
+                    <div class="review-header"><span>João Silva</span><span>★★★★★</span></div>
+                    <p class="review-text">"Entrega muito rápida! Recomendo."</p>
                 </div>
-
                 <div class="review-card">
-                    <div class="review-header">
-                        <span class="review-author">Maria Santos</span>
-                        <span class="review-rating">★★★★★</span>
-                    </div>
-                    <p class="review-text">"Produto chegou em perfeito estado. Muito satisfeita com a compra e o atendimento!"</p>
-                    <div class="review-meta">
-                        <div class="meta-item"><i class="fas fa-thumbs-up"></i> <span>32</span></div>
-                        <div class="meta-item"><i class="fas fa-calendar"></i> <span>1 semana atrás</span></div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="review-author">Carlos Oliveira</span>
-                        <span class="review-rating">★★★★☆</span>
-                    </div>
-                    <p class="review-text">"Bom produto, preço justo. Entrega dentro do prazo conforme prometido."</p>
-                    <div class="review-meta">
-                        <div class="meta-item"><i class="fas fa-thumbs-up"></i> <span>28</span></div>
-                        <div class="meta-item"><i class="fas fa-calendar"></i> <span>10 dias atrás</span></div>
-                    </div>
+                    <div class="review-header"><span>Maria Santos</span><span>★★★★★</span></div>
+                    <p class="review-text">"Produto excelente e atendimento nota 10."</p>
                 </div>
             </section>
 
-            <!-- NEWSLETTER SECTION -->
             <div class="newsletter">
-                <h3 class="newsletter-title">Fique por Dentro das Promoções!</h3>
-                <p class="newsletter-subtitle">Receba ofertas exclusivas direto no seu e-mail</p>
-                <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
-                    <button type="submit" class="newsletter-btn">
-                        <i class="fas fa-bell"></i> Inscrever-se
-                    </button>
+                <h3>Promoções Exclusivas!</h3>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Seu e-mail">
+                    <button type="submit" class="newsletter-btn">OK</button>
                 </form>
             </div>
         </main>
 
-        <!-- FOOTER -->
         <footer class="footer">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Sobre</h3>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link"><i class="fas fa-info-circle"></i> Sobre a Ultragaz</a>
-                        <a href="#" class="footer-link"><i class="fas fa-briefcase"></i> Carreiras</a>
-                        <a href="#" class="footer-link"><i class="fas fa-newspaper"></i> Blog</a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Suporte</h3>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link"><i class="fas fa-question-circle"></i> FAQ</a>
-                        <a href="#" class="footer-link"><i class="fas fa-headset"></i> Contato</a>
-                        <a href="#" class="footer-link"><i class="fas fa-file-alt"></i> Termos de Uso</a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Redes Sociais</h3>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
+                <div class="footer-section"><h3>Sobre</h3><a href="#" class="footer-link">Ultragaz</a><a href="#" class="footer-link">Carreiras</a></div>
+                <div class="footer-section"><h3>Suporte</h3><a href="#" class="footer-link">FAQ</a><a href="#" class="footer-link">Contato</a></div>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Ultragaz. Todos os direitos reservados.</p>
-                <p>Entrega rápida e segura em toda a região.</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
             </div>
         </footer>
     </div>
 
-    <!-- CART OVERLAY -->
+    <!-- CART SIDEBAR & OVERLAY -->
     <div id="cart-overlay" class="cart-overlay"></div>
-
-    <!-- CART SIDEBAR -->
     <div id="cart-sidebar" class="cart-sidebar">
         <div class="cart-header">
             <h2><i class="fas fa-shopping-bag"></i> Carrinho</h2>
-            <button id="cart-close-btn" class="cart-close-btn">
-                <i class="fas fa-times"></i>
-            </button>
+            <button id="cart-close-btn" class="cart-close-btn"><i class="fas fa-times"></i></button>
         </div>
-
-        <div class="cart-content" id="cart-content-wrapper">
-            <!-- PRODUCT STICKY HEADER -->
-            <div class="product-sticky-header" id="product-sticky-header">
-                <div class="product-sticky-item">
-                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Produto" class="product-sticky-img">
-                    <div class="product-sticky-info">
-                        <div class="product-sticky-title" id="sticky-title">Botijão de Gás 13 Kilos - Cheio (P13)</div>
-                        <div class="product-sticky-selector">
-                            <button class="qty-btn sticky-qty-btn" id="sticky-qty-decrease" data-action="decrease">-</button>
-                            <span class="qty-value" id="sticky-qty-value">1</span>
-                            <button class="qty-btn sticky-qty-btn" id="sticky-qty-increase" data-action="increase">+</button>
-                        </div>
-                    </div>
-                    <div class="product-sticky-price" id="sticky-price">R$ 90,00</div>
-                </div>
-            </div>
-
-            <!-- CART ITEMS LIST REMOVED - Only sticky header shown -->
-            <div id="cart-items-list" style="display: none;">
-                <div class="empty-cart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <p>Seu carrinho está vazio</p>
-                </div>
-            </div>
-
-            <!-- SHIPPING ADDRESS SECTION - NOW INTEGRATED -->
-            <div class="shipping-section" id="shipping-section" style="display: none;">
-            <h3 class="shipping-section-title">
-                <i class="fas fa-map-marker-alt"></i> Endereço de Envio
-            </h3>
-
-            <!-- CEP INPUT -->
-            <div class="form-group">
-                <label class="form-label" for="cep-input">CEP</label>
-                <input 
-                    type="text" 
-                    id="cep-input" 
-                    class="form-input" 
-                    placeholder="00000-000"
-                    maxlength="9"
-                    autocomplete="postal-code"
-                    inputmode="numeric"
-                >
-                <div class="error-message" id="cep-error"></div>
-            </div>
-
-            <!-- ADDRESS BLOCK -->
-            <div class="address-block" id="address-block">
-                <div class="address-block-title">Endereço Encontrado</div>
-                <div class="address-info">
-                    <div class="address-info-item full">
-                        <div class="address-info-label">Logradouro</div>
-                        <div class="address-info-value" id="address-street">-</div>
-                    </div>
-                    <div class="address-info-item">
-                        <div class="address-info-label">Bairro</div>
-                        <div class="address-info-value" id="address-neighborhood">-</div>
-                    </div>
-                    <div class="address-info-item">
-                        <div class="address-info-label">Cidade</div>
-                        <div class="address-info-value" id="address-city">-</div>
-                    </div>
-                    <div class="address-info-item">
-                        <div class="address-info-label">Estado</div>
-                        <div class="address-info-value" id="address-state">-</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NUMBER AND COMPLEMENT -->
-            <div class="form-row hidden" id="extra-fields-row">
+        <div class="cart-content">
+            <div id="cart-items-list"></div>
+            
+            <div class="shipping-section" id="shipping-section" style="display:none;">
+                <h3 class="form-label"><i class="fas fa-map-marker-alt"></i> Entrega</h3>
                 <div class="form-group">
-                    <label class="form-label" for="number-input">Número</label>
-                    <input 
-                        type="text" 
-                        id="number-input" 
-                        class="form-input" 
-                        placeholder="Ex: 123"
-                        autocomplete="address-line2"
-                    >
+                    <label class="form-label">CEP</label>
+                    <input type="text" id="cep-input" class="form-input" placeholder="00000-000" maxlength="9">
+                    <div class="error-message" id="cep-error"></div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="complement-input">Complemento</label>
-                    <input 
-                        type="text" 
-                        id="complement-input" 
-                        class="form-input" 
-                        placeholder="Apt, sala, etc"
-                        autocomplete="address-line3"
-                    >
-                </div>
-            </div>
 
-                  <!-- DELIVERY OPTIONS -->
-            <div class="delivery-options-group">
-                <label class="delivery-options-title">Opção de Entrega</label>
-                <div class="delivery-option-card" data-delivery="express">
-                    <div class="delivery-option-radio"></div>
-                    <div class="delivery-option-text">
-                        <div class="delivery-option-main">⚡ GRÁTIS - Entrega em 20 Minutos</div>
-                        <div class="delivery-option-sub">Entrega rápida e segura</div>
-                    </div>
-                </div>        <div class="delivery-option-card" data-delivery="scheduled">
-                    <div class="delivery-option-radio"></div>
-                    <div class="delivery-option-text">
-                        <div class="delivery-option-main">📅 GRÁTIS - Agendada</div>
-                        <div class="delivery-option-sub">Escolha a data e hora mais conveniente</div>
+                <div class="address-block" id="address-block">
+                    <div class="address-info">
+                        <div class="address-info-item full"><div class="address-info-label">Rua</div><div id="address-street" class="address-info-value">-</div></div>
+                        <div class="address-info-item"><div class="address-info-label">Bairro</div><div id="address-neighborhood" class="address-info-value">-</div></div>
+                        <div class="address-info-item"><div class="address-info-label">Cidade</div><div id="address-city" class="address-info-value">-</div></div>
                     </div>
                 </div>
-            </div>
+
+                <div id="extra-fields-row" class="hidden">
+                    <div class="form-group"><label class="form-label">Número</label><input type="text" id="number-input" class="form-input"></div>
+                    <div class="form-group"><label class="form-label">Complemento</label><input type="text" id="complement-input" class="form-input"></div>
+                </div>
+
+                <div id="delivery-options-group" class="hidden">
+                    <div class="delivery-option-card" data-delivery="express">
+                        <div class="delivery-option-radio"></div>
+                        <div class="delivery-option-text"><div class="delivery-option-main">⚡ Entrega Rápida</div><div class="delivery-option-sub">20 Minutos</div></div>
+                    </div>
+                    <div class="delivery-option-card" data-delivery="scheduled">
+                        <div class="delivery-option-radio"></div>
+                        <div class="delivery-option-text"><div class="delivery-option-main">📅 Agendada</div><div class="delivery-option-sub">Escolha o horário</div></div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="cart-summary">
-            <div class="summary-row total">
-                <span>Total:</span>
-                <span id="total">R$&nbsp;0,00</span>
-            </div>
-            <button class="proceed-btn">
-                <i class="fas fa-credit-card"></i> Finalizar Compra
-            </button>
+        <div class="cart-summary" id="cart-summary">
+            <div class="summary-row total"><span>Total:</span><span id="total">R$ 0,00</span></div>
+            <button class="proceed-btn" id="finish-btn"><i class="fas fa-credit-card"></i> Finalizar Compra</button>
         </div>
     </div>
 
     <script>
-        // Cart state
         let cart = [];
         const PRODUCT_PRICE = 90;
         const PRODUCT_NAME = 'Botijão de Gás 13 Kilos - Cheio (P13)';
-        let shippingData = {
-            cep: '',
-            street: '',
-            neighborhood: '',
-            city: '',
-            state: '',
-            number: '',
-            complement: '',
-            deliveryType: ''
-        };
+        let shippingData = { deliveryType: '' };
 
-        // Cart elements
         const cartBtn = document.getElementById('cart-btn');
         const cartBadge = document.getElementById('cart-badge');
         const orderBtn = document.getElementById('order-btn');
         const cartOverlay = document.getElementById('cart-overlay');
         const cartSidebar = document.getElementById('cart-sidebar');
         const cartCloseBtn = document.getElementById('cart-close-btn');
-        const cartContent = document.getElementById('cart-items-list');
+        const cartItemsList = document.getElementById('cart-items-list');
         const shippingSection = document.getElementById('shipping-section');
-        const extraFieldsRow = document.getElementById('extra-fields-row');
-        const subtotalEl = document.getElementById('subtotal');
         const totalEl = document.getElementById('total');
-        const cartSummary = document.querySelector('.cart-summary');
-
-        // Verify all elements exist
-        if (!cartBtn || !cartOverlay || !cartSidebar || !cartCloseBtn) {
-            console.error('Erro: Elementos do carrinho não encontrados no DOM');
-        }
-
-        // Shipping elements
+        const cartSummary = document.getElementById('cart-summary');
         const cepInput = document.getElementById('cep-input');
-        const cepError = document.getElementById('cep-error');
         const addressBlock = document.getElementById('address-block');
-        const addressStreet = document.getElementById('address-street');
-        const addressNeighborhood = document.getElementById('address-neighborhood');
-        const addressCity = document.getElementById('address-city');
-        const addressState = document.getElementById('address-state');
-        const numberInput = document.getElementById('number-input');
-        const complementInput = document.getElementById('complement-input');
-        const deliveryOptions = document.querySelectorAll('.delivery-option-card');
+        const extraFields = document.getElementById('extra-fields-row');
+        const deliveryGroup = document.getElementById('delivery-options-group');
 
-        // Open/Close cart
         function openCart() {
-            if (cartOverlay) cartOverlay.classList.add('active');
-            if (cartSidebar) cartSidebar.classList.add('active');
+            cartOverlay.classList.add('active');
+            cartSidebar.classList.add('active');
             document.body.style.overflow = 'hidden';
-            document.body.style.height = '100%';
         }
 
         function closeCart() {
-            if (cartOverlay) cartOverlay.classList.remove('active');
-            if (cartSidebar) cartSidebar.classList.remove('active');
+            cartOverlay.classList.remove('active');
+            cartSidebar.classList.remove('active');
             document.body.style.overflow = 'auto';
-            document.body.style.height = 'auto';
         }
 
-        // Add event listeners with null checks
-        if (cartBtn) {
-            cartBtn.addEventListener('click', openCart);
-        }
-        if (cartCloseBtn) {
-            cartCloseBtn.addEventListener('click', closeCart);
-        }
-        if (cartOverlay) {
-            cartOverlay.addEventListener('click', closeCart);
-        }
+        cartBtn.addEventListener('click', openCart);
+        cartCloseBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
 
-        // Add to cart
-        if (orderBtn) {
-            orderBtn.addEventListener('click', () => {
-                const existingItem = cart.find(item => item.name === PRODUCT_NAME && item.price === PRODUCT_PRICE);
-                
-                if (existingItem) {
-                    existingItem.quantity++;
-                } else {
-                    cart.push({
-                        name: PRODUCT_NAME,
-                        price: PRODUCT_PRICE,
-                        quantity: 1
-                    });
-                }
+        orderBtn.addEventListener('click', () => {
+            const existing = cart.find(i => i.name === PRODUCT_NAME);
+            if (existing) { existing.quantity++; } 
+            else { cart.push({ name: PRODUCT_NAME, price: PRODUCT_PRICE, quantity: 1 }); }
+            updateCart();
+            openCart();
+        });
 
-                updateCartDisplay();
-                updateCartBadge();
+        function updateCart() {
+            const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
+            cartBadge.textContent = totalItems;
+            cartBadge.classList.toggle('active', totalItems > 0);
 
-                const originalText = orderBtn.innerHTML;
-                orderBtn.innerHTML = '<i class="fas fa-check"></i> Adicionado ao Carrinho!';
-                orderBtn.style.background = 'linear-gradient(135deg, var(--success) 0%, #218838 100%)';
-                
-                setTimeout(() => {
-                    orderBtn.innerHTML = originalText;
-                    orderBtn.style.background = '';
-                }, 2000);
-
-                openCart();
-            });
-        }
-
-        function updateCartBadge() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            if (cartBadge) cartBadge.textContent = totalItems;
-            if (totalItems > 0 && cartBadge) {
-                cartBadge.classList.add('active');
-            }
-            // Update sticky header when quantity changes
-            updateStickyHeader();
-        }
-
-        function updateCartDisplay() {
             if (cart.length === 0) {
-                cartContent.innerHTML = `
-                    <div class="empty-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <p>Seu carrinho está vazio</p>
-                    </div>
-                `;
+                cartItemsList.innerHTML = '<p style="text-align:center;padding:20px;color:#888;">Carrinho vazio</p>';
                 shippingSection.style.display = 'none';
-                if (cartSummary) cartSummary.style.display = 'none';
-                subtotalEl.textContent = 'R$ 0,00';
-                totalEl.textContent = 'R$ 0,00';
+                cartSummary.style.display = 'none';
                 return;
             }
-            
-            shippingSection.style.display = 'block';
-            // Initially hide summary until shipping is selected
-            if (!shippingData.deliveryType && cartSummary) {
-                cartSummary.style.display = 'none';
-            } else if (shippingData.deliveryType && cartSummary) {
-                cartSummary.style.display = 'block';
-            }
 
+            shippingSection.style.display = 'block';
             let itemsHTML = '';
             let subtotal = 0;
 
             cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                const formattedPrice = itemTotal.toFixed(2).replace('.', ',');
+                subtotal += item.price * item.quantity;
                 itemsHTML += `
                     <div class="cart-item">
-                        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="${item.name}" class="cart-item-img">
+                        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" class="cart-item-img">
                         <div class="cart-item-info">
-                            <div class="cart-item-title" title="${item.name}">${item.name}</div>
-                            <div class="cart-item-price">R$ ${formattedPrice}</div>
-                            <div class="quantity-selector">
-                                <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</div>
+                            <div style="margin-top:5px;">
+                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
                                 <span class="qty-value">${item.quantity}</span>
-                                <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
+                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
                             </div>
-                            <button class="cart-item-remove-btn" data-index="${index}">Remover</button>
+                            <button class="cart-item-remove-btn" onclick="removeItem(${index})">Remover</button>
                         </div>
                     </div>
                 `;
             });
 
-            cartContent.innerHTML = itemsHTML;
-            document.querySelectorAll('.cart-item-remove-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const index = parseInt(e.currentTarget.dataset.index);
-                    removeFromCart(index);
-                });
-            });
-
-            document.querySelectorAll('.qty-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const index = parseInt(e.currentTarget.dataset.index);
-                    const action = e.currentTarget.dataset.action;
-                    updateQuantity(index, action);
-                });
-            });
-
-            const formattedSubtotal = subtotal.toFixed(2).replace('.', ',');
-            if (totalEl) totalEl.textContent = `R$&nbsp;${formattedSubtotal}`;
+            cartItemsList.innerHTML = itemsHTML;
+            totalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            if (shippingData.deliveryType) cartSummary.style.display = 'block';
         }
 
-        function removeFromCart(index) {
+        window.changeQty = (index, delta) => {
+            cart[index].quantity += delta;
+            if (cart[index].quantity < 1) cart.splice(index, 1);
+            updateCart();
+        };
+
+        window.removeItem = (index) => {
             cart.splice(index, 1);
-            updateCartDisplay();
-            updateCartBadge();
-        }
+            updateCart();
+        };
 
-        function addQuantityToCart(index) {
-            if (cart[index]) {
-                cart[index].quantity++;
-                updateCartDisplay();
-                updateCartBadge();
+        cepInput.addEventListener('input', async (e) => {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length > 5) val = val.slice(0, 5) + '-' + val.slice(5, 8);
+            e.target.value = val;
+
+            if (val.replace('-', '').length === 8) {
+                try {
+                    const res = await fetch(`https://viacep.com.br/ws/${val.replace('-', '')}/json/`);
+                    const data = await res.json();
+                    if (!data.erro) {
+                        document.getElementById('address-street').textContent = data.logradouro;
+                        document.getElementById('address-neighborhood').textContent = data.bairro;
+                        document.getElementById('address-city').textContent = data.localidade;
+                        addressBlock.classList.add('active');
+                        extraFields.classList.remove('hidden');
+                        deliveryGroup.classList.remove('hidden');
+                    }
+                } catch (e) {}
             }
-        }
-
-        function removeQuantityFromCart(index) {
-            if (cart[index] && cart[index].quantity > 1) {
-                cart[index].quantity--;
-                updateCartDisplay();
-                updateCartBadge();
-            }
-        }
-
-        function updateQuantity(index, action) {
-            if (action === 'increase') {
-                addQuantityToCart(index);
-            } else if (action === 'decrease') {
-                removeQuantityFromCart(index);
-            }
-        }
-
-        // CEP Formatting and API Integration
-        if (cepInput) {
-            cepInput.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                
-                if (value.length > 5) {
-                    value = value.slice(0, 5) + '-' + value.slice(5, 8);
-                }
-                
-                e.target.value = value;
-                if (cepError) cepError.classList.remove('active');
-                if (cepError) cepError.textContent = '';
-
-                // Trigger API call when CEP is complete (8 digits)
-                if (value.replace(/\D/g, '').length === 8) {
-                    // Hide summary bar when searching for CEP
-                    if (cartSummary) cartSummary.style.display = 'none';
-                    fetchAddressFromViaCEP(value.replace(/\D/g, ''));
-                    // Blur the input to hide the keyboard
-                    setTimeout(() => {
-                        e.target.blur();
-                    }, 300);
-                } else {
-                    if (addressBlock) addressBlock.classList.remove('active');
-                    hideAddressElements();
-                    // Keep summary hidden if CEP is incomplete
-                    if (cartSummary) cartSummary.style.display = 'none';
-                }
-            });
-        }
-
-        // Fetch address from ViaCEP API
-        async function fetchAddressFromViaCEP(cep) {
-            try {
-                cepInput.classList.add('loading');
-                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                const data = await response.json();
-
-                if (data.erro) {
-                    showCepError('CEP não encontrado');
-                    addressBlock.classList.remove('active');
-                    hideAddressElements();
-                    cepInput.classList.remove('loading');
-                    return;
-                }
-
-                // Populate address data
-                shippingData.cep = cep;
-                shippingData.street = data.logradouro || '-';
-                shippingData.neighborhood = data.bairro || '-';
-                shippingData.city = data.localidade || '-';
-                shippingData.state = data.uf || '-';
-
-                addressStreet.textContent = shippingData.street;
-                addressNeighborhood.textContent = shippingData.neighborhood;
-                addressCity.textContent = shippingData.city;
-                addressState.textContent = shippingData.state;
-
-                addressBlock.classList.add('active');
-                showAddressElements();
-                cepInput.classList.remove('loading');
-            } catch (error) {
-                showCepError('Erro ao buscar CEP. Tente novamente.');
-                cepInput.classList.remove('loading');
-                addressBlock.classList.remove('active');
-                hideAddressElements();
-            }
-        }
-
-        // Show address elements after successful CEP search
-        function showAddressElements() {
-            const deliveryGroup = document.querySelector('.delivery-options-group');
-
-            if (extraFieldsRow) extraFieldsRow.classList.remove('hidden');
-            if (deliveryGroup) deliveryGroup.classList.add('visible');
-        }
-
-        // Hide address elements when CEP is incomplete or invalid
-        function hideAddressElements() {
-            const deliveryGroup = document.querySelector('.delivery-options-group');
-
-            if (extraFieldsRow) extraFieldsRow.classList.add('hidden');
-            if (deliveryGroup) deliveryGroup.classList.remove('visible');
-        }
-
-        function showCepError(message) {
-            cepError.textContent = message;
-            cepError.classList.add('active');
-            hideAddressElements();
-        }
-
-        // Number and complement inputs
-        numberInput.addEventListener('change', (e) => {
-            shippingData.number = e.target.value;
         });
 
-        complementInput.addEventListener('change', (e) => {
-            shippingData.complement = e.target.value;
-        });
-
-        // Delivery option selection - NO pre-selection
-        deliveryOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                deliveryOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                shippingData.deliveryType = option.dataset.delivery;
-                
-                // Show summary bar only after selecting a delivery option
-                if (cartSummary) cartSummary.style.display = 'block';
+        document.querySelectorAll('.delivery-option-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.delivery-option-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                shippingData.deliveryType = card.dataset.delivery;
+                cartSummary.style.display = 'block';
             });
         });
 
-        // Sticky product header is now always visible at top of cart-content
-        // It will stick naturally due to CSS position: sticky
-
-        function updateStickyHeader() {
-            if (cart.length > 0) {
-                const item = cart[0];
-                const totalPrice = (item.price * item.quantity).toFixed(2).replace('.', ',');
-                const stickyTitle = document.getElementById('sticky-title');
-                const stickyQtyValue = document.getElementById('sticky-qty-value');
-                const stickyPrice = document.getElementById('sticky-price');
-                const stickyHeader = document.getElementById('product-sticky-header');
-                
-                if (stickyTitle) stickyTitle.textContent = item.name;
-                if (stickyQtyValue) stickyQtyValue.textContent = item.quantity;
-                if (stickyPrice) stickyPrice.textContent = `R$ ${totalPrice}`;
-                if (stickyHeader) stickyHeader.style.display = 'flex';
-            } else {
-                const stickyHeader = document.getElementById('product-sticky-header');
-                if (stickyHeader) stickyHeader.style.display = 'none';
-            }
-        }
-
-        // Sticky quantity selector buttons
-        const stickyQtyDecrease = document.getElementById('sticky-qty-decrease');
-        const stickyQtyIncrease = document.getElementById('sticky-qty-increase');
-
-        if (stickyQtyDecrease) {
-            stickyQtyDecrease.addEventListener('click', () => {
-                if (cart.length > 0 && cart[0].quantity > 1) {
-                    cart[0].quantity--;
-                    updateCartDisplay();
-                    updateCartBadge();
-                }
-            });
-        }
-
-        if (stickyQtyIncrease) {
-            stickyQtyIncrease.addEventListener('click', () => {
-                if (cart.length > 0) {
-                    cart[0].quantity++;
-                    updateCartDisplay();
-                    updateCartBadge();
-                }
-            });
-        }
-
-        // No pre-selection of delivery option - user must choose
-
-        // Newsletter form
-        const newsletterForm = document.getElementById('newsletter-form');
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = newsletterForm.querySelector('input[type="email"]').value;
-            alert(`Obrigado! Você se inscreveu com: ${email}`);
-            newsletterForm.reset();
-        });
-
-        // Carousel indicators
-        const indicators = document.querySelectorAll('.indicator');
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                indicators.forEach(ind => ind.classList.remove('active'));
-                indicator.classList.add('active');
-            });
-        });
-
-        // Back button
-        document.querySelector('.back-btn').addEventListener('click', () => {
-            window.history.back();
+        document.getElementById('finish-btn').addEventListener('click', () => {
+            alert('Pedido finalizado com sucesso! Entraremos em contato via WhatsApp.');
         });
     </script>
 </body>
