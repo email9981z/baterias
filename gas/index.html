@@ -511,6 +511,73 @@
             font-weight: 600;
         }
 
+        /* ==================== VARIANT SELECTOR ==================== */
+        .variant-selector {
+            margin-bottom: 24px;
+        }
+
+        .variant-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .variant-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .variant-pill {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--border-color);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .variant-pill:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .variant-pill.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 85, 255, 0.25);
+        }
+
+        .variant-pill i {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Image Transition Effect */
+        .image-fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .image-fade-in {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.4s ease-out;
+        }
+
         .delivery-options {
             display: flex;
             flex-direction: column;
@@ -1477,65 +1544,117 @@
             grid-template-columns: 1fr;
         }
 
+        /* ==================== ADDRESS BLOCK - PROFISSIONAL ==================== */
         .address-block {
             background-color: transparent;
             padding: 0;
-            border-radius: 8px;
-            border: 1px solid transparent;
+            border-radius: 0;
+            border: none;
             margin-bottom: 0;
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            transition: all 0.3s ease-out;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .address-block.active {
-            padding: 16px;
-            background-color: var(--bg-white);
-            border: 1px solid var(--border-color);
-            margin-bottom: 16px;
-            max-height: 500px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 85, 255, 0.03) 0%, rgba(0, 191, 255, 0.03) 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            max-height: 600px;
             opacity: 1;
-            animation: slideUp 0.3s ease-out;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            animation: slideUpFade 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 85, 255, 0.08);
+            position: relative;
+            overflow: visible;
+        }
+
+        .address-block.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px 0 0 12px;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .address-block-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-light);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 12px;
-            display: block;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 12px;
+        }
+
+        .address-block-title::before {
+            content: '\f3c5';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1rem;
+            color: var(--primary);
         }
 
         .address-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 16px;
             font-size: 0.9rem;
+            padding-left: 12px;
         }
 
         .address-info-item {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 85, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .address-info-item:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 85, 255, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 85, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .address-info-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--text-light);
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
+            opacity: 0.8;
         }
 
         .address-info-value {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-dark);
             font-size: 0.95rem;
-            line-height: 1.4;
+            line-height: 1.5;
+            word-break: break-word;
         }
 
         .address-info-item.full {
@@ -1543,9 +1662,9 @@
         }
 
         .address-info-item.full .address-info-value {
-            padding-bottom: 4px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 8px;
+            padding-bottom: 0;
+            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .delivery-options-group {
@@ -1999,6 +2118,19 @@
                 </div>
             </section>
 
+            <!-- VARIANT SELECTOR -->
+            <section class="variant-selector" style="padding: 0 20px;">
+                <label class="variant-label">Escolha o Tamanho</label>
+                <div class="variant-pills">
+                    <div class="variant-pill active" data-variant="P13" data-price="90" data-old-price="105" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png">
+                        <i class="fas fa-gas-pump"></i> P13 (13kg)
+                    </div>
+                    <div class="variant-pill" data-variant="P20" data-price="145" data-old-price="170" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png">
+                        <i class="fas fa-gas-pump"></i> P20 (20kg)
+                    </div>
+                </div>
+            </section>
+
             <!-- PRICING & QUANTITY SECTION -->
             <section class="pricing-section">
                 <div class="pricing-container">
@@ -2325,8 +2457,11 @@
     <script>
         // Cart state
         let cart = [];
-        const PRODUCT_PRICE = 90;
-        const PRODUCT_NAME = 'Botijão de Gás 13 Kilos - Cheio (P13)';
+        let currentPrice = 90;
+        let currentOldPrice = 105;
+        let currentVariant = 'P13';
+        let currentProductName = 'Botijão de Gás 13 Kilos - Cheio (P13)';
+        const PRODUCT_NAME_BASE = 'Botijão de Gás';
         let shippingData = {
             cep: '',
             street: '',
@@ -2357,6 +2492,65 @@
         const mainQtyDecrease = document.getElementById('main-qty-decrease');
         const mainQtyIncrease = document.getElementById('main-qty-increase');
         let mainQuantity = 1;
+
+        // Variant elements
+        const variantPills = document.querySelectorAll('.variant-pill');
+        const mainImage = document.getElementById('main-image');
+        const productNameEl = document.querySelector('.product-name');
+        const productSkuEl = document.querySelector('.product-sku');
+        const oldPriceEl = document.querySelector('.old-price');
+        const currentPriceEl = document.querySelector('.current-price');
+        const unitPriceInfoEl = document.querySelector('.unit-price-info');
+        const stickyPriceEl = document.getElementById('sticky-price');
+
+        // Variant selection logic
+        variantPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                // Update active state
+                variantPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+
+                // Get data from pill
+                const variant = pill.getAttribute('data-variant');
+                const price = parseFloat(pill.getAttribute('data-price'));
+                const oldPrice = parseFloat(pill.getAttribute('data-old-price'));
+                const imgUrl = pill.getAttribute('data-img');
+
+                // Update state
+                currentPrice = price;
+                currentOldPrice = oldPrice;
+                currentVariant = variant;
+                currentProductName = `${PRODUCT_NAME_BASE} ${variant === 'P13' ? '13 Kilos' : '20 Kilos'} - Cheio (${variant})`;
+
+                // Update UI with animation
+                if (mainImage) {
+                    mainImage.style.opacity = '0';
+                    mainImage.style.transform = 'scale(0.95)';
+                    
+                    setTimeout(() => {
+                        mainImage.src = imgUrl;
+                        mainImage.alt = currentProductName;
+                        mainImage.style.opacity = '1';
+                        mainImage.style.transform = 'scale(1)';
+                    }, 300);
+                }
+
+                if (productNameEl) productNameEl.textContent = currentProductName;
+                if (productSkuEl) productSkuEl.textContent = `SKU: ${variant}-ULTRAGAZ-2026`;
+                
+                const formattedPrice = price.toFixed(2).replace('.', ',');
+                const formattedOldPrice = oldPrice.toFixed(2).replace('.', ',');
+                const savings = (oldPrice - price).toFixed(2).replace('.', ',');
+
+                if (oldPriceEl) oldPriceEl.innerHTML = `R$&nbsp;${formattedOldPrice}`;
+                if (currentPriceEl) currentPriceEl.innerHTML = `R$&nbsp;${formattedPrice}`;
+                if (stickyPriceEl) stickyPriceEl.textContent = `R$ ${formattedPrice}`;
+                
+                if (unitPriceInfoEl) {
+                    unitPriceInfoEl.innerHTML = `<strong>R$&nbsp;${formattedPrice}</strong> por unidade • Economize R$ ${savings}`;
+                }
+            });
+        });
 
         if (mainQtyDecrease) {
             mainQtyDecrease.addEventListener('click', () => {
@@ -2420,21 +2614,28 @@
         // Add to cart
         if (orderBtn) {
             orderBtn.addEventListener('click', () => {
-                const existingItem = cart.find(item => item.name === PRODUCT_NAME && item.price === PRODUCT_PRICE);
-                
+                // Find item by both name and variant to ensure they are treated as unique products
+                const existingItem = cart.find(item => item.name === currentProductName && item.variant === currentVariant);
+
                 if (existingItem) {
                     existingItem.quantity += mainQuantity;
                 } else {
                     cart.push({
-                        name: PRODUCT_NAME,
-                        price: PRODUCT_PRICE,
-                        quantity: mainQuantity
+                        name: currentProductName,
+                        variant: currentVariant,
+                        price: currentPrice,
+                        quantity: mainQuantity,
+                        image: document.getElementById('main-image').src
                     });
                 }
 
+                // Reset main quantity selector after adding to cart
+                mainQuantity = 1;
+                if (mainQtyNumber) mainQtyNumber.textContent = mainQuantity;
+
                 updateCartDisplay();
                 updateCartBadge();
-
+                
                 const originalText = orderBtn.innerHTML;
                 orderBtn.innerHTML = '<i class="fas fa-check"></i> Adicionado ao Carrinho!';
                 orderBtn.style.background = 'linear-gradient(135deg, var(--success) 0%, #218838 100%)';
@@ -2487,13 +2688,14 @@
             cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
-                const formattedPrice = itemTotal.toFixed(2).replace('.', ',');
+                const formattedUnitPrice = item.price.toFixed(2).replace('.', ',');
+                const formattedItemTotal = itemTotal.toFixed(2).replace('.', ',');
                 itemsHTML += `
                     <div class="cart-item">
-                        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="${item.name}" class="cart-item-img">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
                         <div class="cart-item-info">
                             <div class="cart-item-title" title="${item.name}">${item.name}</div>
-                            <div class="cart-item-price">R$ ${formattedPrice}</div>
+                            <div class="cart-item-price">R$ ${formattedUnitPrice} x ${item.quantity} = <strong>R$ ${formattedItemTotal}</strong></div>
                             <div class="quantity-selector">
                                 <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
                                 <span class="qty-value">${item.quantity}</span>
