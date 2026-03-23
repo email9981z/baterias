@@ -852,9 +852,9 @@
             font-size: 13px;
             font-weight: 700;
             color: var(--text-dark);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: normal;
+            line-height: 1.2;
+            text-align: left;
         }
 
         .product-sticky-qty {
@@ -865,18 +865,18 @@
 
         .product-sticky-selector {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             align-items: center;
             background: var(--bg-light);
-            padding: 4px 10px;
+            padding: 2px 8px;
             border-radius: 20px;
             width: fit-content;
             border: 1px solid var(--border-color);
         }
 
         .sticky-qty-btn {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             border: 1px solid var(--border-color);
             background: white;
@@ -886,7 +886,7 @@
             cursor: pointer;
             font-weight: 800;
             color: var(--primary);
-            font-size: 12px;
+            font-size: 10px;
             transition: all 0.2s ease;
         }
 
@@ -901,6 +901,11 @@
             font-weight: 800;
             color: var(--primary);
             white-space: nowrap;
+        }
+
+        .product-sticky-selector .qty-value {
+            font-size: 12px;
+            min-width: 15px;
         }
 
         .cart-item {
