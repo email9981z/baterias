@@ -265,10 +265,12 @@
         }
 
         /* ==================== MAIN CONTENT ==================== */
-        .main-content {
+        .cart-content {
             flex: 1;
             overflow-y: auto;
             padding: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         /* ==================== PRODUCT HERO SECTION ==================== */
@@ -1680,10 +1682,9 @@
             padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
             border-top: 2px solid var(--border-color);
             background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
-            flex-shrink: 0;
             width: 100%;
             margin: 0;
-            z-index: 10;
+            margin-top: 20px;
         }
 
         .summary-row {
@@ -2258,9 +2259,9 @@
                 </div>
             </div>
             </div>
-        </div>
 
-        <div class="cart-summary">
+            <!-- CART SUMMARY - NOW INSIDE CART CONTENT -->
+            <div class="cart-summary" id="cart-summary-inner">
             <div class="summary-row">
                 <span>Subtotal:</span>
                 <span id="subtotal">R$&nbsp;0,00</span>
@@ -2272,6 +2273,7 @@
             <button class="proceed-btn">
                 <i class="fas fa-credit-card"></i> Finalizar Compra
             </button>
+            </div>
         </div>
     </div>
     <script>
