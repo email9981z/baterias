@@ -853,6 +853,34 @@
             margin-top: 2px;
         }
 
+        .product-sticky-selector {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .sticky-qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .sticky-qty-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
         .product-sticky-price {
             font-size: 14px;
             font-weight: 800;
@@ -1840,13 +1868,18 @@
                     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Produto" class="product-sticky-img">
                     <div class="product-sticky-info">
                         <div class="product-sticky-title" id="sticky-title">Botijão Cheio P13 (13Kg)</div>
-                        <div class="product-sticky-qty" id="sticky-qty">Qtd: 1</div>
+                    </div>
+                    <div class="product-sticky-selector">
+                        <button class="qty-btn sticky-qty-btn" id="sticky-qty-decrease" data-action="decrease">-</button>
+                        <span class="qty-value" id="sticky-qty-value">1</span>
+                        <button class="qty-btn sticky-qty-btn" id="sticky-qty-increase" data-action="increase">+</button>
                     </div>
                     <div class="product-sticky-price" id="sticky-price">R$ 90,00</div>
                 </div>
             </div>
 
-            <div id="cart-items-list">
+            <!-- CART ITEMS LIST REMOVED - Only sticky header shown -->
+            <div id="cart-items-list" style="display: none;">
                 <div class="empty-cart">
                     <i class="fas fa-shopping-cart"></i>
                     <p>Seu carrinho está vazio</p>
@@ -2276,18 +2309,42 @@
                 const item = cart[0];
                 const totalPrice = (item.price * item.quantity).toFixed(2).replace('.', ',');
                 const stickyTitle = document.getElementById('sticky-title');
-                const stickyQty = document.getElementById('sticky-qty');
+                const stickyQtyValue = document.getElementById('sticky-qty-value');
                 const stickyPrice = document.getElementById('sticky-price');
                 const stickyHeader = document.getElementById('product-sticky-header');
                 
                 if (stickyTitle) stickyTitle.textContent = item.name;
-                if (stickyQty) stickyQty.textContent = `Qtd: ${item.quantity}`;
+                if (stickyQtyValue) stickyQtyValue.textContent = item.quantity;
                 if (stickyPrice) stickyPrice.textContent = `R$ ${totalPrice}`;
                 if (stickyHeader) stickyHeader.style.display = 'flex';
             } else {
                 const stickyHeader = document.getElementById('product-sticky-header');
                 if (stickyHeader) stickyHeader.style.display = 'none';
             }
+        }
+
+        // Sticky quantity selector buttons
+        const stickyQtyDecrease = document.getElementById('sticky-qty-decrease');
+        const stickyQtyIncrease = document.getElementById('sticky-qty-increase');
+
+        if (stickyQtyDecrease) {
+            stickyQtyDecrease.addEventListener('click', () => {
+                if (cart.length > 0 && cart[0].quantity > 1) {
+                    cart[0].quantity--;
+                    updateCartDisplay();
+                    updateCartBadge();
+                }
+            });
+        }
+
+        if (stickyQtyIncrease) {
+            stickyQtyIncrease.addEventListener('click', () => {
+                if (cart.length > 0) {
+                    cart[0].quantity++;
+                    updateCartDisplay();
+                    updateCartBadge();
+                }
+            });
         }
 
         // No pre-selection of delivery option - user must choose
