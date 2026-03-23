@@ -824,10 +824,11 @@
 
         .product-sticky-item {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             align-items: center;
             flex: 1;
             width: 100%;
+            padding: 5px 0;
         }
 
         .product-sticky-img {
@@ -842,6 +843,9 @@
         .product-sticky-info {
             flex: 1;
             min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .product-sticky-title {
@@ -861,13 +865,18 @@
 
         .product-sticky-selector {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             align-items: center;
+            background: var(--bg-light);
+            padding: 4px 10px;
+            border-radius: 20px;
+            width: fit-content;
+            border: 1px solid var(--border-color);
         }
 
         .sticky-qty-btn {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             border: 1px solid var(--border-color);
             background: white;
@@ -877,7 +886,7 @@
             cursor: pointer;
             font-weight: 800;
             color: var(--primary);
-            font-size: 14px;
+            font-size: 12px;
             transition: all 0.2s ease;
         }
 
@@ -1876,11 +1885,11 @@
                     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Produto" class="product-sticky-img">
                     <div class="product-sticky-info">
                         <div class="product-sticky-title" id="sticky-title">Botijão Cheio P13 (13Kg)</div>
-                    </div>
-                    <div class="product-sticky-selector">
-                        <button class="qty-btn sticky-qty-btn" id="sticky-qty-decrease" data-action="decrease">-</button>
-                        <span class="qty-value" id="sticky-qty-value">1</span>
-                        <button class="qty-btn sticky-qty-btn" id="sticky-qty-increase" data-action="increase">+</button>
+                        <div class="product-sticky-selector">
+                            <button class="qty-btn sticky-qty-btn" id="sticky-qty-decrease" data-action="decrease">-</button>
+                            <span class="qty-value" id="sticky-qty-value">1</span>
+                            <button class="qty-btn sticky-qty-btn" id="sticky-qty-increase" data-action="increase">+</button>
+                        </div>
                     </div>
                     <div class="product-sticky-price" id="sticky-price">R$ 90,00</div>
                 </div>
@@ -1984,14 +1993,6 @@
         </div>
 
         <div class="cart-summary">
-            <div class="summary-row">
-                <span>Subtotal:</span>
-                <span id="subtotal">R$&nbsp;0,00</span>
-            </div>
-            <div class="summary-row">
-                <span>Taxa de entrega:</span>
-                <span id="delivery-fee">Grátis</span>
-            </div>
             <div class="summary-row total">
                 <span>Total:</span>
                 <span id="total">R$&nbsp;0,00</span>
@@ -2172,7 +2173,6 @@
             });
 
             const formattedSubtotal = subtotal.toFixed(2).replace('.', ',');
-            if (subtotalEl) subtotalEl.textContent = `R$&nbsp;${formattedSubtotal}`;
             if (totalEl) totalEl.textContent = `R$&nbsp;${formattedSubtotal}`;
         }
 
