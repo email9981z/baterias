@@ -1347,16 +1347,24 @@
             position: fixed;
             bottom: 0;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, 100%);
             width: 100%;
             max-width: 480px;
-            padding: 20px;
-            padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-            background: var(--bg-white);
-            border-top: 1px solid var(--border-color);
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
-            z-index: 1000;
-            display: none;
+            padding: 16px 20px;
+            padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.05);
+            z-index: 2000;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            visibility: hidden;
+        }
+
+        .cart-summary-fixed.active {
+            transform: translate(-50%, 0);
+            visibility: visible;
         }
 
         .summary-row {
@@ -1383,7 +1391,7 @@
             color: var(--primary);
             border-top: 1px solid var(--border-color);
             padding-top: 14px;
-            margin-top: 14px;
+            margin-top: 10px;
             margin-bottom: 0;
         }
 
@@ -2093,6 +2101,7 @@
         function closeCart() {
             if (cartOverlay) cartOverlay.classList.remove('active');
             if (cartSidebar) cartSidebar.classList.remove('active');
+            if (cartSummaryFixed) cartSummaryFixed.classList.remove('active');
             document.body.style.overflow = 'auto';
             document.body.style.height = 'auto';
         }
@@ -2159,7 +2168,7 @@
                 `;
                 shippingSection.style.display = 'none';
                 if (cartCheckoutBlock) cartCheckoutBlock.style.display = 'none';
-                if (cartSummaryFixed) cartSummaryFixed.style.display = 'none';
+                if (cartSummaryFixed) cartSummaryFixed.classList.remove('active');
                 subtotalEl.textContent = 'R$ 0,00';
                 totalEl.textContent = 'R$ 0,00';
                 return;
@@ -2169,15 +2178,15 @@
             
             // Initial state: show FIXED button if CEP is empty or incomplete
             if (shippingData.cep.length < 8) {
-                if (cartSummaryFixed) cartSummaryFixed.style.display = 'block';
+                if (cartSummaryFixed) cartSummaryFixed.classList.add('active');
                 if (cartCheckoutBlock) cartCheckoutBlock.style.display = 'none';
             } else if (shippingData.cep.length === 8 && !shippingData.deliveryType) {
                 // Hide both if CEP is complete but no delivery selected
-                if (cartSummaryFixed) cartSummaryFixed.style.display = 'none';
+                if (cartSummaryFixed) cartSummaryFixed.classList.remove('active');
                 if (cartCheckoutBlock) cartCheckoutBlock.style.display = 'none';
             } else if (shippingData.deliveryType) {
                 // Show INTEGRATED if delivery is selected
-                if (cartSummaryFixed) cartSummaryFixed.style.display = 'none';
+                if (cartSummaryFixed) cartSummaryFixed.classList.remove('active');
                 if (cartCheckoutBlock) cartCheckoutBlock.style.display = 'block';
             }
 
@@ -2275,7 +2284,7 @@
 
                 if (rawCep.length === 8) {
                     // Hide FIXED bar when CEP is complete
-                    if (cartSummaryFixed) cartSummaryFixed.style.display = 'none';
+                    if (cartSummaryFixed) cartSummaryFixed.classList.remove('active');
                     fetchAddressFromViaCEP(rawCep);
                     // Blur the input to hide the keyboard
                     setTimeout(() => {
@@ -2286,7 +2295,7 @@
                     hideAddressElements();
                     
                     // Show FIXED bar while CEP is incomplete
-                    if (cartSummaryFixed) cartSummaryFixed.style.display = 'block';
+                    if (cartSummaryFixed) cartSummaryFixed.classList.add('active');
                     if (cartCheckoutBlock) cartCheckoutBlock.style.display = 'none';
                 }
             });
@@ -2370,7 +2379,7 @@
                 
                 // Show integrated checkout block only after selecting a delivery option
                 if (cartCheckoutBlock) cartCheckoutBlock.style.display = 'block';
-                if (cartSummaryFixed) cartSummaryFixed.style.display = 'none';
+                if (cartSummaryFixed) cartSummaryFixed.classList.remove('active');
             });
         });
 
