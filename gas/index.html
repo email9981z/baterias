@@ -781,6 +781,83 @@
             overflow-y: auto;
             padding: 20px;
             min-height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-items-wrapper {
+            flex: 1;
+        }
+
+        .product-sticky-header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+            z-index: 10;
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+            margin-bottom: 15px;
+        }
+
+        .product-sticky-header.active {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-sticky-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex: 1;
+            width: 100%;
+        }
+
+        .product-sticky-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            background: var(--bg-light);
+            border-radius: 6px;
+            padding: 4px;
+        }
+
+        .product-sticky-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-sticky-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-sticky-qty {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .product-sticky-price {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--primary);
+            white-space: nowrap;
         }
 
         .cart-item {
@@ -1216,6 +1293,8 @@
             border-top: 2px solid var(--border-color);
             background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
             flex-shrink: 0;
+            width: 100%;
+            margin: 0;
         }
 
         .summary-row {
@@ -1755,6 +1834,18 @@
         </div>
 
         <div class="cart-content" id="cart-content-wrapper">
+            <!-- PRODUCT STICKY HEADER -->
+            <div class="product-sticky-header" id="product-sticky-header">
+                <div class="product-sticky-item">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Produto" class="product-sticky-img">
+                    <div class="product-sticky-info">
+                        <div class="product-sticky-title" id="sticky-title">Botijão Cheio P13 (13Kg)</div>
+                        <div class="product-sticky-qty" id="sticky-qty">Qtd: 1</div>
+                    </div>
+                    <div class="product-sticky-price" id="sticky-price">R$ 90,00</div>
+                </div>
+            </div>
+
             <div id="cart-items-list">
                 <div class="empty-cart">
                     <i class="fas fa-shopping-cart"></i>
@@ -1778,6 +1869,7 @@
                     placeholder="00000-000"
                     maxlength="9"
                     autocomplete="postal-code"
+                    inputmode="numeric"
                 >
                 <div class="error-message" id="cep-error"></div>
             </div>
@@ -1829,29 +1921,24 @@
                 </div>
             </div>
 
-            <!-- DELIVERY OPTIONS -->
+                  <!-- DELIVERY OPTIONS -->
             <div class="delivery-options-group">
                 <label class="delivery-options-title">Opção de Entrega</label>
-                
                 <div class="delivery-option-card" data-delivery="express">
                     <div class="delivery-option-radio"></div>
                     <div class="delivery-option-text">
-                        <div class="delivery-option-main">
-                            <i class="fas fa-bolt"></i> GRÁTIS - Entrega em 20 Minutos
-                        </div>
-                        <div class="delivery-option-sub">Entrega expressa para sua região</div>
+                        <div class="delivery-option-main">⚡ GRÁTIS - Entrega em 20 Minutos</div>
+                        <div class="delivery-option-sub">Entrega rápida e segura</div>
                     </div>
                 </div>
-
                 <div class="delivery-option-card" data-delivery="scheduled">
                     <div class="delivery-option-radio"></div>
                     <div class="delivery-option-text">
-                        <div class="delivery-option-main">
-                            <i class="fas fa-calendar-check"></i> GRÁTIS - Agendada
-                        </div>
+                        <div class="delivery-option-main">📅 GRÁTIS - Agendada</div>
                         <div class="delivery-option-sub">Escolha a data e hora mais conveniente</div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
 
@@ -1977,10 +2064,12 @@
 
         function updateCartBadge() {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartBadge.textContent = totalItems;
-            if (totalItems > 0) {
+            if (cartBadge) cartBadge.textContent = totalItems;
+            if (totalItems > 0 && cartBadge) {
                 cartBadge.classList.add('active');
             }
+            // Update sticky header when quantity changes
+            updateStickyHeader();
         }
 
         function updateCartDisplay() {
@@ -2075,25 +2164,31 @@
         }
 
         // CEP Formatting and API Integration
-        if (cepInput) cepInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, '');
-            
-            if (value.length > 5) {
-                value = value.slice(0, 5) + '-' + value.slice(5, 8);
-            }
-            
-            e.target.value = value;
-            if (cepError) cepError.classList.remove('active');
-            if (cepError) cepError.textContent = '';
+        if (cepInput) {
+            cepInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.length > 5) {
+                    value = value.slice(0, 5) + '-' + value.slice(5, 8);
+                }
+                
+                e.target.value = value;
+                if (cepError) cepError.classList.remove('active');
+                if (cepError) cepError.textContent = '';
 
-            // Trigger API call when CEP is complete (8 digits)
-            if (value.replace(/\D/g, '').length === 8) {
-                fetchAddressFromViaCEP(value.replace(/\D/g, ''));
-            } else {
-                if (addressBlock) addressBlock.classList.remove('active');
-                hideAddressElements();
-            }
-        });
+                // Trigger API call when CEP is complete (8 digits)
+                if (value.replace(/\D/g, '').length === 8) {
+                    fetchAddressFromViaCEP(value.replace(/\D/g, ''));
+                    // Blur the input to hide the keyboard
+                    setTimeout(() => {
+                        e.target.blur();
+                    }, 300);
+                } else {
+                    if (addressBlock) addressBlock.classList.remove('active');
+                    hideAddressElements();
+                }
+            });
+        }
 
         // Fetch address from ViaCEP API
         async function fetchAddressFromViaCEP(cep) {
@@ -2164,7 +2259,7 @@
             shippingData.complement = e.target.value;
         });
 
-        // Delivery option selection
+        // Delivery option selection - NO pre-selection
         deliveryOptions.forEach(option => {
             option.addEventListener('click', () => {
                 deliveryOptions.forEach(opt => opt.classList.remove('selected'));
@@ -2173,8 +2268,29 @@
             });
         });
 
-        // Set default delivery option
-        deliveryOptions[0].classList.add('selected');
+        // Sticky product header is now always visible at top of cart-content
+        // It will stick naturally due to CSS position: sticky
+
+        function updateStickyHeader() {
+            if (cart.length > 0) {
+                const item = cart[0];
+                const totalPrice = (item.price * item.quantity).toFixed(2).replace('.', ',');
+                const stickyTitle = document.getElementById('sticky-title');
+                const stickyQty = document.getElementById('sticky-qty');
+                const stickyPrice = document.getElementById('sticky-price');
+                const stickyHeader = document.getElementById('product-sticky-header');
+                
+                if (stickyTitle) stickyTitle.textContent = item.name;
+                if (stickyQty) stickyQty.textContent = `Qtd: ${item.quantity}`;
+                if (stickyPrice) stickyPrice.textContent = `R$ ${totalPrice}`;
+                if (stickyHeader) stickyHeader.style.display = 'flex';
+            } else {
+                const stickyHeader = document.getElementById('product-sticky-header');
+                if (stickyHeader) stickyHeader.style.display = 'none';
+            }
+        }
+
+        // No pre-selection of delivery option - user must choose
 
         // Newsletter form
         const newsletterForm = document.getElementById('newsletter-form');
