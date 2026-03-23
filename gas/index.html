@@ -2099,7 +2099,7 @@
                 <!-- IMAGE GALLERY -->
                 <div class="image-gallery">
                     <div class="image-container" id="image-container">
-                        <img id="main-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão P13 (13Kg) - Ultragaz">
+                        <img id="main-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/PzqoDuaLjhHWwWbo.png" alt="Botijão P13 (13Kg) - Ultragaz">
                     </div>
                     <div class="carousel-indicators" id="carousel-indicators">
                         <button class="indicator active" data-index="0"></button>
@@ -2129,10 +2129,10 @@
             <section class="variant-selector" style="padding: 0 20px;">
                 <label class="variant-label">Escolha o Tamanho</label>
                 <div class="variant-pills">
-                    <div class="variant-pill active" data-variant="P13" data-price="90" data-old-price="105" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png">
+                    <div class="variant-pill active" data-variant="P13" data-price="90" data-old-price="105" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/PzqoDuaLjhHWwWbo.png">
                         <i class="fas fa-gas-pump"></i> P13 (13kg)
                     </div>
-                    <div class="variant-pill" data-variant="P20" data-price="145" data-old-price="170" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png">
+                    <div class="variant-pill" data-variant="P20" data-price="145" data-old-price="170" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/CMyZIvAFblcHwUpw.png">
                         <i class="fas fa-gas-pump"></i> P20 (20kg)
                     </div>
                 </div>
@@ -2337,7 +2337,7 @@
             <!-- PRODUCT STICKY HEADER -->
             <div class="product-sticky-header" id="product-sticky-header">
                 <div class="product-sticky-item">
-                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Produto" class="product-sticky-img">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/PzqoDuaLjhHWwWbo.png" alt="Produto" class="product-sticky-img">
                     <div class="product-sticky-info">
                         <div class="product-sticky-title" id="sticky-title">Botijão de Gás 13 Kilos - Cheio (P13)</div>
                         <div class="product-sticky-selector">
@@ -2510,6 +2510,101 @@
         const unitPriceInfoEl = document.querySelector('.unit-price-info');
         const stickyPriceEl = document.getElementById('sticky-price');
 
+        // Image data for each variant
+        const variantImages = {
+            'P13': [
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/PzqoDuaLjhHWwWbo.png',
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/nXPSyVzdaFwzPPMa.jpg',
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/hHOFormpAewzImAO.jpg',
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/YBLOnzfobPMzBSfc.jpg'
+            ],
+            'P20': [
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/CMyZIvAFblcHwUpw.png',
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/UTfuvxujRpIzwMVP.png',
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/eDeCYvdvFgKOXgnE.jpg',
+                'https://files.manuscdn.com/user_upload_by_module/session_file/310519663080934225/nROBUhDmgOeahPcg.png'
+            ]
+        };
+
+        let currentImageIndex = 0;
+
+        function updateGallery(variant) {
+            const images = variantImages[variant];
+            const indicatorsContainer = document.getElementById('carousel-indicators');
+            
+            // Update indicators
+            if (indicatorsContainer) {
+                indicatorsContainer.innerHTML = '';
+                images.forEach((_, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = `indicator ${index === 0 ? 'active' : ''}`;
+                    btn.setAttribute('data-index', index);
+                    btn.addEventListener('click', () => {
+                        currentImageIndex = index;
+                        updateMainImage(variant, index);
+                    });
+                    indicatorsContainer.appendChild(btn);
+                });
+            }
+            
+            currentImageIndex = 0;
+            updateMainImage(variant, 0);
+        }
+
+        function updateMainImage(variant, index) {
+            const images = variantImages[variant];
+            const imgUrl = images[index];
+            
+            if (mainImage) {
+                mainImage.style.opacity = '0';
+                mainImage.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    mainImage.src = imgUrl;
+                    mainImage.alt = `${currentProductName} - Imagem ${index + 1}`;
+                    mainImage.style.opacity = '1';
+                    mainImage.style.transform = 'scale(1)';
+                }, 300);
+            }
+
+            // Update indicators active state
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((ind, i) => {
+                if (i === index) ind.classList.add('active');
+                else ind.classList.remove('active');
+            });
+        }
+
+        // Add touch/swipe support for the image container
+        const imageContainer = document.getElementById('image-container');
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        if (imageContainer) {
+            imageContainer.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            imageContainer.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+        }
+
+        function handleSwipe() {
+            const images = variantImages[currentVariant];
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left - next image
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                updateMainImage(currentVariant, currentImageIndex);
+            }
+            if (touchEndX > touchStartX + 50) {
+                // Swipe right - prev image
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                updateMainImage(currentVariant, currentImageIndex);
+            }
+        }
+
         // Variant selection logic
         variantPills.forEach(pill => {
             pill.addEventListener('click', () => {
@@ -2521,7 +2616,6 @@
                 const variant = pill.getAttribute('data-variant');
                 const price = parseFloat(pill.getAttribute('data-price'));
                 const oldPrice = parseFloat(pill.getAttribute('data-old-price'));
-                const imgUrl = pill.getAttribute('data-img');
 
                 // Update state
                 currentPrice = price;
@@ -2529,18 +2623,8 @@
                 currentVariant = variant;
                 currentProductName = `${PRODUCT_NAME_BASE} ${variant === 'P13' ? '13 Kilos' : '20 Kilos'} - Cheio (${variant})`;
 
-                // Update UI with animation
-                if (mainImage) {
-                    mainImage.style.opacity = '0';
-                    mainImage.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        mainImage.src = imgUrl;
-                        mainImage.alt = currentProductName;
-                        mainImage.style.opacity = '1';
-                        mainImage.style.transform = 'scale(1)';
-                    }, 300);
-                }
+                // Update Gallery
+                updateGallery(variant);
 
                 if (productNameEl) productNameEl.textContent = currentProductName;
                 if (productSkuEl) productSkuEl.textContent = `SKU: ${variant}-ULTRAGAZ-2026`;
@@ -2945,13 +3029,16 @@
         });
 
         // Carousel indicators
-        const indicators = document.querySelectorAll('.indicator');
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                indicators.forEach(ind => ind.classList.remove('active'));
-                indicator.classList.add('active');
+        function setupIndicators() {
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentImageIndex = index;
+                    updateMainImage(currentVariant, index);
+                });
             });
-        });
+        }
+        setupIndicators();
 
         // Back button
         document.querySelector('.back-btn').addEventListener('click', () => {
