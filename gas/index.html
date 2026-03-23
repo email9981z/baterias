@@ -513,57 +513,62 @@
 
         /* ==================== VARIANT SELECTOR ==================== */
         .variant-selector {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            background-color: var(--bg-white);
         }
 
         .variant-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-gray);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-light);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .variant-pills {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .variant-pill {
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 2px solid var(--border-color);
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            font-weight: 700;
-            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-light);
+            color: var(--text-gray);
+            font-weight: 500;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: var(--shadow-sm);
+            gap: 6px;
+            box-shadow: none;
+            white-space: nowrap;
         }
 
         .variant-pill:hover {
-            border-color: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary);
+            transform: none;
+            box-shadow: none;
         }
 
         .variant-pill.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background-color: var(--primary);
             color: white;
             border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 85, 255, 0.25);
+            box-shadow: none;
+            font-weight: 600;
         }
 
         .variant-pill i {
-            font-size: 0.85rem;
-            opacity: 0.8;
+            font-size: 0.8rem;
+            opacity: 1;
         }
 
         /* Image Transition Effect */
