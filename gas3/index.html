@@ -2805,8 +2805,15 @@
 
         // Scheduling inputs
         if (deliveryDateInput) {
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            deliveryDateInput.setAttribute('min', today);
+            deliveryDateInput.value = today;
+            shippingData.deliveryDate = today;
+
             deliveryDateInput.addEventListener('change', (e) => {
                 shippingData.deliveryDate = e.target.value;
+                updateAvailableTimes();
             });
         }
         
@@ -2815,6 +2822,50 @@
                 shippingData.deliveryTime = e.target.value;
             });
         }
+
+        function updateAvailableTimes() {
+            if (!deliveryTimeSelect || !deliveryDateInput) return;
+
+            const selectedDate = deliveryDateInput.value;
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
+            
+            // Clear current options except the first one
+            deliveryTimeSelect.innerHTML = '<option value="">Selecione...</option>';
+            
+            const timeSlots = [
+                "08:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", 
+                "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00"
+            ];
+
+            timeSlots.forEach(slot => {
+                const startTimeStr = slot.split(' - ')[0];
+                const [hours, minutes] = startTimeStr.split(':').map(Number);
+                
+                const slotDate = new Date(selectedDate + 'T' + startTimeStr);
+                
+                // If selected date is today, check if slot is at least 1 hour from now
+                if (selectedDate === todayStr) {
+                    const minTime = new Date(now.getTime() + (60 * 60 * 1000)); // Now + 1 hour
+                    if (slotDate >= minTime) {
+                        addOption(slot);
+                    }
+                } else {
+                    // For future dates, all slots are available
+                    addOption(slot);
+                }
+            });
+
+            function addOption(val) {
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = val;
+                deliveryTimeSelect.appendChild(opt);
+            }
+        }
+
+        // Initial call to populate times for today
+        updateAvailableTimes();
 
         // Delivery option selection - NO pre-selection
         deliveryOptions.forEach(option => {
