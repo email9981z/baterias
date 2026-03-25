@@ -2264,8 +2264,9 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="delivery-time">Horário</label>
-                            <input type="time" id="delivery-time" class="form-input">
-                            <div class="error-message" id="time-error" style="font-size: 0.7rem; color: var(--danger); margin-top: 4px; display: none;">O horário deve ser pelo menos 1 hora após o atual.</div>
+                            <select id="delivery-time" class="form-input">
+                                <option value="">Selecione...</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -2812,51 +2813,63 @@
         
         if (deliveryTimeSelect) {
             deliveryTimeSelect.addEventListener('change', (e) => {
-                validateAndSetTime(e.target.value);
+                shippingData.deliveryTime = e.target.value;
             });
         }
 
-        function validateAndSetTime(selectedTime) {
-            const timeError = document.getElementById('time-error');
-            if (!selectedTime) {
-                shippingData.deliveryTime = '';
-                return false;
-            }
+        function updateAvailableTimes() {
+            if (!deliveryTimeSelect || !deliveryDateInput) return;
 
             const selectedDate = deliveryDateInput.value;
             const now = new Date();
             const todayStr = now.toISOString().split('T')[0];
             
+            // Clear current options except the first one
+            deliveryTimeSelect.innerHTML = '<option value="">Selecione...</option>';
+            
+            // Generate time slots: horas exatas e meias horas (00, 30)
+            const timeSlots = [];
+            for (let hour = 0; hour < 24; hour++) {
+                timeSlots.push(`${String(hour).padStart(2, '0')}:00`);
+                timeSlots.push(`${String(hour).padStart(2, '0')}:30`);
+            }
+            
+            // Determine the starting point for available times
+            let startIndex = 0;
+            
             if (selectedDate === todayStr) {
-                const [hours, minutes] = selectedTime.split(':').map(Number);
-                const selectedDateTime = new Date();
-                selectedDateTime.setHours(hours, minutes, 0, 0);
+                // If today, start from the next available slot based on current time
+                const currentHour = now.getHours();
+                const currentMinutes = now.getMinutes();
                 
-                const minTime = new Date(now.getTime() + (60 * 60 * 1000)); // Now + 1 hour
-                
-                if (selectedDateTime < minTime) {
-                    if (timeError) {
-                        timeError.style.display = 'block';
-                        timeError.textContent = `Para hoje, selecione após as ${minTime.getHours().toString().padStart(2, '0')}:${minTime.getMinutes().toString().padStart(2, '0')}`;
-                    }
-                    deliveryTimeSelect.classList.add('error');
-                    shippingData.deliveryTime = '';
-                    return false;
+                // If current time is past the half hour (e.g., 07:36)
+                if (currentMinutes >= 30) {
+                    // Start from next hour's half (e.g., 08:30)
+                    // Index calculation: (nextHour * 2) + 1 (the +1 gets the :30 slot)
+                    startIndex = (currentHour + 1) * 2 + 1;
+                } else {
+                    // If current time is before half hour (e.g., 07:26)
+                    // Start from next full hour (e.g., 08:00)
+                    startIndex = (currentHour + 1) * 2;
                 }
             }
             
-            if (timeError) timeError.style.display = 'none';
-            deliveryTimeSelect.classList.remove('error');
-            shippingData.deliveryTime = selectedTime;
-            return true;
-        }
+            // Add available time slots
+            for (let i = startIndex; i < timeSlots.length; i++) {
+                const timeStr = timeSlots[i];
+                addOption(timeStr);
+            }
 
-        function updateAvailableTimes() {
-            // Reset time when date changes to ensure re-validation
-            if (deliveryTimeSelect) {
-                validateAndSetTime(deliveryTimeSelect.value);
+            function addOption(val) {
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = val;
+                deliveryTimeSelect.appendChild(opt);
             }
         }
+
+        // Initial call to populate times for today
+        updateAvailableTimes();
 
         // Delivery option selection - NO pre-selection
         deliveryOptions.forEach(option => {
@@ -2950,18 +2963,6 @@
                     const numInput = document.getElementById('number-input');
                     if (numInput) numInput.focus();
                     return;
-                }
-
-                if (shippingData.deliveryType === 'scheduled') {
-                    if (!shippingData.deliveryDate) {
-                        alert('Por favor, selecione a data de entrega.');
-                        return;
-                    }
-                    if (!shippingData.deliveryTime) {
-                        alert('Por favor, selecione um horário válido (pelo menos 1 hora após o atual).');
-                        if (deliveryTimeSelect) deliveryTimeSelect.focus();
-                        return;
-                    }
                 }
 
                 renderReviewBlock();
