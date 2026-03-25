@@ -1532,7 +1532,96 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(0, 85, 255, 0.35);
             filter: brightness(1.1);
-        }    color: var(--text-gray);
+        }
+
+        /* ==================== ERROR MESSAGE MODAL ==================== */
+        .error-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .error-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .error-modal-content {
+            background-color: var(--bg-white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            max-width: 320px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-modal-icon {
+            font-size: 3rem;
+            color: var(--danger);
+            margin-bottom: 16px;
+        }
+
+        .error-modal-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .error-modal-message {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .error-modal-btn {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .error-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 85, 255, 0.3);
+        }
+
+        .error-modal-btn:active {
+            transform: translateY(0);
         }
 
         /* ==================== SHIPPING ADDRESS SECTION ==================== */
@@ -3102,8 +3191,70 @@
             const finishNowBtn = document.getElementById('finish-now-btn');
             if (finishNowBtn) {
                 finishNowBtn.addEventListener('click', () => {
-                    alert('Pedido finalizado com sucesso!');
+                    // Get the total value from cart
+                    const item = cart[0];
+                    const totalValue = (item.price * item.quantity).toFixed(2);
+                    
+                    // Define the valid prices and their corresponding links
+                    const validPrices = {
+                        '89.47': 'https://example.com/checkout/89-47',
+                        '178.94': 'https://example.com/checkout/178-94',
+                        '395.47': 'https://example.com/checkout/395-47',
+                        '790.94': 'https://example.com/checkout/790-94'
+                    };
+                    
+                    // Check if the total value matches one of the valid prices
+                    if (validPrices[totalValue]) {
+                        // Redirect to the appropriate link
+                        window.location.href = validPrices[totalValue];
+                    } else {
+                        // Show error modal
+                        showErrorModal();
+                    }
                 });
+            }
+
+            // Function to show error modal
+            function showErrorModal() {
+                // Create modal HTML
+                const modalHTML = `
+                    <div class="error-modal active" id="error-modal-overlay">
+                        <div class="error-modal-content">
+                            <div class="error-modal-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="error-modal-title">Seleção Inválida</div>
+                            <div class="error-modal-message">
+                                Selecione no máximo 2 botijões do mesmo modelo
+                            </div>
+                            <button class="error-modal-btn" id="error-modal-back-btn">
+                                <i class="fas fa-redo"></i> Voltar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add modal to body
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+                
+                // Add event listener to back button
+                const backBtn = document.getElementById('error-modal-back-btn');
+                if (backBtn) {
+                    backBtn.addEventListener('click', () => {
+                        // Remove modal
+                        const modal = document.getElementById('error-modal-overlay');
+                        if (modal) {
+                            modal.classList.remove('active');
+                            setTimeout(() => {
+                                modal.remove();
+                            }, 300);
+                        }
+                        // Reload page to reset
+                        setTimeout(() => {
+                            location.reload();
+                        }, 300);
+                    });
+                }
             }
         }
 
