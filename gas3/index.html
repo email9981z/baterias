@@ -324,25 +324,96 @@
         .image-container {
             width: 100%;
             height: 280px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: linear-gradient(135deg, var(--bg-light) 0%, #f0f2f5 100%);
             border-radius: 12px;
-            padding: 20px;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
             border: 2px solid var(--border-color);
             transition: all 0.3s ease;
             margin-bottom: 12px;
+            touch-action: pan-y;
         }
 
         .image-container:hover {
             box-shadow: var(--shadow-md);
             border-color: var(--accent);
-            transform: translateY(-2px);
         }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.3s ease-out;
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: var(--shadow-sm);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .image-container:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav.prev { left: 10px; }
+        .carousel-nav.next { right: 10px; }
 
         .image-container img {
             max-width: 100%;
@@ -1777,6 +1848,76 @@
             font-weight: 400;
         }
 
+        /* ==================== SCHEDULING SECTION ==================== */
+        .scheduled-delivery-section {
+            margin-top: 16px;
+            padding: 16px;
+            background-color: var(--primary-light);
+            border-radius: 10px;
+            border: 1px dashed var(--primary);
+            display: none;
+            animation: slideDownFade 0.3s ease-out;
+        }
+
+        .scheduled-delivery-section.active {
+            display: block;
+        }
+
+        .scheduled-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scheduled-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .scheduled-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .scheduled-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-transform: uppercase;
+        }
+
+        .scheduled-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            color: var(--text-dark);
+        }
+
+        .scheduled-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .error-message {
             color: var(--danger);
             font-size: 0.8rem;
@@ -2098,13 +2239,13 @@
 
                 <!-- IMAGE GALLERY -->
                 <div class="image-gallery">
-                    <div class="image-container" id="image-container">
-                        <img id="main-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285700287/lMjNJNafcEASVjXi.png" alt="Botijão P13 (13Kg) - Ultragaz">
-                    </div>
-                    <div class="carousel-indicators" id="carousel-indicators">
-                        <button class="indicator active" data-index="0"></button>
-                        <button class="indicator" data-index="1"></button>
-                        <button class="indicator" data-index="2"></button>
+                    <div class="image-container" id="product-carousel">
+                        <div class="carousel-track" id="carousel-track">
+                            <!-- Slides will be injected by JS -->
+                        </div>
+                        <div class="carousel-nav prev" id="carousel-prev"><i class="fas fa-chevron-left"></i></div>
+                        <div class="carousel-nav next" id="carousel-next"><i class="fas fa-chevron-right"></i></div>
+                        <div class="carousel-dots" id="carousel-dots"></div>
                     </div>
                 </div>
 
@@ -2435,14 +2576,32 @@
                         <div class="delivery-option-main">⚡ GRÁTIS - Entrega em 20 Minutos</div>
                         <div class="delivery-option-sub">Entrega rápida e segura</div>
                     </div>
-                </div>        <div class="delivery-option-card" data-delivery="scheduled">
+                         <div class="delivery-option-card" data-delivery="scheduled">
                     <div class="delivery-option-radio"></div>
                     <div class="delivery-option-text">
                         <div class="delivery-option-main">📅 GRÁTIS - Agendada</div>
                         <div class="delivery-option-sub">Escolha a data e hora mais conveniente</div>
                     </div>
                 </div>
-            </div>
+
+                <!-- NOVO: Seção de Agendamento -->
+                <div class="scheduled-delivery-section" id="scheduled-section">
+                    <div class="scheduled-title">
+                        <i class="fas fa-calendar-alt"></i> Detalhes do Agendamento
+                    </div>
+                    <div class="scheduled-inputs">
+                        <div class="scheduled-field">
+                            <label class="scheduled-label" for="delivery-date">Data</label>
+                            <input type="date" id="delivery-date" class="scheduled-input">
+                        </div>
+                        <div class="scheduled-field">
+                            <label class="scheduled-label" for="delivery-time">Horário</label>
+                            <input type="time" id="delivery-time" class="scheduled-input">
+                        </div>
+                    </div>
+                    <div class="error-message" id="schedule-error" style="margin-top: 8px; font-size: 0.75rem; color: var(--danger);"></div>
+                </div>
+            </div>/div>
             </div>
 
             <!-- CART SUMMARY - NOW INSIDE CART CONTENT -->
@@ -2477,7 +2636,9 @@
             state: '',
             number: '',
             complement: '',
-            deliveryType: ''
+            deliveryType: '',
+            scheduledDate: '',
+            scheduledTime: ''
         };
 
         // Cart elements
@@ -2493,12 +2654,114 @@
         const subtotalEl = document.getElementById('subtotal');
         const totalEl = document.getElementById('total');
         const cartSummary = document.querySelector('.cart-summary');
+        const scheduledSection = document.getElementById('scheduled-section');
+        const deliveryDateInput = document.getElementById('delivery-date');
+        const deliveryTimeInput = document.getElementById('delivery-time');
+        const scheduleError = document.getElementById('schedule-error');
 
         // Main quantity selector elements
         const mainQtyNumber = document.getElementById('main-qty-number');
         const mainQtyDecrease = document.getElementById('main-qty-decrease');
         const mainQtyIncrease = document.getElementById('main-qty-increase');
         let mainQuantity = 1;
+
+        // Product Images Data
+        const productImages = {
+            'P13': [
+                'https://i.postimg.cc/bNrFp7fR/1000310540_removebg_preview.png',
+                'https://i.postimg.cc/vB8sG0zH/images_(1)_(22).jpg',
+                'https://i.postimg.cc/CMPqTtNT/vale_gas_repartidor_ultragaz.png',
+                'https://i.postimg.cc/8cjg6s9m/images_(1)_(23).jpg'
+            ],
+            'P20': [
+                'https://i.postimg.cc/PJPnwN0n/images_(1)_(24).jpg',
+                'https://i.postimg.cc/3NV5CYHK/images_(1)_(25).jpg',
+                'https://i.postimg.cc/VvpQBmcy/Whats_App_Image_2020_06_04_at_18_21_17_1.jpg',
+                'https://i.postimg.cc/8cjg6s9m/images_(1)_(23).jpg'
+            ]
+        };
+
+        // Carousel Logic
+        let currentSlideIndex = 0;
+        const carouselTrack = document.getElementById('carousel-track');
+        const carouselDots = document.getElementById('carousel-dots');
+        const carouselPrev = document.getElementById('carousel-prev');
+        const carouselNext = document.getElementById('carousel-next');
+        const carouselContainer = document.getElementById('product-carousel');
+
+        function initCarousel(variant) {
+            const images = productImages[variant] || [];
+            carouselTrack.innerHTML = '';
+            carouselDots.innerHTML = '';
+            currentSlideIndex = 0;
+
+            images.forEach((src, index) => {
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `${variant} - Imagem ${index + 1}`;
+                if (index === 0) img.id = 'main-image';
+                slide.appendChild(img);
+                carouselTrack.appendChild(slide);
+
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(index));
+                carouselDots.appendChild(dot);
+            });
+
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const offset = -currentSlideIndex * 100;
+            carouselTrack.style.transform = `translateX(${offset}%)`;
+            
+            // Update dots
+            const dots = carouselDots.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            const images = productImages[currentVariant] || [];
+            if (index < 0) index = images.length - 1;
+            if (index >= images.length) index = 0;
+            currentSlideIndex = index;
+            updateCarousel();
+        }
+
+        carouselPrev.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
+        carouselNext.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
+
+        // Touch support for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                goToSlide(currentSlideIndex + 1);
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                goToSlide(currentSlideIndex - 1);
+            }
+        }
+
+        // Initialize carousel for default variant
+        initCarousel('P13');
 
         // Variant elements
         const variantPills = document.querySelectorAll('.variant-pill');
@@ -2530,17 +2793,7 @@
                 currentProductName = `${PRODUCT_NAME_BASE} ${variant === 'P13' ? '13 Kilos' : '20 Kilos'} - Cheio (${variant})`;
 
                 // Update UI with animation
-                if (mainImage) {
-                    mainImage.style.opacity = '0';
-                    mainImage.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        mainImage.src = imgUrl;
-                        mainImage.alt = currentProductName;
-                        mainImage.style.opacity = '1';
-                        mainImage.style.transform = 'scale(1)';
-                    }, 300);
-                }
+                initCarousel(variant);
 
                 if (productNameEl) productNameEl.textContent = currentProductName;
                 if (productSkuEl) productSkuEl.textContent = `SKU: ${variant}-ULTRAGAZ-2026`;
@@ -2871,6 +3124,16 @@
                 deliveryOptions.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
                 shippingData.deliveryType = option.dataset.delivery;
+
+                // Gerenciar exibição da seção de agendamento
+                if (shippingData.deliveryType === 'scheduled') {
+                    scheduledSection.classList.add('active');
+                    setupSchedulingConstraints();
+                } else {
+                    scheduledSection.classList.remove('active');
+                    shippingData.scheduledDate = '';
+                    shippingData.scheduledTime = '';
+                }
                 
                 // Show summary bar only after selecting a delivery option
                 if (cartSummary) {
@@ -2886,6 +3149,53 @@
                 }
             });
         });
+
+        // Configurar restrições de agendamento (mínimo 1 hora a partir de agora)
+        function setupSchedulingConstraints() {
+            const now = new Date();
+            const minDateTime = new Date(now.getTime() + 60 * 60 * 1000); // +1 hora
+
+            const year = minDateTime.getFullYear();
+            const month = String(minDateTime.getMonth() + 1).padStart(2, '0');
+            const day = String(minDateTime.getDate()).padStart(2, '0');
+            const minDateStr = `${year}-${month}-${day}`;
+
+            deliveryDateInput.min = minDateStr;
+            
+            // Se não houver data selecionada, define como a mínima
+            if (!deliveryDateInput.value) {
+                deliveryDateInput.value = minDateStr;
+            }
+
+            validateSchedule();
+        }
+
+        function validateSchedule() {
+            const selectedDate = deliveryDateInput.value;
+            const selectedTime = deliveryTimeInput.value;
+            
+            if (!selectedDate || !selectedTime) {
+                scheduleError.textContent = "Por favor, selecione data e horário.";
+                return false;
+            }
+
+            const now = new Date();
+            const selectedDateTime = new Date(`${selectedDate}T${selectedTime}`);
+            const minAllowed = new Date(now.getTime() + 60 * 60 * 1000);
+
+            if (selectedDateTime < minAllowed) {
+                scheduleError.textContent = "O horário deve ser pelo menos 1 hora a partir de agora.";
+                return false;
+            }
+
+            scheduleError.textContent = "";
+            shippingData.scheduledDate = selectedDate;
+            shippingData.scheduledTime = selectedTime;
+            return true;
+        }
+
+        deliveryDateInput.addEventListener('change', validateSchedule);
+        deliveryTimeInput.addEventListener('change', validateSchedule);
 
         // Sticky product header is now always visible at top of cart-content
         // It will stick naturally due to CSS position: sticky
