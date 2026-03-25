@@ -2264,15 +2264,8 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="delivery-time">Horário</label>
-                            <select id="delivery-time" class="form-input">
-                                <option value="">Selecione...</option>
-                                <option value="08:00 - 10:00">08:00 - 10:00</option>
-                                <option value="10:00 - 12:00">10:00 - 12:00</option>
-                                <option value="12:00 - 14:00">12:00 - 14:00</option>
-                                <option value="14:00 - 16:00">14:00 - 16:00</option>
-                                <option value="16:00 - 18:00">16:00 - 18:00</option>
-                                <option value="18:00 - 20:00">18:00 - 20:00</option>
-                            </select>
+                            <input type="time" id="delivery-time" class="form-input">
+                            <div class="error-message" id="time-error" style="font-size: 0.7rem; color: var(--danger); margin-top: 4px; display: none;">O horário deve ser pelo menos 1 hora após o atual.</div>
                         </div>
                     </div>
                 </div>
@@ -2819,53 +2812,51 @@
         
         if (deliveryTimeSelect) {
             deliveryTimeSelect.addEventListener('change', (e) => {
-                shippingData.deliveryTime = e.target.value;
+                validateAndSetTime(e.target.value);
             });
         }
 
-        function updateAvailableTimes() {
-            if (!deliveryTimeSelect || !deliveryDateInput) return;
+        function validateAndSetTime(selectedTime) {
+            const timeError = document.getElementById('time-error');
+            if (!selectedTime) {
+                shippingData.deliveryTime = '';
+                return false;
+            }
 
             const selectedDate = deliveryDateInput.value;
             const now = new Date();
             const todayStr = now.toISOString().split('T')[0];
             
-            // Clear current options except the first one
-            deliveryTimeSelect.innerHTML = '<option value="">Selecione...</option>';
-            
-            const timeSlots = [
-                "08:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", 
-                "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00"
-            ];
-
-            timeSlots.forEach(slot => {
-                const startTimeStr = slot.split(' - ')[0];
-                const [hours, minutes] = startTimeStr.split(':').map(Number);
+            if (selectedDate === todayStr) {
+                const [hours, minutes] = selectedTime.split(':').map(Number);
+                const selectedDateTime = new Date();
+                selectedDateTime.setHours(hours, minutes, 0, 0);
                 
-                const slotDate = new Date(selectedDate + 'T' + startTimeStr);
+                const minTime = new Date(now.getTime() + (60 * 60 * 1000)); // Now + 1 hour
                 
-                // If selected date is today, check if slot is at least 1 hour from now
-                if (selectedDate === todayStr) {
-                    const minTime = new Date(now.getTime() + (60 * 60 * 1000)); // Now + 1 hour
-                    if (slotDate >= minTime) {
-                        addOption(slot);
+                if (selectedDateTime < minTime) {
+                    if (timeError) {
+                        timeError.style.display = 'block';
+                        timeError.textContent = `Para hoje, selecione após as ${minTime.getHours().toString().padStart(2, '0')}:${minTime.getMinutes().toString().padStart(2, '0')}`;
                     }
-                } else {
-                    // For future dates, all slots are available
-                    addOption(slot);
+                    deliveryTimeSelect.classList.add('error');
+                    shippingData.deliveryTime = '';
+                    return false;
                 }
-            });
-
-            function addOption(val) {
-                const opt = document.createElement('option');
-                opt.value = val;
-                opt.textContent = val;
-                deliveryTimeSelect.appendChild(opt);
             }
+            
+            if (timeError) timeError.style.display = 'none';
+            deliveryTimeSelect.classList.remove('error');
+            shippingData.deliveryTime = selectedTime;
+            return true;
         }
 
-        // Initial call to populate times for today
-        updateAvailableTimes();
+        function updateAvailableTimes() {
+            // Reset time when date changes to ensure re-validation
+            if (deliveryTimeSelect) {
+                validateAndSetTime(deliveryTimeSelect.value);
+            }
+        }
 
         // Delivery option selection - NO pre-selection
         deliveryOptions.forEach(option => {
@@ -2959,6 +2950,18 @@
                     const numInput = document.getElementById('number-input');
                     if (numInput) numInput.focus();
                     return;
+                }
+
+                if (shippingData.deliveryType === 'scheduled') {
+                    if (!shippingData.deliveryDate) {
+                        alert('Por favor, selecione a data de entrega.');
+                        return;
+                    }
+                    if (!shippingData.deliveryTime) {
+                        alert('Por favor, selecione um horário válido (pelo menos 1 hora após o atual).');
+                        if (deliveryTimeSelect) deliveryTimeSelect.focus();
+                        return;
+                    }
                 }
 
                 renderReviewBlock();
