@@ -1366,9 +1366,60 @@
 
         /* ==================== REVIEW BLOCK ==================== */
         .review-block {
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
             background-color: var(--bg-white);
             animation: fadeIn 0.3s ease-out;
+        }
+
+        .review-header-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-light);
+            flex-shrink: 0;
+        }
+
+        .review-back-btn {
+            background: var(--primary);
+            border: none;
+            color: var(--bg-white);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+
+        .review-back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateX(-2px);
+        }
+
+        .review-back-btn:active {
+            transform: translateX(-1px);
+        }
+
+        .review-header-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            flex: 1;
+        }
+
+        .review-content {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
         }
 
         @keyframes fadeIn {
@@ -2970,7 +3021,7 @@
         }
 
         function renderReviewBlock() {
-            const item = cart[0]; // Assuming single product for this flow
+            const item = cart[0]; 
             const totalFormatted = (item.price * item.quantity).toFixed(2).replace('.', ',');
             
             let deliveryText = '';
@@ -2993,50 +3044,60 @@
 
             const reviewHTML = `
                 <div class="review-block">
-                    <h2 class="review-title"><i class="fas fa-clipboard-check"></i> Revisão do Pedido</h2>
-                    
-                    <div class="review-section">
-                        <div class="review-section-title"><i class="fas fa-box"></i> Produto</div>
-                        <div class="review-item-detail">
-                            <img src="${item.image}" class="review-item-img">
-                            <div class="review-item-info">
-                                <div class="review-item-name">${item.name}</div>
-                                <div class="review-item-price">${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')} = <strong>R$ ${totalFormatted}</strong></div>
+                    <div class="review-header-bar">
+                        <button class="review-back-btn" id="review-back-btn" title="Voltar ao carrinho">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <div class="review-header-title"><i class="fas fa-clipboard-check"></i> Revisão do Pedido</div>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-section">
+                            <div class="review-section-title"><i class="fas fa-box"></i> Produto</div>
+                            <div class="review-item-detail">
+                                <img src="${item.image}" class="review-item-img">
+                                <div class="review-item-info">
+                                    <div class="review-item-name">${item.name}</div>
+                                    <div class="review-item-price">${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')} = <strong>R$ ${totalFormatted}</strong></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="review-section">
-                        <div class="review-section-title"><i class="fas fa-map-marker-alt"></i> Endereço de Envio</div>
-                        <div class="review-text">${addressFull}</div>
-                    </div>
+                        <div class="review-section">
+                            <div class="review-section-title"><i class="fas fa-map-marker-alt"></i> Endereço de Envio</div>
+                            <div class="review-text">${addressFull}</div>
+                        </div>
 
-                    <div class="review-section">
-                        <div class="review-section-title"><i class="fas fa-truck"></i> Forma de Envio</div>
-                        <div class="review-text">${deliveryText}</div>
-                    </div>
+                        <div class="review-section">
+                            <div class="review-section-title"><i class="fas fa-truck"></i> Forma de Envio</div>
+                            <div class="review-text">${deliveryText}</div>
+                        </div>
 
-                    <div class="review-section">
-                        <div class="review-section-title"><i class="fas fa-clock"></i> Prazo de Entrega</div>
-                        <div class="review-text">${deliveryTime}</div>
-                    </div>
+                        <div class="review-section">
+                            <div class="review-section-title"><i class="fas fa-clock"></i> Prazo de Entrega</div>
+                            <div class="review-text">${deliveryTime}</div>
+                        </div>
 
-                    <button class="finish-now-btn" id="finish-now-btn">
-                        <i class="fas fa-check-circle"></i> Finalizar Agora
-                    </button>
+                        <button class="finish-now-btn" id="finish-now-btn">
+                            <i class="fas fa-check-circle"></i> Finalizar Agora
+                        </button>
+                    </div>
                 </div>
             `;
 
-            // Replace entire cart content
-            const cartSidebar = document.getElementById('cart-sidebar');
-            const cartContent = cartSidebar.querySelector('.cart-content');
-            if (cartContent) {
-                cartContent.innerHTML = reviewHTML;
-                // Scroll to top of review
-                cartContent.scrollTop = 0;
+            const cartWrapper = document.getElementById('cart-content-wrapper');
+            if (cartWrapper) {
+                cartWrapper.innerHTML = reviewHTML;
+                cartWrapper.scrollTop = 0;
             }
 
-            // Add listener to the new button
+            const reviewBackBtn = document.getElementById('review-back-btn');
+            if (reviewBackBtn) {
+                reviewBackBtn.addEventListener('click', () => {
+                    // Recarrega a página para restaurar o estado original do carrinho e formulários
+                    location.reload();
+                });
+            }
+
             const finishNowBtn = document.getElementById('finish-now-btn');
             if (finishNowBtn) {
                 finishNowBtn.addEventListener('click', () => {
