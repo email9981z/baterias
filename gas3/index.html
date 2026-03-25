@@ -2935,11 +2935,11 @@
                 if (summaryDeliveryRow) {
                     summaryDeliveryRow.style.display = 'flex';
                     if (type === 'express') {
-                        summaryDeliveryText.textContent = 'Entrega - Receba em 20 Minutos';
+                        summaryDeliveryText.textContent = 'Receba em 20 Minutos';
                         summaryDeliveryIcon.className = 'fas fa-bolt';
                         if (schedulingSection) schedulingSection.classList.remove('active');
                     } else if (type === 'scheduled') {
-                        summaryDeliveryText.textContent = 'Entrega - Agendada';
+                        summaryDeliveryText.textContent = 'Agendada';
                         summaryDeliveryIcon.className = 'fas fa-calendar-alt';
                         if (schedulingSection) schedulingSection.classList.add('active');
                     }
